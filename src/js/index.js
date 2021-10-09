@@ -601,6 +601,33 @@
         }
     }
 
+    class TimeDown {
+        constructor() {
+            this.end = document.querySelector(".timer");
+            this.day = document.querySelectorAll(".days");
+            this.hours = document.querySelectorAll(".hours");
+            this.minute = document.querySelectorAll(".minute");
+            this.seconds = document.querySelectorAll(".seconds");
+
+            setInterval(() => {
+                console.log(1);
+                this.getInterval();
+            }, 1000);
+        }
+
+        getInterval() {
+            let interval = new Date(this.end.getAttribute("endtime")).getTime() - Date.now();
+            interval /= 1000;
+            for(let i = 0; i < this.day.length; i++) {
+                this.day[i].innerHTML = `${parseInt(interval / 60 / 60 / 24)}天`;
+                this.hours[i].innerHTML = parseInt(interval / 60 / 60 % 24);
+                this.minute[i].innerHTML = parseInt(interval / 60 % 60);
+                this.seconds[i].innerHTML = parseInt(interval % 60);
+            }
+        }
+    }
+
+    new TimeDown();
     new DocumentInit();
     setTimeout(() => {
         new Suspension()
