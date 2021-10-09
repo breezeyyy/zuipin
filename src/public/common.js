@@ -290,7 +290,6 @@ window.onload = function () {
     class AsideTop {
         constructor() {
             this.top = document.querySelector(".toTop");
-
             this.judgeStatus();
             this.topAddEvent();
         }
@@ -348,7 +347,7 @@ window.onload = function () {
                 type: "GET",
                 url: "http://localhost:3000/api",
                 success: (response) => {
-                    if (response.data !== {} && response.data)
+                    if (response.data !== [])
                         this.renderer(response.data);
                 },
                 error: (status) => {

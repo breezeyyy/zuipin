@@ -415,7 +415,75 @@
         }
     }
 
-    new FloorNav();
+    class Banner_main {
+        constructor() {
+            this.imgBox = document.querySelector(".bannerImg");
+            this.imgList = document.querySelectorAll(".bannerImg li");
+            this.btns = document.querySelectorAll(".bannerNav li");
+            this.nowIndex = 0;
+            this.show();
+            // console.log(this.imgW);
+            this.btnsEvent();
+            this.imgInterval();
+            this.imgHoverEvent();
+        }
+
+        btnsEvent() {
+            const that = this;
+            this.btns.forEach((element, index) => {
+                addEvent(element, "mouseover", function () {
+                    if (index != that.nowIndex) {
+                        that.changeImg(index);
+                    }
+                })
+            })
+        }
+
+        imgHoverEvent() {
+            const that = this;
+
+            addEvent(this.imgBox, "mouseenter", function() {
+                clearInterval(that.intervalIndex);
+            })
+
+            addEvent(this.imgBox, "mouseleave", function() {
+                that.imgInterval();
+            })
+        }
+
+        imgInterval() {
+            clearInterval(this.intervalIndex);
+            this.intervalIndex = setInterval(() => {
+                this.changeImg(this.nowIndex + 1 === this.imgList.length ? 0 : this.nowIndex + 1)
+            }, 3000);
+        }
+
+        changeImg(index) {
+            this.btns[this.nowIndex].className = "";
+            this.hide();
+            this.nowIndex = index;
+            this.btns[this.nowIndex].className = "bannerOn";
+            this.show();
+        }
+
+        show() {
+            this.imgList[this.nowIndex].style.opacity = "1";
+        }
+
+        hide() {
+            this.imgList[this.nowIndex].style.opacity = "0";
+        }
+
+        setDelay(func, timoDelay) {
+            clearTimeout(this.timeOutIndex);
+            this.timeOutIndex = setTimeout(func, timoDelay);
+        }
+    }
+
     new DocumentInit();
-    new Suspension()
+    setTimeout(() => {
+        new Suspension()
+        new FloorNav();
+        new Banner_main();
+    }, 50);
 })();
