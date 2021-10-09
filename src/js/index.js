@@ -369,7 +369,7 @@
         navScrollEvent() {
             const that = this;
 
-            document.onscroll = function() {
+            document.onscroll = function () {
                 that.judgeStatus();
             }
         }
@@ -444,11 +444,11 @@
         imgHoverEvent() {
             const that = this;
 
-            addEvent(this.imgBox, "mouseenter", function() {
+            addEvent(this.imgBox, "mouseenter", function () {
                 clearInterval(that.intervalIndex);
             })
 
-            addEvent(this.imgBox, "mouseleave", function() {
+            addEvent(this.imgBox, "mouseleave", function () {
                 that.imgInterval();
             })
         }
@@ -482,10 +482,144 @@
         }
     }
 
+    class Banner_multiEle {
+        constructor({
+            imgBox,
+            together,
+            btns
+        }) {
+            this.imgBox = imgBox;
+            this.together = together;
+            this.btns = btns;
+            this.imgList = this.imgBox.children;
+            this.imgW = this.imgBox.offsetWidth / this.together;
+            this.createPos();
+            this.nowItems = [...this.pos.keys()];
+            // console.log(this.imgBox.parentElement);
+            // console.log(this.nowItems);
+            this.init();
+        }
+
+        createPos() {
+            this.pos = new Array(this.together).fill(0);
+            this.pos.forEach((value, index) => {
+                this.pos[index] = this.imgW * index;
+            })
+            // console.log(this.pos);
+            this.imgInterval();
+            this.imgHoverEvent();
+        }
+
+        init() {
+            this.nowItems.forEach(val => {
+                this.imgList[val].style.left = `${this.pos[val]}px`;
+                this.imgList[val].style.zIndex = "100";
+            })
+
+            // console.log(this.btns);
+            this.btnAddEvent();
+
+        }
+
+        imgHoverEvent() {
+            const that = this;
+
+            addEvent(this.imgBox.parentElement, "mouseenter", function () {
+                clearInterval(that.intervalIndex);
+            })
+
+            addEvent(this.imgBox.parentElement, "mouseleave", function () {
+                that.imgInterval();
+            })
+        }
+
+        imgInterval() {
+            clearInterval(this.intervalIndex);
+            this.intervalIndex = setInterval(() => {
+                this.prev();
+            }, 3000);
+        }
+
+        btnAddEvent() {
+            const that = this;
+
+            addEvent(this.btns[0], "click", function () {
+                that.prev();
+            })
+
+            addEvent(this.btns[1], "click", function () {
+                that.next();
+            })
+
+            addEvent(this.btns[0].parentElement, "mouseenter", function () {
+                clearInterval(that.intervalIndex);
+            })
+
+            addEvent(this.btns[1].parentElement, "mouseenter", function () {
+                clearInterval(that.intervalIndex);
+            })
+
+        }
+
+        prev() {
+            this.nowItems.forEach((value, index) => {
+                this.imgList[value].style.zIndex = "10";
+                this.setMovePos(this.imgList[value], this.pos[index], true);
+                this.nowItems[index] = value + 1 >= this.imgList.length ? 0 : value + 1;
+            })
+            // console.log(this.nowItems);
+            this.nowItems.forEach((value, index) => {
+                this.imgList[value].style.zIndex = "100";
+                this.setMovePos(this.imgList[value], this.pos[index] + this.imgW, true);
+            })
+        }
+
+        next() {
+            this.nowItems.forEach((value, index) => {
+                this.imgList[value].style.zIndex = "10";
+                this.setMovePos(this.imgList[value], this.pos[index], false);
+                this.nowItems[index] = value - 1 < 0 ? this.imgList.length - 1 : value - 1;
+            })
+            // console.log(this.nowItems);
+            this.nowItems.forEach((value, index) => {
+                this.imgList[value].style.zIndex = "100";
+                this.setMovePos(this.imgList[value], this.pos[index] - this.imgW, false);
+            })
+        }
+
+        setMovePos(target, value, calcFlag) {
+            target.style.left = `${value}px`;
+            // console.log(`${value}px`);
+            this.move(target, calcFlag ? value - this.imgW : value + this.imgW);
+        }
+
+        move(target, value) {
+            // console.log(value);
+            elementAnimation(target, {
+                left: value
+            })
+        }
+    }
+
     new DocumentInit();
     setTimeout(() => {
         new Suspension()
         new FloorNav();
         new Banner_main();
-    }, 50);
+        new Banner_multiEle({
+            imgBox: document.querySelector(".tejia .specialbanner"),
+            btns: document.querySelectorAll(".tejia .specialBtns div"),
+            together: 2
+        });
+        new Banner_multiEle({
+            imgBox: document.querySelector(".miaosha .specialbanner"),
+            btns: document.querySelectorAll(".miaosha .specialBtns div"),
+            together: 2
+        });
+        new Banner_multiEle({
+            imgBox: document.querySelector(".hot_content ul"),
+            btns: document.querySelectorAll(".hot_btns div"),
+            together: 4
+        });
+    }, 200);
 })();

@@ -234,16 +234,17 @@
 
 .itemSpecial .typeArea .specialContent .specialbanner {
     position: relative;
-    width: 592px;
-    max-height: 416px;
-    padding-left: 13px;
+    width: 570px;
+    height: 416px;
+    margin-left: 17px;
     overflow: hidden;
 }
 
 .itemSpecial .typeArea .specialContent .specialbanner li {
+    position: absolute;
     float: left;
-    width: 282px;
-    margin-right: 7px;
+    width: 285px;
+    padding-right: 7px;
     margin-top: 10px;
     margin-bottom: 20px;
     text-align: center;
@@ -386,7 +387,7 @@
 .itemSpecial .typeArea .specialBtns div {
     position: absolute;
     top: 212px;
-    z-index: 12;
+    z-index: 120;
     width: 18px;
     height: 40px;
     cursor: pointer;
@@ -795,13 +796,17 @@
 }
 
 .hot .typeArea .hot_content ul {
+    position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
 }
 
 .hot .typeArea .hot_content ul li {
-    float: left;
+    /* float: left; */
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 296px;
     margin-right: 14px;
     text-align: center;
@@ -879,7 +884,7 @@
     color: #c00000;
 }
 
-.hot .typeArea .hot_content .hot_btns a {
+.hot .typeArea .hot_content .hot_btns div {
     position: absolute;
     top: 170px;
     z-index: 2;
@@ -887,9 +892,10 @@
     height: 48px;
     background-repeat: no-repeat;
     background-position: center center;
+    cursor: pointer;
 }
 
-.hot .typeArea .hot_content .hot_btns a:hover {
+.hot .typeArea .hot_content .hot_btns div:hover {
     opacity: 0.6;
 }
 
