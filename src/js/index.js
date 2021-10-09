@@ -356,12 +356,12 @@
             const that = this;
             this.li.forEach((element, index) => {
                 element.onclick = function () {
+                    that.removeScrollEvent();
                     that.clearClassName();
-                    // console.log(that.topTo, index);
                     that.li[index].className = "on";
                     elementAnimation(document.documentElement, {
                         scrollTop: that.topTo[index]
-                    })
+                    }, that.navScrollEvent.bind(that))
                 }
             })
         }
@@ -369,9 +369,13 @@
         navScrollEvent() {
             const that = this;
 
-            addEvent(document, "scroll", function () {
+            document.onscroll = function() {
                 that.judgeStatus();
-            })
+            }
+        }
+
+        removeScrollEvent() {
+            document.onscroll = null;
         }
 
         clearClassName() {
@@ -381,13 +385,11 @@
         }
 
         judgeStatus() {
-            // console.log(document.documentElement.scrollTop);
             document.documentElement.scrollTop >= 700 ? this.show() : this.hide();
         }
 
         changeNav() {
             const index = Math.abs(this.topValue.findIndex(val => document.documentElement.scrollTop >= val) - this.li.length + 1) % this.li.length;
-            // console.log(index, document.documentElement.scrollTop, this.topValue);
             this.li[index].className = "on";
         }
 
