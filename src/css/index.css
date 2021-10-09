@@ -1,0 +1,1062 @@
+/* 主轮播图 */
+.bannerBox {
+    width: 100%;
+    height: 460px;
+}
+
+.bannerBox .typeArea {
+    position: relative;
+    height: 100%;
+}
+
+.bannerBox .typeArea .topLeft {
+    position: absolute;
+    left: -346px;
+    top: 0px;
+    width: 346px;
+    height: 683px;
+}
+
+.bannerBox .typeArea .topLeft a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url("../images/index/pc_left.jpg") no-repeat;
+}
+
+.bannerBox .typeArea .banner {
+    position: absolute;
+    left: 234px;
+    top: 0;
+    width: 992px;
+    height: 460px;
+    overflow: hidden;
+}
+
+.bannerBox .typeArea .banner .bannerImg {
+    position: relative;
+    height: 100%;
+    z-index: 0;
+}
+
+.bannerBox .typeArea .banner .bannerImg li a img {
+    display: block;
+    width: 992px;
+    height: 460px;
+}
+
+.bannerBox .typeArea .banner .bannerNav {
+    position: absolute;
+    right: 112px;
+    bottom: 15px;
+    z-index: 1;
+    height: 16px;
+    overflow: hidden;
+}
+
+.bannerBox .typeArea .banner .bannerNav li {
+    float: left;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    line-height: 14px;
+    text-align: center;
+    background-color: #8c9e9a;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.bannerBox .typeArea .banner .bannerNav li span {
+    display: inline-block;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 8px;
+    height: 8px;
+    background-color: #a2aaa8;
+    border-radius: 50%;
+}
+
+.bannerBox .typeArea .banner .bannerNav .bannerOn span {
+    background-color: #ff3600;
+}
+
+.bannerBox .typeArea .topRight {
+    position: absolute;
+    left: 1226px;
+    top: 0px;
+    width: 347px;
+    height: 683px;
+}
+
+.bannerBox .typeArea .topRight a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url("../images/index/pc_right.jpg") no-repeat;
+}
+
+/* 推荐 */
+.recommend {
+    width: 100%;
+    height: 223px;
+}
+
+.recommend .typeArea {
+    height: 100%;
+    padding: 14px 0 39px;
+    background: url("../images/index/bottom.jpg") no-repeat top center;
+    background-size: 100% 100%;
+}
+
+.recommend .typeArea a {
+    float: left;
+}
+
+.recommend .typeArea a+a {
+    margin-left: 13px;
+}
+
+/* 商品特价/秒杀 */
+.itemSpecial {
+    background-color: #f5f5f5;
+    padding-top: 30px;
+}
+
+.itemSpecial .typeArea>div {
+    display: inline-block;
+    position: relative;
+    width: 606px;
+    padding: 0 3px;
+    background-color: #fff;
+}
+
+.itemSpecial .typeArea .specialHeader {
+    display: inline-block;
+    width: 100%;
+    padding: 17px 14px 19px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.itemSpecial .typeArea .specialHeader .specialLogo {
+    float: left;
+    margin-top: 4px;
+}
+
+.itemSpecial .typeArea .specialHeader .specialhead {
+    float: left;
+    color: #333;
+    font-size: 22.76px;
+    font-style: italic;
+    margin-left: 7px;
+    font-weight: bold;
+}
+
+.itemSpecial .typeArea .specialHeader .specialhead span {
+    color: #ff3600;
+}
+
+.itemSpecial .typeArea .specialHeader .line1 {
+    float: left;
+    width: 1px;
+    height: 18px;
+    margin-left: 12px;
+    margin-top: 10px;
+    background-color: #cccccc;
+}
+
+.itemSpecial .typeArea .specialHeader .specialText {
+    float: left;
+    padding: 11px 0 0 7px;
+    color: #545454;
+    font-size: 14px;
+}
+
+.itemSpecial .typeArea .specialHeader .timer {
+    float: right;
+}
+
+.itemSpecial .typeArea .specialHeader .timer span {
+    float: left;
+}
+
+.itemSpecial .typeArea .specialHeader .timer .timeText {
+    margin-right: 14px;
+    line-height: 32px;
+    text-align: left;
+}
+
+.itemSpecial .typeArea .specialHeader .timer .days {
+    margin-right: 14px;
+    line-height: 32px;
+    color: #333;
+    font-size: 14px;
+}
+
+.itemSpecial .typeArea .specialHeader .timer .timedate {
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 32px;
+    color: #fff;
+    font-family: Arial;
+    background-color: #4c4c4c;
+    border-radius: 4px;
+}
+
+.itemSpecial .typeArea .specialHeader .timer .colon {
+    width: 14px;
+    height: 32px;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    line-height: 32px;
+}
+
+.itemSpecial .typeArea .specialContent {
+    position: relative;
+    overflow: hidden;
+}
+
+.itemSpecial .typeArea .specialContent .specialbanner {
+    position: relative;
+    width: 592px;
+    max-height: 416px;
+    padding-left: 13px;
+    overflow: hidden;
+}
+
+.itemSpecial .typeArea .specialContent .specialbanner li {
+    float: left;
+    width: 282px;
+    margin-right: 7px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.itemSpecial .typeArea .specialContent .specialbanner li a {
+    display: block;
+    position: relative;
+    width: 282px;
+    height: 386px;
+    padding: 28px 30px;
+    background-color: #fff;
+    transition: all .3s;
+}
+
+.itemSpecial .typeArea .tejia .specialContent .specialbanner li:nth-child(3) a::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 11;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+}
+
+.itemSpecial .typeArea .tejia .specialContent .specialbanner li:nth-child(3) a::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 12;
+    width: 100%;
+    height: 100%;
+    background: url('../images/index/zp_label_qg.png') center 35%;
+    background-repeat: no-repeat;
+}
+
+.itemSpecial .typeArea .specialContent .specialbanner li a:hover {
+    background-color: #f5f5f5;
+}
+
+.itemSpecial .typeArea .specialContent .specialbanner li a .item_img {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.itemSpecial .typeArea .specialContent .specialbanner li a .item_img img {
+    width: 220px;
+}
+
+.itemSpecial .typeArea .specialContent .specialbanner li a .item_desc {
+    padding: 0 14px;
+}
+
+.itemSpecial .typeArea .specialContent .specialbanner li a .item_desc .item_title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    width: 100%;
+    max-height: 39px;
+    margin-top: 16px;
+    font-size: 14px;
+    color: #333;
+    text-align: left;
+    line-height: 1.5;
+    overflow: hidden;
+}
+
+.itemSpecial .typeArea .specialContent .specialbanner li a .item_desc .item_info {
+    width: 100%;
+    max-height: 12px;
+    margin-top: 14px;
+    font-size: 12px;
+    color: #b0b0b0;
+    text-align: left;
+    line-height: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.itemSpecial .typeArea .specialContent .specialbanner li a .item_desc .item_price {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #c00000;
+    overflow: hidden;
+    line-height: 27px;
+}
+
+.itemSpecial .typeArea .specialContent .specialbanner li a .item_desc .item_price img {
+    float: left;
+    padding-top: 3px;
+}
+
+.itemSpecial .typeArea .specialContent .specialbanner li a .item_desc .item_price .now_price {
+    float: left;
+    font-size: 18px;
+    text-align: left;
+}
+
+.itemSpecial .typeArea .specialContent .specialbanner li a .item_desc .item_price .old_price {
+    float: left;
+    padding-left: 5px;
+    font-size: 12px;
+    text-align: left;
+    color: #b0b0b0;
+    text-decoration: line-through;
+}
+
+.itemSpecial .typeArea .specialContent .specialbanner li a .tagimg {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    width: auto;
+    max-width: 70px;
+    max-height: 70px;
+    overflow: hidden;
+}
+
+.itemSpecial .typeArea .specialBtns {
+    display: none;
+}
+
+.itemSpecial .typeArea .tejia:hover .specialBtns,
+.itemSpecial .typeArea .miaosha:hover .specialBtns {
+    display: block;
+}
+
+
+.itemSpecial .typeArea .specialBtns div {
+    position: absolute;
+    top: 212px;
+    z-index: 12;
+    width: 18px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.itemSpecial .typeArea .specialBtns div:hover {
+    opacity: 0.6;
+}
+
+.itemSpecial .typeArea .specialBtns .prev {
+    left: 1px;
+    background: url("../images/index/zp_arrow_l.jpg") no-repeat center center;
+}
+
+.itemSpecial .typeArea .specialBtns .next {
+    right: 1px;
+    background: url("../images/index/zp_arrow_r.jpg") no-repeat center center;
+}
+
+.itemSpecial .typeArea .miaosha {
+    margin-left: 10px;
+}
+
+.itemSpecial .typeArea .miaosha .specialHeader .specialhead span {
+    color: #f4a123;
+}
+
+.itemSpecial .typeArea .miaosha .specialContent .specialbanner li a .item_title {
+    -webkit-line-clamp: 1;
+}
+
+.itemSpecial .typeArea .miaosha .specialContent .specialbanner li a .item_info {
+    margin-top: 9px;
+}
+
+.itemSpecial .typeArea .miaosha .specialContent .specialbanner li a .meter {
+    margin-top: 10px;
+    text-align: left;
+}
+
+.itemSpecial .typeArea .miaosha .specialContent .specialbanner li a .meter .meterBar {
+    display: inline-block;
+    position: relative;
+    height: 8px;
+    width: 98px;
+    background: #f7e4c6;
+    border-radius: 25px;
+}
+
+.itemSpecial .typeArea .miaosha .specialContent .specialbanner li a .meter .meterBar .nowMeter {
+    position: relative;
+    display: block;
+    height: 100%;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-radius: 25px;
+    background-color: #f7be63;
+    overflow: hidden;
+}
+
+.itemSpecial .typeArea .miaosha .specialContent .specialbanner li a .meter .remainNum {
+    font-family: MicrosoftYaHei;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: 0px;
+    color: #b0b0b0;
+}
+
+/* 自饮 */
+.drink .typeArea .drink_title {
+    padding: 40px 0 19px;
+    color: #333;
+    font-size: 22px;
+}
+
+.drink .typeArea .drink_content>div {
+    float: left;
+    width: 234px;
+    margin-left: 14px;
+}
+
+.drink .typeArea .drink_content .drink_left {
+    margin-left: 0px;
+}
+
+.drink .typeArea .drink_content .drink_left a {
+    position: relative;
+    display: block;
+    transition: all .3s;
+}
+
+.drink .typeArea .drink_content .drink_left a:first-child {
+    background: url("../images/index/tab-drink.png") no-repeat center center;
+}
+
+.card_hover:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    transform: translate3d(0, -2px, 0);
+}
+
+.drink .typeArea .drink_content .drink_left .tag_card {
+    height: 486px;
+    margin-bottom: 14px;
+}
+
+.drink .typeArea .drink_content .drink_left .tag_card img {
+    width: 100%;
+}
+
+.drink .typeArea .more_card {
+    height: 154px;
+    background-color: #fff;
+}
+
+.drink .typeArea .more_card h2 {
+    padding: 42px 0 9px 22px;
+    font-size: 18px;
+    color: #333;
+}
+
+.drink .typeArea .more_card .more_text {
+    color: #757575;
+    font-size: 12px;
+    padding: 0 84px 5px 22px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.drink .typeArea .more_card img {
+    position: absolute;
+    right: 24px;
+    top: 55px;
+}
+
+.drink .typeArea .drink_content .drink_center {
+    width: 730px;
+}
+
+.drink .typeArea .drink_content .drink_center a {
+    float: left;
+    display: block;
+    position: relative;
+    width: 234px;
+    height: 320px;
+    margin-right: 14px;
+    margin-top: 14px;
+    padding: 28px 37px;
+    background-color: #fff;
+    transition: all .3s;
+}
+
+#self .typeArea .drink_content .drink_center>a:nth-child(-n+3),
+#gift .typeArea .drink_content .drink_center>a:nth-child(-n+3) {
+    margin-top: 0;
+}
+
+#self .typeArea .drink_content .drink_center>a:nth-child(3n),
+#gift .typeArea .drink_content .drink_center>a:nth-child(3n) {
+    margin-right: 0;
+}
+
+.drink .typeArea .drink_content .drink_center a .tag_img {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    z-index: 10;
+    width: auto;
+    max-width: 70px;
+    max-height: 70px;
+    overflow: hidden;
+}
+
+.drink .typeArea .drink_content .drink_center a .tag_img img {
+    width: 100%;
+}
+
+.drink .typeArea .drink_content .drink_center a .item_img {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    overflow: hidden;
+}
+
+.drink .typeArea .drink_content .drink_center a .item_img img {
+    max-width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.drink .typeArea .drink_content .drink_center a .item_img_desc {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    width: 100%;
+    max-height: 39px;
+    margin-top: 16px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+    text-align: left;
+    overflow: hidden;
+}
+
+.drink .typeArea .drink_content .drink_center a .item_img_info {
+    width: 100%;
+    max-height: 12px;
+    margin-top: 9px;
+    color: #b0b0b0;
+    font-size: 12px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 12px;
+    text-overflow: ellipsis;
+}
+
+.drink .typeArea .drink_content .drink_center a .item_price {
+    width: 100%;
+    margin-top: 14px;
+    font-size: 14px;
+    color: #c00000;
+    text-align: center;
+    line-height: 14px;
+}
+
+.drink .typeArea .drink_content .drink_right .news_list {
+    position: relative;
+    width: 234px;
+    height: 486px;
+    background-color: #fff;
+}
+
+.drink .typeArea .drink_content .drink_right .news_list .news_head {
+    display: block;
+    width: 194px;
+    margin: 0 auto;
+    padding: 17px 0 15px;
+    font-size: 16px;
+    color: #333;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.drink .typeArea .drink_content .drink_right .news_list .news_content .news_item {
+    display: block;
+    padding: 9px 20px;
+}
+
+.drink .typeArea .drink_content .drink_right .news_list .news_content .news_item:hover {
+    background-color: #fafafa;
+}
+
+.drink .typeArea .drink_content .drink_right .news_list .news_content .news_item .news_title {
+    display: block;
+    color: #555;
+    font-size: 14px;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.drink .typeArea .drink_content .drink_right .news_list .news_content .news_item:hover .news_title {
+    color: orangered !important;
+}
+
+.drink .typeArea .drink_content .drink_right .news_list .news_content .news_artical {
+    margin-top: 10px;
+}
+
+.drink .typeArea .drink_content .drink_right .news_list .news_content .news_artical img {
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin-top: 2px;
+}
+
+.drink .typeArea .drink_content .drink_right .news_list .news_content .news_artical p {
+    display: -webkit-box;
+    float: left;
+    width: 132px;
+    max-height: 53px;
+    margin-left: 10px;
+    font-size: 12px;
+    line-height: 18px;
+    color: #b0b0b0;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+
+.drink .typeArea .drink_content .drink_right .more_card {
+    display: block;
+    position: relative;
+    margin-top: 14px;
+    transition: all .3s;
+}
+
+/* 茶器/茶食 */
+#tea .typeArea .drink_content .drink_left .tag_card {
+    width: 234px;
+    height: 320px;
+    background: url("../images/index/chaju.png") no-repeat center center;
+}
+
+#tea .typeArea .drink_content .drink_left .tag_card:nth-child(2) {
+    margin-bottom: 0;
+}
+
+#tea .typeArea .drink_content .drink_center {
+    width: 978px;
+}
+
+#tea .typeArea .drink_content .drink_center>a:nth-child(-n+4) {
+    margin-top: 0;
+}
+
+#tea .typeArea .drink_content .drink_center>a:nth-child(4n) {
+    margin-right: 0;
+}
+
+#tea .typeArea .drink_content .drink_center .add_item {
+    float: left;
+    position: relative;
+    width: 234px;
+    margin-top: 14px;
+    transition: all .3s;
+}
+
+#tea .typeArea .drink_content .drink_center .add_item a {
+    height: 153px;
+    margin-right: 0;
+}
+
+#tea .typeArea .drink_content .drink_center .add_item .samll_box {
+    margin-top: 0;
+    padding: 0;
+}
+
+#tea .typeArea .drink_content .drink_center .add_item .samll_box .samll_box_text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    width: 101px;
+    margin-left: 20px;
+    padding-top: 46px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+    overflow: hidden;
+}
+
+#tea .typeArea .drink_content .drink_center .add_item .samll_box .samll_box_price {
+    margin-left: 20px;
+    margin-top: 16px;
+    color: #c00000;
+    font-size: 14px;
+}
+
+#tea .typeArea .drink_content .drink_center .add_item .samll_box img {
+    position: absolute;
+    right: 20px;
+    top: 50px;
+    width: 80px;
+    height: 80px;
+}
+
+#tea .typeArea .drink_content .drink_center .add_item .more_card {
+    padding: 0;
+}
+
+/* 热评 */
+.typeArea .hot_head {
+    padding: 40px 0 18px;
+}
+
+.typeArea .hot_head span {
+    float: left;
+    font-size: 22px;
+    color: #333;
+}
+
+.typeArea .hot_head span:nth-child(2) {
+    width: 1px;
+    height: 18px;
+    margin-left: 12px;
+    margin-top: 8px;
+    background-color: #888;
+}
+
+.typeArea .hot_head span:nth-child(3) {
+    margin-left: 6px;
+    margin-top: 10px;
+    color: #545454;
+    font-size: 14px;
+}
+
+.hot .typeArea .hot_content {
+    position: relative;
+    width: 1240px;
+    height: 415px;
+}
+
+.hot .typeArea .hot_content ul {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.hot .typeArea .hot_content ul li {
+    float: left;
+    width: 296px;
+    margin-right: 14px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hot .typeArea .hot_content ul li .hot_box {
+    display: block;
+    width: 296px;
+    height: 415px;
+    background-color: #fff;
+    transition: all .3s;
+}
+
+.hot .typeArea .hot_content ul li .hot_box .hot_img {
+    height: 224px;
+    width: 224px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.hot .typeArea .hot_content ul li .hot_box .hot_text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    width: 238px;
+    max-height: 60px;
+    margin: 27px auto;
+    font-size: 14px;
+    line-height: 20px;
+    color: #555;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hot .typeArea .hot_content ul li .hot_box .hot_people {
+    width: 238px;
+    margin: 0 auto 16px;
+    color: #b0b0b0;
+    font-size: 12px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.hot .typeArea .hot_content ul li .hot_box .hot_descr {
+    padding-left: 29px;
+    overflow: hidden;
+}
+
+.hot .typeArea .hot_content ul li .hot_box .hot_descr span {
+    float: left;
+}
+
+.hot .typeArea .hot_content ul li .hot_box .hot_descr span:nth-child(1) {
+    width: 170px;
+    font-size: 14px;
+    color: #333;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.hot .typeArea .hot_content ul li .hot_box .hot_descr span:nth-child(2) {
+    width: 1px;
+    height: 15px;
+    margin-left: 7px;
+    background-color: #b0b0b0;
+}
+
+.hot .typeArea .hot_content ul li .hot_box .hot_descr span:nth-child(3) {
+    margin-left: 8px;
+    font-size: 14px;
+    color: #c00000;
+}
+
+.hot .typeArea .hot_content .hot_btns a {
+    position: absolute;
+    top: 170px;
+    z-index: 2;
+    width: 48px;
+    height: 48px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.hot .typeArea .hot_content .hot_btns a:hover {
+    opacity: 0.6;
+}
+
+.hot .typeArea .hot_content .hot_btns .prev {
+    left: -62px;
+    background-image: url('../images/index/left.png');
+}
+
+.hot .typeArea .hot_content .hot_btns .next {
+    right: -62px;
+    background-image: url('../images/index/right.png');
+}
+
+/* 醉品头条 */
+.news {
+    padding-bottom: 60px;
+}
+
+.news .typeArea .hot_head a {
+    float: right;
+    color: #555;
+    font-size: 16px;
+}
+
+.news .typeArea .news_content a {
+    float: left;
+    width: 296px;
+    height: 285px;
+    margin-right: 14px;
+    background-color: #fff;
+    transition: all .3s;
+}
+
+.news .typeArea .news_content a:nth-child(4n) {
+    margin-right: 0;
+}
+
+.news .typeArea .news_content a .news_img {
+    width: 296px;
+    height: 180px;
+    overflow: hidden;
+}
+
+.news .typeArea .news_content a .news_img img {
+    width: 100%;
+}
+
+.news .typeArea .news_content a .news_text {
+    width: 200px;
+    margin: 32px auto 14px;
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.news .typeArea .news_content a .news_desc {
+    width: 240px;
+    margin: 0 auto;
+    font-size: 12px;
+    color: #b0b0b0;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* 左侧楼层导航 */
+.floor_nav {
+    display: none;
+    opacity: 0;
+    position: fixed;
+    left: 50%;
+    top: 30%;
+    margin-left: -727px;
+    z-index: 100;
+    border: 1px solid #e0e0e0;
+    transition: all .3s;
+}
+
+.floor_nav li {
+    position: relative;
+    width: 48px;
+    height: 40px;
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    line-height: 40px;
+    background-color: #fff;
+    transition: all .2s;
+    cursor: pointer;
+}
+
+.floor_nav .on,
+.floor_nav li:hover {
+    background-color: #ff3600;
+    color: #fff;
+}
+
+.floor_nav li::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 48px;
+    height: 1px;
+    background: linear-gradient(to right, #fff 6.25%, #e0e0e0 50%, #fff 93.75%);
+}
+
+/* 顶部悬浮 */
+.suspension {
+    display: none;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    background-color: #fff;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .2);
+    transition: all .3s;
+    opacity: 0;
+}
+
+.suspension .typeArea {
+    position: relative;
+    padding: 8px 0;
+}
+
+.suspension .typeArea .supension_logo {
+    float: left;
+    margin-top: 5px;
+}
+
+.suspension .typeArea .suspension_nav {
+    float: left;
+    margin-left: 102px;
+}
+
+.suspension .typeArea .suspension_nav li {
+    float: left;
+    margin-right: 50px;
+    line-height: 60px;
+}
+
+.suspension .typeArea .suspension_nav li a {
+    float: left;
+    font-size: 14px;
+    color: #333;
+    line-height: 30px;
+}
+
+.suspension .typeArea .suspension_nav .on a {
+    font-size: 16px;
+    color: #ff3700;
+    border-bottom: 2px solid #ff3700;
+}
+
+.suspension .typeArea .supension_cart {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 120px;
+    padding: 13px 0;
+    font-size: 14px;
+    color: #fff;
+    background-color: #ff3600;
+    cursor: pointer;
+}
+
+.suspension .typeArea .supension_cart p {
+    line-height: 21px;
+}
+
+.suspension .typeArea .supension_cart p i {
+    font-size: 20px;
+    margin-left: 26px;
+    line-height: 21px;
+}
