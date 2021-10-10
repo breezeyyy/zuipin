@@ -1,3 +1,5 @@
+@import "./base.scss";
+@import "./common.scss";
 /* 主轮播图 */
 .bannerBox {
     width: 100%;
@@ -21,7 +23,7 @@
     display: block;
     width: 100%;
     height: 100%;
-    background: url("../images/index/pc_left.jpg") no-repeat;
+    background: url("../../images/index/pc_left.jpg") no-repeat;
 }
 
 .bannerBox .typeArea .banner {
@@ -103,7 +105,7 @@
     display: block;
     width: 100%;
     height: 100%;
-    background: url("../images/index/pc_right.jpg") no-repeat;
+    background: url("../../images/index/pc_right.jpg") no-repeat;
 }
 
 /* 推荐 */
@@ -115,7 +117,7 @@
 .recommend .typeArea {
     height: 100%;
     padding: 14px 0 39px;
-    background: url("../images/index/bottom.jpg") no-repeat top center;
+    background: url("../../images/index/bottom.jpg") no-repeat top center;
     background-size: 100% 100%;
 }
 
@@ -284,7 +286,7 @@
     z-index: 12;
     width: 100%;
     height: 100%;
-    background: url('../images/index/zp_label_qg.png') center 35%;
+    background: url('../../images/index/zp_label_qg.png') center 35%;
     background-repeat: no-repeat;
 }
 
@@ -399,12 +401,12 @@
 
 .itemSpecial .typeArea .specialBtns .prev {
     left: 1px;
-    background: url("../images/index/zp_arrow_l.jpg") no-repeat center center;
+    background: url("../../images/index/zp_arrow_l.jpg") no-repeat center center;
 }
 
 .itemSpecial .typeArea .specialBtns .next {
     right: 1px;
-    background: url("../images/index/zp_arrow_r.jpg") no-repeat center center;
+    background: url("../../images/index/zp_arrow_r.jpg") no-repeat center center;
 }
 
 .itemSpecial .typeArea .miaosha {
@@ -481,7 +483,7 @@
 }
 
 .drink .typeArea .drink_content .drink_left a:first-child {
-    background: url("../images/index/tab-drink.png") no-repeat center center;
+    background: url("../../images/index/tab-drink.png") no-repeat center center;
 }
 
 .card_hover:hover {
@@ -694,7 +696,7 @@
 #tea .typeArea .drink_content .drink_left .tag_card {
     width: 234px;
     height: 320px;
-    background: url("../images/index/chaju.png") no-repeat center center;
+    background: url("../../images/index/chaju.png") no-repeat center center;
 }
 
 #tea .typeArea .drink_content .drink_left .tag_card:nth-child(2) {
@@ -901,12 +903,12 @@
 
 .hot .typeArea .hot_content .hot_btns .prev {
     left: -62px;
-    background-image: url('../images/index/left.png');
+    background-image: url('../../images/index/left.png');
 }
 
 .hot .typeArea .hot_content .hot_btns .next {
     right: -62px;
-    background-image: url('../images/index/right.png');
+    background-image: url('../../images/index/right.png');
 }
 
 /* 醉品头条 */

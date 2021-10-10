@@ -544,11 +544,11 @@
             const that = this;
 
             addEvent(this.btns[0], "click", function () {
-                that.prev();
+                that.next();
             })
 
             addEvent(this.btns[1], "click", function () {
-                that.next();
+                that.prev();
             })
 
             addEvent(this.btns[0].parentElement, "mouseenter", function () {
@@ -557,6 +557,14 @@
 
             addEvent(this.btns[1].parentElement, "mouseenter", function () {
                 clearInterval(that.intervalIndex);
+            })
+
+            addEvent(this.btns[0].parentElement, "mouseleave", function () {
+                that.imgInterval();
+            })
+
+            addEvent(this.btns[1].parentElement, "mouseleave", function () {
+                that.imgInterval();
             })
 
         }
