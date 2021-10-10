@@ -37,6 +37,7 @@ function resposeToClient(req, res, resData) {
     const typeList = {
         common: ["common_data"],
         index: ["banner_main", "banner_tejia", "banner_miaosha", "banner_hot", "drink_data", "gift_data", "tea_data", "news_data"],
+        list: ["list_banner", "list_goods"],
         funcHandle: []
     };
     if (typeList.common.includes(resData.type)) {
@@ -44,6 +45,9 @@ function resposeToClient(req, res, resData) {
         handler.getDBData(req, res, resData);
     } else if (typeList.index.includes(resData.type)) {
         DBSrc = "./database/index/";
+        handler.getDBData(req, res, resData);
+    } else if (typeList.list.includes(resData.type)) {
+        DBSrc = "./database/list/";
         handler.getDBData(req, res, resData);
     } else if (typeList.funcHandle.includes(resData.type)) {
         handler[resData.type](req, res, resData);
@@ -53,8 +57,10 @@ function resposeToClient(req, res, resData) {
 }
 
 handler.getDBData = (req, res, resData) => {
+    console.log(`${DBSrc}${resData.type}.json`);
     fs.readFile(`${DBSrc}${resData.type}.json`, "UTF-8", (err, data) => {
         let answer = {
+            code: err ? 0 : 1,
             title: err ? "数据请求失败！" : "数据请求成功！",
             data: err ? [] : JSON.parse(data)
         };

@@ -37,7 +37,7 @@ window.onload = function () {
             // 整个页面单击事件
             addEvent(document, "click", function (event) {
                 const target = getTarget(event);
-                if (target.nodeName === "INPUT") {
+                if (target.nodeName === "INPUT" && target.parentElement.className.includes("search-cont")) {
                     that.text.focus();
                     if (that.nowValue)
                         that.getDatas();

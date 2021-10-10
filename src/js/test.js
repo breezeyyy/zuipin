@@ -10,3 +10,4 @@
 // const telReg = /^1[3456789]\d{9}$/;
 
 // console.log(telReg.test("12555181213"));
+// console.log(Number(!0));

@@ -344,6 +344,7 @@ body {
     padding-left: 30px;
     line-height: 60px;
     font-size: 16px;
+    color: #000;
     cursor: pointer;
     background: url("../../images/common/5.png") no-repeat 0 center;
 }
@@ -447,24 +448,27 @@ body {
     color: #fff !important;
 }
 
-/* .good-list .good-item .items:hover .item-desc ul {
-    display: block;
-} */
-
 .good-list .good-item .items .item-title {
     float: left;
     width: 50px;
     height: 30px;
-    color: #fff;
     font-size: 16px;
     text-align-last: justify;
 }
 
-.list_html .good-item .items .item-title {
+.good-list .good-item .items .item-title a {
+    color: #fff;
+}
+
+.good-list .good-item .items .item-title a:hover {
+    color: #fff !important;
+}
+
+.list_html .good-item .items .item-title a {
     color: #333;
 }
 
-.list_html .good-item .items:hover .item-title {
+.list_html .good-item .items:hover .item-title a{
     color: #fff;
 }
 
@@ -498,6 +502,10 @@ body {
     width: 248px;
     height: 76px;
     padding: 20px 0 20px 27px;
+}
+
+.good-list .good-item .items .item-desc ul li:hover {
+    color: #ff3600;
 }
 
 .good-list .good-item .items .item-desc ul li img {

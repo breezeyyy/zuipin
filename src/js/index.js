@@ -37,7 +37,7 @@
                 type: "GET",
                 url: "http://localhost:3000/api",
                 success: (response) => {
-                    if (response.data !== [])
+                    if (response.code)
                         this[renderer](response.data);
                 },
                 error: (status) => {
@@ -169,7 +169,6 @@
         }
 
         renderer_gift(response) {
-            const newFlag = [5];
             let data = `<div class="drink_left">
                     <a href="" class="tag_card card_hover"><img src="./images/index/${response.left}" alt=""></a>
                     <a href="" class="more_card card_hover">
@@ -179,9 +178,9 @@
                     </a>
                 </div>
                 <div class="drink_center">`;
-            response.center.forEach((value, index) => {
+            response.center.forEach(value => {
                 data += `<a href="" target="_blank" class="card_hover">`;
-                newFlag.includes(index + 1) && (data += `<div class="tag_img">
+                value.new && (data += `<div class="tag_img">
                                                         <img src="./images/index/2021-03-22_1616395321.png">
                                                     </div>`)
                 data += `<div class="item_img"><img src="./images/index/${value.img}"></div>
@@ -216,7 +215,6 @@
         }
 
         renderer_tea(response) {
-            const newFlag = [];
             let data = `<div class="drink_left">`;
             response.left.forEach(value => {
                 data += `<a href="" class="tag_card card_hover"><img src="./images/index/${value}" alt=""></a>`
@@ -225,7 +223,7 @@
                     <div class="drink_center">`;
             response.center.forEach((value, index) => {
                 data += `<a href="" target="_blank" class="card_hover">`;
-                newFlag.includes(index + 1) && (data += `<div class="tag_img">
+                value.new && (data += `<div class="tag_img">
                                                         <img src="./images/index/2021-03-22_1616395321.png">
                                                     </div>`)
                 data += `<div class="item_img"><img src="./images/index/${value.img}"></div>

@@ -2,7 +2,7 @@
     "use strict"
 
     // 图片数据抓取
-    const threeNavImg = document.querySelectorAll(".first-content a");
+    const threeNavImg = document.querySelectorAll(".goods-list .item");
     console.log(threeNavImg);
     // console.log(threeNavImg[0].children[0].children[0]);
     // console.log(threeNavImg[0].src.match(/.+\/(.+)$/)[1]);
