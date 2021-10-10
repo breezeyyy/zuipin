@@ -1,2 +1,221 @@
 @import "./base.scss";
 @import "./common.scss";
+
+// 头部
+.head {
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+
+    .typeArea {
+        a {
+            display: inline-block;
+            width: 292px;
+            height: 46px;
+            margin-top: 34px;
+            background: url("../../images/login/logo.png") no-repeat left center;
+        }
+    }
+}
+
+// 主体
+.content {
+    width: 100%;
+    height: 584px;
+    margin: 0 auto;
+    background: rgb(32, 42, 20);
+    overflow-y: hidden;
+
+    .typeArea {
+        .img {
+            float: left;
+            width: 820px;
+            height: 585px;
+
+            a {
+                display: block;
+                width: 100%;
+                height: 100%;
+                background: url("../../images/login/20210309login-202a14.jpg") no-repeat left center;
+            }
+        }
+
+        .loginBox {
+            float: left;
+            position: relative;
+            width: 380px;
+            height: 524px;
+            margin-left: 20px;
+            margin-top: 30px;
+            background-color: #fff;
+
+            .login_tab {
+                width: 340px;
+                margin: 30px auto 0;
+
+                li {
+                    float: left;
+                    width: 49%;
+                    text-align: center;
+                    color: #333333;
+                    font-size: 18px;
+                    cursor: pointer;
+                }
+
+                .on {
+                    color: #ff3600;
+                }
+            }
+
+            .login_method {
+                width: 316px;
+                margin: 30px auto 20px;
+
+                li {
+                    display: none;
+
+                    input {
+                        display: block;
+                        width: 100%;
+                        height: 46px;
+                        margin-bottom: 15px;
+                        font-size: 12px;
+                        line-height: 46px;
+                        text-indent: 15px;
+                        border: 1px solid #cbcbcb;
+                    }
+
+                    .sms {
+                        input {
+                            float: left;
+                            width: 196px;
+                        }
+
+                        button {
+                            float: right;
+                            width: 108px;
+                            height: 46px;
+                            line-height: 46px;
+                            color: #fff;
+                            text-align: center;
+                            background: #ddd;
+                        }
+                    }
+
+                    .phoneTip {
+                        display: none;
+                        color: #ff3600;
+                        font-size: 12px;
+                        line-height: 24px;
+
+                        i {
+                            float: left;
+                            margin-right: 5px;
+                            font-size: 13px;
+                        }
+                    }
+
+                    .login_btn {
+                        display: inline-block;
+                        width: 100%;
+                        height: 44px;
+                        margin-top: 10px;
+                        font-size: 14px;
+                        color: #fff;
+                        line-height: 44px;
+                        text-align: center;
+                        background-color: #ddd;
+                        border: none;
+                        outline: none;
+                    }
+                }
+
+                .on {
+                    display: block;
+                }
+            }
+
+            .infoBox {
+                text-align: center;
+                color: #999;
+
+                p {
+                    display: block;
+                }
+
+                a {
+                    display: none;
+                    color: #999;
+                    text-align: right;
+                    padding-right: 30px;
+
+                    &:hover {
+                        color: #ff3600;
+                    }
+                }
+            }
+
+            .other_method {
+                position: absolute;
+                left: 0;
+                bottom: 30px;
+                width: 100%;
+                text-align: center;
+
+                p {
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        top: 19.5px;
+                        left: 30px;
+                        width: 100px;
+                        border-bottom: 1px solid #e0e0e0;
+                    }
+
+                    position: relative;
+                    color: #bbbbbb;
+                    line-height: 40px;
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        top: 19.5px;
+                        right: 30px;
+                        width: 100px;
+                        border-bottom: 1px solid #e0e0e0;
+                    }
+                }
+
+                .methodsBox {
+                    li {
+                        display: inline-block;
+                        width: 30px;
+                        height: 30px;
+                    }
+
+                    li+li {
+                        margin-left: 40px;
+                    }
+
+                    a {
+                        display: inline-block;
+                        width: 30px;
+                        height: 30px;
+                    }
+
+                    .zhifubao {
+                        background: url("../../images/login/zhifubao.png") no-repeat;
+                    }
+
+                    .qq {
+                        background: url("../../images/login/qq.png") no-repeat;
+                    }
+
+                    .weixin {
+                        background: url("../../images/login/weixin.png") no-repeat;
+                    }
+                }
+            }
+        }
+    }
+}

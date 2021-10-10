@@ -400,7 +400,7 @@ h6 {
 .clearfix {
     *zoom: 1;
 }
-.clearfix ::after {
+.clearfix::after {
     content: ".";
     visibility: hidden;
     clear: both;
@@ -1436,4 +1436,183 @@ body {
 
 .footer-bottom .typeArea > div:last-child ul li:nth-child(4) a {
     background-image: url("../../images/common/zp_ic_aqlm.png");
+}
+
+.head {
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+}
+.head .typeArea a {
+    display: inline-block;
+    width: 292px;
+    height: 46px;
+    margin-top: 34px;
+    background: url("../../images/login/logo.png") no-repeat left center;
+}
+
+.content {
+    width: 100%;
+    height: 584px;
+    margin: 0 auto;
+    background: #202a14;
+    overflow-y: hidden;
+}
+.content .typeArea .img {
+    float: left;
+    width: 820px;
+    height: 585px;
+}
+.content .typeArea .img a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url("../../images/login/20210309login-202a14.jpg") no-repeat left center;
+}
+.content .typeArea .loginBox {
+    float: left;
+    position: relative;
+    width: 380px;
+    height: 524px;
+    margin-left: 20px;
+    margin-top: 30px;
+    background-color: #fff;
+}
+.content .typeArea .loginBox .login_tab {
+    width: 340px;
+    margin: 30px auto 0;
+}
+.content .typeArea .loginBox .login_tab li {
+    float: left;
+    width: 49%;
+    text-align: center;
+    color: #333333;
+    font-size: 18px;
+    cursor: pointer;
+}
+.content .typeArea .loginBox .login_tab .on {
+    color: #ff3600;
+}
+.content .typeArea .loginBox .login_method {
+    width: 316px;
+    margin: 30px auto 20px;
+}
+.content .typeArea .loginBox .login_method li {
+    display: none;
+}
+.content .typeArea .loginBox .login_method li input {
+    display: block;
+    width: 100%;
+    height: 46px;
+    margin-bottom: 15px;
+    font-size: 12px;
+    line-height: 46px;
+    text-indent: 15px;
+    border: 1px solid #cbcbcb;
+}
+.content .typeArea .loginBox .login_method li .sms input {
+    float: left;
+    width: 196px;
+}
+.content .typeArea .loginBox .login_method li .sms button {
+    float: right;
+    width: 108px;
+    height: 46px;
+    line-height: 46px;
+    color: #fff;
+    text-align: center;
+    background: #ddd;
+}
+.content .typeArea .loginBox .login_method li .phoneTip {
+    display: none;
+    color: #ff3600;
+    font-size: 12px;
+    line-height: 24px;
+}
+.content .typeArea .loginBox .login_method li .phoneTip i {
+    float: left;
+    margin-right: 5px;
+    font-size: 13px;
+}
+.content .typeArea .loginBox .login_method li .login_btn {
+    display: inline-block;
+    width: 100%;
+    height: 44px;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #fff;
+    line-height: 44px;
+    text-align: center;
+    background-color: #ddd;
+    border: none;
+    outline: none;
+}
+.content .typeArea .loginBox .login_method .on {
+    display: block;
+}
+.content .typeArea .loginBox .infoBox {
+    text-align: center;
+    color: #999;
+}
+.content .typeArea .loginBox .infoBox p {
+    display: block;
+}
+.content .typeArea .loginBox .infoBox a {
+    display: none;
+    color: #999;
+    text-align: right;
+    padding-right: 30px;
+}
+.content .typeArea .loginBox .infoBox a:hover {
+    color: #ff3600;
+}
+.content .typeArea .loginBox .other_method {
+    position: absolute;
+    left: 0;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+}
+.content .typeArea .loginBox .other_method p {
+    position: relative;
+    color: #bbbbbb;
+    line-height: 40px;
+}
+.content .typeArea .loginBox .other_method p::before {
+    content: "";
+    position: absolute;
+    top: 19.5px;
+    left: 30px;
+    width: 100px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.content .typeArea .loginBox .other_method p::after {
+    content: "";
+    position: absolute;
+    top: 19.5px;
+    right: 30px;
+    width: 100px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.content .typeArea .loginBox .other_method .methodsBox li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+}
+.content .typeArea .loginBox .other_method .methodsBox li + li {
+    margin-left: 40px;
+}
+.content .typeArea .loginBox .other_method .methodsBox a {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+}
+.content .typeArea .loginBox .other_method .methodsBox .zhifubao {
+    background: url("../../images/login/zhifubao.png") no-repeat;
+}
+.content .typeArea .loginBox .other_method .methodsBox .qq {
+    background: url("../../images/login/qq.png") no-repeat;
+}
+.content .typeArea .loginBox .other_method .methodsBox .weixin {
+    background: url("../../images/login/weixin.png") no-repeat;
 }

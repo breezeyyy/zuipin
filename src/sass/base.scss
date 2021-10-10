@@ -86,7 +86,7 @@ a {
 
 // 清除浮动 
 .clearfix {
-    ::after {
+    &::after {
         content: ".";
         visibility: hidden;
         clear: both;

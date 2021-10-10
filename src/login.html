@@ -8,14 +8,70 @@
     <meta name="description" content="醉品茶城是中国专业的正宗品牌茶叶,茶具,花茶购物商城,经营铁观音,大红袍,红茶,绿茶,普洱茶,西湖龙井,武夷岩茶,黄山毛峰等国内外原产地品牌茶叶,欢迎选购">
     <meta name="keywords" content="醉品,醉品茶城,醉品茶集,铁观音,金骏眉,红茶,绿茶,大红袍,普洱茶,茶具">
     <title>
-        醉品茶城-茶叶、茶具一站式网上购物商城:铁观音,金骏眉,红茶,绿茶,大红袍,普洱茶,茶具
+        登录
     </title>
     <link rel="icon" type="image/x-icon" href="./images/common/icon.ico">
     <link rel="stylesheet" href="./font/iconfont.css">
+    <link rel="stylesheet" href="./font_color/iconfont.css">
     <link rel="stylesheet" href="./dist/css/login.css">
 </head>
 
 <body>
+    <!-- 登录头部 -->
+    <div class="head">
+        <div class="typeArea">
+            <a href="./index.html"></a>
+        </div>
+    </div>
+    <!-- 主体 -->
+    <div class="content">
+        <div class="typeArea clearfix">
+            <div class="img">
+                <a href=""></a>
+            </div>
+            <div class="loginBox">
+                <ul class="clearfix login_tab">
+                    <li class="on">短信登陆</li>
+                    <li>账号登陆</li>
+                </ul>
+                <ul class="login_method">
+                    <li class="on">
+                        <input type="text" class="phone" placeholder="手机号码" maxlength="11">
+                        <div class="sms clearfix">
+                            <input type="text" name="sms" placeholder="短信验证码" maxlength="4">
+                            <button class="getSms">短信验证码</button>
+                        </div>
+                        <div class="phoneTip clearfix">
+                            <i class="iconfont" style="color: red;">&#xe614;</i>
+                            <span>您输入的账号格式有误，请核实后重新输入</span>
+                        </div>
+                        <button class="login_btn">立即登录</button>
+                    </li>
+                    <li>
+                        <input type="text" class="phone" placeholder="邮箱/手机号码" maxlength="30">
+                        <input type="password" placeholder="密码">
+                        <div class="phoneTip clearfix">
+                            <i class="iconfont" style="color: red;">&#xe614;</i>
+                            <span>您输入的账号格式有误，请核实后重新输入</span>
+                        </div>
+                        <button class="login_btn">立即登录</button>
+                    </li>
+                </ul>
+                <div class="infoBox">
+                    <p>若无账号，使用验证码登录成功后默认创建账号</p>
+                    <a href="">忘记密码？</a>
+                </div>
+                <div class="other_method">
+                    <p>其他方式登录</p>
+                    <ul class="methodsBox">
+                        <li class="zhifubao"><a href=""></a></li>
+                        <li class="qq"><a href=""></a></li>
+                        <li class="weixin"><a href=""></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- 底部 -->
     <div class="myFooter"></div>
 </body>
@@ -23,4 +79,6 @@
 <script>
     $(".myFooter").load("http://localhost:3000/public/common.html .footerBox");
 </script>
+<script src="./tools/tool.js"></script>
+<script src="./js/login.js"></script>
 </html>
