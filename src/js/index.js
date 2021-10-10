@@ -2,53 +2,18 @@
 (function () {
     "use strict";
 
-    class Suspension {
-        constructor() {
-            this.susp = document.querySelector(".suspension");
-
-            this.suspAddEvent();
-        }
-
-        suspAddEvent() {
-            const that = this;
-
-            addEvent(document, "scroll", function () {
-                document.documentElement.scrollTop >= 500 ? that.show() : that.hide();
-            })
-        }
-
-        show() {
-            this.susp.style.display = "block";
-            this.setDelay(() => {
-                this.susp.style.opacity = "1";
-            }, 20);
-        }
-
-        hide() {
-            this.susp.style.opacity = "0";
-            this.setDelay(() => {
-                this.susp.style.display = "none";
-            }, 400);
-        }
-
-        setDelay(func, timoDelay) {
-            clearTimeout(this.timeOutIndex);
-            this.timeOutIndex = setTimeout(func, timoDelay);
-        }
-    }
-
     class DocumentInit {
         constructor() {
             this.imageBoxMain = document.querySelector(".bannerImg");
             this.bannerNavMain = document.querySelector(".bannerNav");
             this.imageBoxTejia = document.querySelector(".tejia .specialbanner");
             this.imageBoxMiaosha = document.querySelector(".miaosha .specialbanner");
+            this.specialTimer = document.querySelectorAll(".timer");
             this.drinkBox = document.querySelector("#self .drink_content");
             this.giftBox = document.querySelector("#gift .drink_content");
             this.teaBox = document.querySelector("#tea .drink_content");
             this.hotBox = document.querySelector(".hot .hot_content>ul");
             this.newsBox = document.querySelector(".news_content");
-
 
             this.init();
         }
@@ -101,8 +66,9 @@
         }
 
         renderer_banner_tejia(response) {
+            this.specialTimer[0].setAttribute("endtime", response.endtime);
             let data = ``;
-            response.forEach(value => {
+            response.items.forEach(value => {
                 data += `<li>
                             <a href="">
                                 <div class="item_img"><img src="./images/index/${value.img}" alt="">
@@ -123,8 +89,9 @@
         }
 
         renderer_banner_miaosha(response) {
+            this.specialTimer[1].setAttribute("endtime", response.endtime);
             let data = ``;
-            response.forEach(value => {
+            response.items.forEach(value => {
                 data += `<li>
                             <a href="">
                                 <div class="item_img"><img src="./images/index/${value.img}" alt="">
@@ -417,244 +384,26 @@
         }
     }
 
-    class Banner_main {
-        constructor() {
-            this.imgBox = document.querySelector(".bannerImg");
-            this.imgList = document.querySelectorAll(".bannerImg li");
-            this.btns = document.querySelectorAll(".bannerNav li");
-            this.nowIndex = 0;
-            this.show();
-            // console.log(this.imgW);
-            this.btnsEvent();
-            this.imgInterval();
-            this.imgHoverEvent();
-        }
-
-        btnsEvent() {
-            const that = this;
-            this.btns.forEach((element, index) => {
-                addEvent(element, "mouseover", function () {
-                    if (index != that.nowIndex) {
-                        that.changeImg(index);
-                    }
-                })
-            })
-        }
-
-        imgHoverEvent() {
-            const that = this;
-
-            addEvent(this.imgBox, "mouseenter", function () {
-                clearInterval(that.intervalIndex);
-            })
-
-            addEvent(this.imgBox, "mouseleave", function () {
-                that.imgInterval();
-            })
-        }
-
-        imgInterval() {
-            clearInterval(this.intervalIndex);
-            this.intervalIndex = setInterval(() => {
-                this.changeImg(this.nowIndex + 1 === this.imgList.length ? 0 : this.nowIndex + 1)
-            }, 3000);
-        }
-
-        changeImg(index) {
-            this.btns[this.nowIndex].className = "";
-            this.hide();
-            this.nowIndex = index;
-            this.btns[this.nowIndex].className = "bannerOn";
-            this.show();
-        }
-
-        show() {
-            this.imgList[this.nowIndex].style.opacity = "1";
-        }
-
-        hide() {
-            this.imgList[this.nowIndex].style.opacity = "0";
-        }
-
-        setDelay(func, timoDelay) {
-            clearTimeout(this.timeOutIndex);
-            this.timeOutIndex = setTimeout(func, timoDelay);
-        }
-    }
-
-    class Banner_multiEle {
-        constructor({
-            imgBox,
-            together,
-            btns
-        }) {
-            this.imgBox = imgBox;
-            this.together = together;
-            this.btns = btns;
-            this.imgList = this.imgBox.children;
-            this.imgW = this.imgBox.offsetWidth / this.together;
-            this.createPos();
-            this.nowItems = [...this.pos.keys()];
-            // console.log(this.imgBox.parentElement);
-            // console.log(this.nowItems);
-            this.init();
-        }
-
-        createPos() {
-            this.pos = new Array(this.together).fill(0);
-            this.pos.forEach((value, index) => {
-                this.pos[index] = this.imgW * index;
-            })
-            // console.log(this.pos);
-            this.imgInterval();
-            this.imgHoverEvent();
-        }
-
-        init() {
-            this.nowItems.forEach(val => {
-                this.imgList[val].style.left = `${this.pos[val]}px`;
-                this.imgList[val].style.zIndex = "100";
-            })
-
-            // console.log(this.btns);
-            this.btnAddEvent();
-
-        }
-
-        imgHoverEvent() {
-            const that = this;
-
-            addEvent(this.imgBox.parentElement, "mouseenter", function () {
-                clearInterval(that.intervalIndex);
-            })
-
-            addEvent(this.imgBox.parentElement, "mouseleave", function () {
-                that.imgInterval();
-            })
-        }
-
-        imgInterval() {
-            clearInterval(this.intervalIndex);
-            this.intervalIndex = setInterval(() => {
-                this.prev();
-            }, 3000);
-        }
-
-        btnAddEvent() {
-            const that = this;
-
-            addEvent(this.btns[0], "click", function () {
-                that.next();
-            })
-
-            addEvent(this.btns[1], "click", function () {
-                that.prev();
-            })
-
-            addEvent(this.btns[0].parentElement, "mouseenter", function () {
-                clearInterval(that.intervalIndex);
-            })
-
-            addEvent(this.btns[1].parentElement, "mouseenter", function () {
-                clearInterval(that.intervalIndex);
-            })
-
-            addEvent(this.btns[0].parentElement, "mouseleave", function () {
-                that.imgInterval();
-            })
-
-            addEvent(this.btns[1].parentElement, "mouseleave", function () {
-                that.imgInterval();
-            })
-
-        }
-
-        prev() {
-            this.nowItems.forEach((value, index) => {
-                this.imgList[value].style.zIndex = "10";
-                this.setMovePos(this.imgList[value], this.pos[index], true);
-                this.nowItems[index] = value + 1 >= this.imgList.length ? 0 : value + 1;
-            })
-            // console.log(this.nowItems);
-            this.nowItems.forEach((value, index) => {
-                this.imgList[value].style.zIndex = "100";
-                this.setMovePos(this.imgList[value], this.pos[index] + this.imgW, true);
-            })
-        }
-
-        next() {
-            this.nowItems.forEach((value, index) => {
-                this.imgList[value].style.zIndex = "10";
-                this.setMovePos(this.imgList[value], this.pos[index], false);
-                this.nowItems[index] = value - 1 < 0 ? this.imgList.length - 1 : value - 1;
-            })
-            // console.log(this.nowItems);
-            this.nowItems.forEach((value, index) => {
-                this.imgList[value].style.zIndex = "100";
-                this.setMovePos(this.imgList[value], this.pos[index] - this.imgW, false);
-            })
-        }
-
-        setMovePos(target, value, calcFlag) {
-            target.style.left = `${value}px`;
-            // console.log(`${value}px`);
-            this.move(target, calcFlag ? value - this.imgW : value + this.imgW);
-        }
-
-        move(target, value) {
-            // console.log(value);
-            elementAnimation(target, {
-                left: value
-            })
-        }
-    }
-
-    class TimeDown {
-        constructor() {
-            this.end = document.querySelectorAll(".timer");
-            this.day = document.querySelectorAll(".days");
-            this.hours = document.querySelectorAll(".hours");
-            this.minute = document.querySelectorAll(".minute");
-            this.seconds = document.querySelectorAll(".seconds");
-
-            setInterval(() => {
-                this.getInterval();
-            }, 1000);
-        }
-
-        getInterval() {
-            for (let i = 0; i < this.end.length; i++) {
-                let interval = new Date(this.end[i].getAttribute("endtime")).getTime() - Date.now();
-                interval /= 1000;
-                this.day[i].innerHTML = `${parseInt(interval / 60 / 60 / 24)}天`;
-                this.hours[i].innerHTML = this.add0(parseInt(interval / 60 / 60 % 24));
-                this.minute[i].innerHTML = this.add0(parseInt(interval / 60 % 60));
-                this.seconds[i].innerHTML = this.add0(parseInt(interval % 60));
-            }
-        }
-
-        add0(value) {
-            return value < 10 ? `0${value}` : value
-        }
-    }
-
-    new TimeDown();
     new DocumentInit();
     setTimeout(() => {
-        new Suspension()
         new FloorNav();
-        new Banner_main();
-        new Banner_multiEle({
+        window.createTimeDown();
+        window.createSuspension(document.querySelector(".suspension"), 500);
+        window.createBannerMain({
+            imgList: document.querySelectorAll(".bannerImg li"),
+            btns: document.querySelectorAll(".bannerNav li")
+        });
+        window.createBannerMultiEle({
             imgBox: document.querySelector(".tejia .specialbanner"),
             btns: document.querySelectorAll(".tejia .specialBtns div"),
             together: 2
         });
-        new Banner_multiEle({
+        window.createBannerMultiEle({
             imgBox: document.querySelector(".miaosha .specialbanner"),
             btns: document.querySelectorAll(".miaosha .specialBtns div"),
             together: 2
         });
-        new Banner_multiEle({
+        window.createBannerMultiEle({
             imgBox: document.querySelector(".hot_content ul"),
             btns: document.querySelectorAll(".hot_btns div"),
             together: 4
