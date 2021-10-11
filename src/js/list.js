@@ -72,7 +72,7 @@
 
         refreshPageContent() {
             this.getGoodsData("list_goods", "renderer_list_goods");
-        }
+        } 
 
         renderer_list_banner(response) {
             let data = ``;
@@ -206,7 +206,7 @@
     class ListOptions {
         constructor() {
             this.tabOptions = document.querySelectorAll(".tab_option .options li");
-            this.priceSortImg = ["url('../../images/list/shang.jpg')", "url('../../images/list/xia.jpg')"];
+            this.priceSortImg = ["url('../images/list/shang.jpg')", "url('../images/list/xia.jpg')"];
             this.priceSortImgIndex = 1;
 
             this.optionAddEvent();
@@ -244,5 +244,5 @@
             new PullOrDown();
             new ListOptions();
         }, 100);
-    }, 30);
+    }, 80);
 })();

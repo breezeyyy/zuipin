@@ -1,0 +1,16 @@
+{
+  "id": "2857356",
+  "name": "醉品茶城_彩色",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "12129765",
+      "name": "红色感叹号",
+      "font_class": "hongsegantanhao",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    }
+  ]
+}
