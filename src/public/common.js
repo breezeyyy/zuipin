@@ -375,8 +375,10 @@ window.onload = function () {
         }
     }
 
-    new DocumentInit();
-    new AsideTop();
-    new Menu3();
-    new Search();
+    setTimeout(() => {
+        new DocumentInit();
+        new AsideTop();
+        new Menu3();
+        new Search();
+    }, 200);
 }

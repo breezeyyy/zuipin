@@ -16,7 +16,7 @@
 
         init() {
             this.goodList.className += " list_html";
-            this.getImageData("list_banner", "renderer_list_banner");
+            this.getGoodsData("list_banner", "renderer_list_banner");
             this.refreshPageContent();
         }
 
@@ -53,7 +53,7 @@
         /**
          * 获取数据库图片数据
          */
-        getImageData(type, renderer) {
+        getGoodsData(type, renderer) {
             ajax({
                 type: "GET",
                 url: "http://localhost:3000/api",
@@ -71,7 +71,7 @@
         }
 
         refreshPageContent() {
-            this.getImageData("list_goods", "renderer_list_goods");
+            this.getGoodsData("list_goods", "renderer_list_goods");
         }
 
         renderer_list_banner(response) {
@@ -91,7 +91,7 @@
             for (let i = this.pageIndex * 20; i < this.pageIndex * 20 + 20 && i < response.length; i++) {
                 data += `<li class="item">`;
                 response[i].tejia && (data += `<div class="tag_img"><img src="./images/list/zp_label_tejia_pc.png"></div>`)
-                data += `<a href="" target="_blank">
+                data += `<a href="./details.html" target="_blank">
                                 <img src="./images/list/${response[i].img}">
                             </a>
                             <p class="item_desc" title="${response[i].desc}">${response[i].desc}</p>
