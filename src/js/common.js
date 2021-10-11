@@ -347,7 +347,8 @@ window.onload = function () {
                 type: "GET",
                 url: "http://localhost:3000/api",
                 success: (response) => {
-                    if (response.data !== [])
+                    if (response.code)
+                        // console.log(response);
                         this.renderer(response.data);
                 },
                 error: (status) => {

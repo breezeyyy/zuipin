@@ -9,14 +9,13 @@
             this.pageBox = document.querySelector(".pageBox");
             this.pageIndex = 0;
 
-            // console.log();
             this.init();
             this.addPageNavEvent();
         }
 
         init() {
             this.goodList.className += " list_html";
-            this.getGoodsData("list_banner", "renderer_list_banner");
+            this.getGoodsData("list_data", "renderer_list_data");
             this.refreshPageContent();
         }
 
@@ -31,7 +30,6 @@
                     that.nextPage();
                 } else if (target.className === "go") {
                     that.pageGo();
-                    // console.log(target.className);
                 } else if (!target.className) {
                     that.changePage(parseInt(target.innerHTML));
                 }
@@ -43,8 +41,6 @@
         }
 
         addNavInputGoEvent() {
-            const that = this;
-            
             this.navGoInput.oninput = function() {
                 this.value = this.value.replace(/[^\d]/g, "");
             }
@@ -71,10 +67,10 @@
         }
 
         refreshPageContent() {
-            this.getGoodsData("list_goods", "renderer_list_goods");
+            this.getGoodsData("goods_data", "renderer_goods_data");
         } 
 
-        renderer_list_banner(response) {
+        renderer_list_data(response) {
             let data = ``;
             response.forEach(value => {
                 data += `<li><a href=""><img src="./images/list/${value}" alt=""></a></li>`;
@@ -86,7 +82,7 @@
             this.bannerNavMain.children[0].className = "bannerOn";
         }
 
-        renderer_list_goods(response) {
+        renderer_goods_data(response) {
             let data = ``;
             for (let i = this.pageIndex * 20; i < this.pageIndex * 20 + 20 && i < response.length; i++) {
                 data += `<li class="item">`;

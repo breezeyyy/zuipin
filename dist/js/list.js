@@ -18,8 +18,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       this.bannerNavMain = document.querySelector(".bannerNav");
       this.goodsListBox = document.querySelector(".good_list_box");
       this.pageBox = document.querySelector(".pageBox");
-      this.pageIndex = 0; // console.log();
-
+      this.pageIndex = 0;
       this.init();
       this.addPageNavEvent();
     }
@@ -28,7 +27,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       key: "init",
       value: function init() {
         this.goodList.className += " list_html";
-        this.getGoodsData("list_banner", "renderer_list_banner");
+        this.getGoodsData("list_data", "renderer_list_data");
         this.refreshPageContent();
       }
     }, {
@@ -43,7 +42,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           } else if (target.className === "next") {
             that.nextPage();
           } else if (target.className === "go") {
-            that.pageGo(); // console.log(target.className);
+            that.pageGo();
           } else if (!target.className) {
             that.changePage(parseInt(target.innerHTML));
           }
@@ -55,8 +54,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }, {
       key: "addNavInputGoEvent",
       value: function addNavInputGoEvent() {
-        var that = this;
-
         this.navGoInput.oninput = function () {
           this.value = this.value.replace(/[^\d]/g, "");
         };
@@ -87,11 +84,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }, {
       key: "refreshPageContent",
       value: function refreshPageContent() {
-        this.getGoodsData("list_goods", "renderer_list_goods");
+        this.getGoodsData("goods_data", "renderer_goods_data");
       }
     }, {
-      key: "renderer_list_banner",
-      value: function renderer_list_banner(response) {
+      key: "renderer_list_data",
+      value: function renderer_list_data(response) {
         var _this2 = this;
 
         var data = "";
@@ -106,8 +103,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.bannerNavMain.children[0].className = "bannerOn";
       }
     }, {
-      key: "renderer_list_goods",
-      value: function renderer_list_goods(response) {
+      key: "renderer_goods_data",
+      value: function renderer_goods_data(response) {
         var data = "";
 
         for (var i = this.pageIndex * 20; i < this.pageIndex * 20 + 20 && i < response.length; i++) {

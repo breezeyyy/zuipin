@@ -1500,10 +1500,12 @@ body {
     transition: all 0.5s;
 }
 
-.bannerBox .typeArea .banner .bannerImg li a img {
+.bannerBox .typeArea .banner .bannerImg li img {
     display: block;
     width: 992px;
     height: 460px;
+    width: 100%;
+    cursor: pointer;
 }
 
 .bannerBox .typeArea .banner .bannerNav {

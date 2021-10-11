@@ -8,14 +8,12 @@ const qs = require("querystring");
 const MY_SERVER_PORT = 3000;
 const MY_SERVER_URL = `http://localhost:${MY_SERVER_PORT}`;
 // 功能路由对象
-const typeList = {
-    common: ["common_data"],
-    index: ["banner_main", "banner_tejia", "banner_miaosha", "banner_hot", "drink_data", "gift_data", "tea_data", "news_data"],
-    list: ["list_banner", "list_goods"],
+const TYPE_LIST = {
+    DBData: ["common_data", "index_data", "list_data", "goods_data"],
     funcHandle: ["createGoodID"]
 };
+// const NOT_ALLOW_ACCESS = ["/common.html", "/details.html"]
 const handler = {};
-let DBSrc;
 
 // 创建服务器
 http.createServer((req, res) => {
@@ -40,16 +38,9 @@ function resposeToClient(req, res, resData) {
     // 获取到（不分get或post）数据
     // 在根据数据中隐藏的信息，决定执行不同的功能（登录，注册等等等等...）
     console.log(resData);
-    if (typeList.common.includes(resData.type)) {
-        DBSrc = "./database/common/";
+    if (TYPE_LIST.DBData.includes(resData.type)) {
         handler.getDBData(req, res, resData);
-    } else if (typeList.index.includes(resData.type)) {
-        DBSrc = "./database/index/";
-        handler.getDBData(req, res, resData);
-    } else if (typeList.list.includes(resData.type)) {
-        DBSrc = "./database/list/";
-        handler.getDBData(req, res, resData);
-    } else if (typeList.funcHandle.includes(resData.type)) {
+    } else if (TYPE_LIST.funcHandle.includes(resData.type)) {
         handler[resData.type](req, res, resData);
     } else {
         handler.error(req, res, resData);
@@ -57,12 +48,11 @@ function resposeToClient(req, res, resData) {
 }
 
 handler.getDBData = (req, res, resData) => {
-    // console.log(`${DBSrc}${resData.type}.json`);
-    fs.readFile(`${DBSrc}${resData.type}.json`, "UTF-8", (err, data) => {
+    fs.readFile(`./database/${resData.type}.json`, "UTF-8", (err, data) => {
         let answer = {
             code: err ? 0 : 1,
             title: err ? "数据请求失败！" : "数据请求成功！",
-            data: err ? [] : JSON.parse(data)
+            data: err ? [] : (data ? JSON.parse(data) : [])
         };
         res.write(JSON.stringify(answer), () => {
             res.end();
@@ -127,7 +117,9 @@ function dataHandle(req, res, location) {
 // 静态资源请求
 function staticHandle(req, res, location) {
     fs.readFile('./dist' + location.pathname, (err, data) => {
+        // console.log(location.pathname);
         // 利用文件模块读文件，将读取到的文件响应给前端
+        //  || NOT_ALLOW_ACCESS.includes(location.pathname)
         if (err) {
             res.write("NOT FOUND");
         } else {

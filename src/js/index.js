@@ -15,30 +15,46 @@
             this.hotBox = document.querySelector(".hot .hot_content>ul");
             this.newsBox = document.querySelector(".news_content");
 
-            this.init();
+            this.getDBData("index_data");
         }
 
-        init() {
-            this.getImageData("banner_main", "renderer_banner_main");
-            this.getImageData("banner_tejia", "renderer_banner_tejia");
-            this.getImageData("banner_miaosha", "renderer_banner_miaosha");
-            this.getImageData("drink_data", "renderer_drink");
-            this.getImageData("gift_data", "renderer_gift");
-            this.getImageData("tea_data", "renderer_tea");
-            this.getImageData("banner_hot", "renderer_banner_hot");
-            this.getImageData("news_data", "renderer_news");
+        init(response) {
+            for(let key in response) {
+                this[`renderer_${key}`](response[key]);
+            }
+            this.aClickEvent()
+        }
+
+        aClickEvent() {
+            const that = this;
+
+            this.links = document.querySelectorAll(".link");
+            this.links.forEach(element => {
+                addEvent(element, "click", function() {
+                    setCookie("details_data");
+                    setCookie("details_data", JSON.stringify({
+                        goodID: this.getAttribute("goodID"),
+                        dataDB: "index_data",
+                        dataKey: "banner_main"
+                    }))
+                    location.href = "./details.html";
+                    // setCookie("a", "1");
+                    // setCookie("a");
+                    // console.log(getCookie("details_data"));
+                })
+            })
         }
 
         /**
-         * 获取数据库图片数据
+         * 获取数据库数据
          */
-        getImageData(type, renderer) {
+        getDBData(type) {
             ajax({
                 type: "GET",
                 url: "http://localhost:3000/api",
                 success: (response) => {
                     if (response.code)
-                        this[renderer](response.data);
+                        this.init(response.data);
                 },
                 error: (status) => {
                     console.log(status);
@@ -55,8 +71,10 @@
          */
         renderer_banner_main(response) {
             let data = ``;
-            response.forEach(value => {
-                data += `<li><a href=""><img src="./images/index/${value}" alt=""></a></li>`;
+            response.data.forEach(value => {
+                data += `<li><img `;
+                value.goods && (data += `class="link" goodID="${value.ID}"`);
+                data += ` src="./images/index/${value.img_main}" alt=""></li>`;
                 const option = document.createElement("li");
                 option.appendChild(document.createElement("span"));
                 this.bannerNavMain.appendChild(option);
@@ -120,7 +138,7 @@
             this.imageBoxMiaosha.innerHTML = data;
         }
 
-        renderer_drink(response) {
+        renderer_drink_data(response) {
             const newFlag = [];
             let data = `<div class="drink_left">
                             <a href="" class="tag_card card_hover"><img src="./images/index/${response.left}" alt=""></a>
@@ -168,7 +186,7 @@
                                         </div>`;
         }
 
-        renderer_gift(response) {
+        renderer_gift_data(response) {
             let data = `<div class="drink_left">
                     <a href="" class="tag_card card_hover"><img src="./images/index/${response.left}" alt=""></a>
                     <a href="" class="more_card card_hover">
@@ -214,7 +232,7 @@
                                         </div>`;
         }
 
-        renderer_tea(response) {
+        renderer_tea_data(response) {
             let data = `<div class="drink_left">`;
             response.left.forEach(value => {
                 data += `<a href="" class="tag_card card_hover"><img src="./images/index/${value}" alt=""></a>`
@@ -249,7 +267,7 @@
 
         renderer_banner_hot(response) {
             let data = ``;
-            response.forEach(value => {
+            response.data.forEach(value => {
                 data += `<li>
                             <a href="" target="_blank" class="hot_box">
                                 <div class="hot_img">
@@ -268,9 +286,9 @@
             this.hotBox.innerHTML = data;
         }
 
-        renderer_news(response) {
+        renderer_news_data(response) {
             let data = ``;
-            response.forEach(value => {
+            response.data.forEach(value => {
                 data += `<a class="card_hover">
                             <div class="news_img">
                                 <img src="./images/index/${value.img}">

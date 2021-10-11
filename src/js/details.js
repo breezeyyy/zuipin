@@ -3,12 +3,143 @@
     class DocumentInit {
         constructor() {
             this.goodList = document.querySelector(".good-list");
+            this.pageList = document.querySelector(".nowPage");
+            this.navImg = document.querySelector(".nav");
+            this.goodDesc = document.querySelector(".goodDesc");
+            this.goodItem = document.querySelector(".goodItem");
+            this.switchTab = document.querySelector(".switchTab");
+            this.xqBox = document.querySelector(".xqms dt ul");
+            this.xqImgBox = document.querySelector(".xqms dd p");
+
+            this.xq = {
+                gg: "规格",
+                cd: "产地",
+                scnf: "生产年份",
+                ccff: "储藏方法",
+                bzq: "保质期",
+                dj: "等级",
+                bzgg: "包装规格"
+            }
+
 
             this.init();
         }
 
         init() {
             this.goodList.className += " list_html";
+            this.details_data = JSON.parse(getCookie("details_data"));
+            // console.log(getCookie("details_data"));
+            this.getDBData({
+                type: this.details_data.dataDB,
+                goodID: this.details_data.goodID,
+                dataKey: this.details_data.dataKey || null
+            })
+        }
+
+        getDBData(search) {
+            ajax({
+                type: "GET",
+                url: "http://localhost:3000/api",
+                success: (response) => {
+                    if (response.code)
+                        this.details_data.dataKey ? this.fromIndexData(response.data[this.details_data.dataKey]) : this.fromGoodsData(response.data);
+                },
+                error: (status) => {
+                    console.log(status);
+                },
+                search: search
+            })
+        }
+
+        fromIndexData(response) {
+            // console.log(response);
+            for (let key in response) {
+                this.value = response[key].find(val => val.ID === this.details_data.goodID);
+                if (this.value)
+                    break;
+            }
+            // console.table(this.value);
+            this.renderer_details();
+        }
+
+        fromGoodsData(response) {
+            return response.find(val => val.ID === this.details_data.goodID);
+            this.renderer_details();
+        }
+
+        renderer_details() {
+            document.title = this.value.good_title;
+            let data = `<li><a href="./index.html">首页</a></li>`;
+            this.value.tags.forEach(val => {
+                data += `<li>/</li>
+                        <li><a href="javascript:;">${val}</a></li>`;
+            })
+            this.pageList.innerHTML = data + `<li>/</li>
+                                                <li><a href="javascript:;">${this.value.good_title}</a></li>`;
+            data = ``;
+            this.value.img_list.forEach((val, index) => {
+                data += `<li`;
+                data += index ? `>` : ` class="on">`;
+                data += `<img src="./images/details/${val}" alt=""></li>`;
+            })
+            this.navImg.innerHTML = data;
+            this.goodDesc.innerHTML = `<h1 class="title">${this.value.good_title}</h1>
+                                        <p class="info">${this.value.info || ""}</p>
+                                        <div class="line"></div>
+                                        <div class="goodDescList">
+                                            <div class="scj">市场价<span>￥<em>${this.value.oldPrice}</em></span></div>
+                                            <div class="zpj">醉品价<span>￥<em>${this.value.nowPrice}</em></span></div>
+                                            <div class="cx">促销
+                                                <div class="cxTag">
+                                                    <div class="tagInfo">包邮</div>
+                                                    <div class="tagDesc">全场在线支付满59元免运费</div>
+                                                </div>
+                                                <div class="cxTag">
+                                                    <div class="tagInfo">直降</div>
+                                                    <div class="tagDesc">已优惠<i class="youhui">${this.value.youhui}</i>元</div>
+                                                </div>
+                                            </div>
+                                            <div class="line"></div>
+                                            <ul class="pp clearfix">
+                                                <li><span class="ppK">品牌</span><span class="ppV">${this.value.pinpai}</span></li>
+                                                <li><span class="ppK">净含量</span><span class="ppV">${this.value.jhl}</span></li>
+                                                <li><span class="ppK">商品编号</span><span class="ppV">${this.value.ID}</span></li>
+                                            </ul>
+                                            <div class="line"></div>
+                                            <div class="sl">数量
+                                                <button class="jian">-</button>
+                                                <input type="text" value="1">
+                                                <button class="plus">+</button>
+                                            </div>
+                                            <button class="addCart">加入购物车</button>
+                                            <div class="line"></div>
+                                            <ul class="fw clearfix">
+                                                <li>服务</li>
+                                                <li>90天商品保价</li>
+                                                <li>30天无理由退货</li>
+                                                <li>10分钟极速退款</li>
+                                            </ul>
+                                        </div>`
+            this.goodItem.innerHTML = `<img src="./images/details/${this.value.img_list[0]}" alt="">
+                <div class="itemInfo">
+                    <div class="itemDesc">${this.value.good_title}</div>
+                    <div class="itemPrice">￥${this.value.nowPrice}</div>
+                </div>`
+            this.switchTab.innerHTML = `<li>详情描述</li>
+                                        <li>评论晒单(<span class="plNum"> ${this.value.pinglun} </span>)</li>`;
+            data = ``;
+            for (let key in this.value.xqms.xqms_tags) {
+                data += `<li title="${this.xq[key]}：${this.value.xqms.xqms_tags[key]}">
+                            <span class="xqK">${this.xq[key]}：</span>
+                            <span class="xqV">${this.value.xqms.xqms_tags[key]}</span>
+                        </li>`
+            }
+            this.xqBox.innerHTML = data;
+            data = ``;
+            this.value.xqms.xqms_imgs.forEach(val => {
+                data += `<img src="./images/details/${val}">`
+            })
+            this.xqImgBox.innerHTML = data;
         }
     }
 
@@ -99,6 +230,11 @@
             this.nowIndex = 0;
 
             // console.log(this.navImgs);
+            this.sBoxImg.src = this.aLi[0].firstChild.src;
+            this.bBoxImg.src = this.aLi[0].firstChild.src;
+
+
+
             this.NavAddEvnet();
         }
 
@@ -106,7 +242,7 @@
             const that = this;
 
             this.aLi.forEach((element, index) => {
-                addEvent(element, "click", function() {
+                addEvent(element, "click", function () {
                     that.clearNavStyle(index);
                     that.addNavStyle();
                     that.replaceImg();
@@ -114,7 +250,7 @@
             })
 
             this.btns.forEach((element, index) => {
-                addEvent(element, "click", function() {
+                addEvent(element, "click", function () {
 
                     index ? that.nextImg() : that.prevImg();
                     that.addNavStyle();
@@ -122,11 +258,11 @@
                 })
             })
 
-            addEvent(document, "scroll", function(event) {
-                console.log(event.target);
-            })
+            // addEvent(document, "scroll", function (event) {
+            //     console.log(event.target);
+            // })
 
-            addEvent(document, "selectstart", function(event) {
+            addEvent(document, "selectstart", function (event) {
                 stopDefault(getEvent(event));
             })
         }
@@ -196,8 +332,10 @@
 
     setTimeout(() => {
         new DocumentInit();
-        new FixedTab();
-        new Magnifying();
-        new Navimage();
-    }, 30);
+        setTimeout(() => {
+            new FixedTab();
+            new Navimage();
+            new Magnifying();
+        }, 100);
+    }, 50);
 })();

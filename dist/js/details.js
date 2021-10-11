@@ -14,6 +14,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _classCallCheck(this, DocumentInit);
 
       this.goodList = document.querySelector(".good-list");
+      this.pageList = document.querySelector(".nowPage");
+      this.navImg = document.querySelector(".nav");
+      this.goodDesc = document.querySelector(".goodDesc");
+      this.goodItem = document.querySelector(".goodItem");
+      this.switchTab = document.querySelector(".switchTab");
+      this.xqBox = document.querySelector(".xqms dt ul");
+      this.xqImgBox = document.querySelector(".xqms dd p");
+      this.xq = {
+        gg: "规格",
+        cd: "产地",
+        scnf: "生产年份",
+        ccff: "储藏方法",
+        bzq: "保质期",
+        dj: "等级",
+        bzgg: "包装规格"
+      };
       this.init();
     }
 
@@ -21,6 +37,88 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       key: "init",
       value: function init() {
         this.goodList.className += " list_html";
+        this.details_data = JSON.parse(getCookie("details_data")); // console.log(getCookie("details_data"));
+
+        this.getDBData({
+          type: this.details_data.dataDB,
+          goodID: this.details_data.goodID,
+          dataKey: this.details_data.dataKey || null
+        });
+      }
+    }, {
+      key: "getDBData",
+      value: function getDBData(search) {
+        var _this = this;
+
+        ajax({
+          type: "GET",
+          url: "http://localhost:3000/api",
+          success: function success(response) {
+            if (response.code) _this.details_data.dataKey ? _this.fromIndexData(response.data[_this.details_data.dataKey]) : _this.fromGoodsData(response.data);
+          },
+          error: function error(status) {
+            console.log(status);
+          },
+          search: search
+        });
+      }
+    }, {
+      key: "fromIndexData",
+      value: function fromIndexData(response) {
+        var _this2 = this;
+
+        // console.log(response);
+        for (var key in response) {
+          this.value = response[key].find(function (val) {
+            return val.ID === _this2.details_data.goodID;
+          });
+          if (this.value) break;
+        } // console.table(this.value);
+
+
+        this.renderer_details();
+      }
+    }, {
+      key: "fromGoodsData",
+      value: function fromGoodsData(response) {
+        var _this3 = this;
+
+        return response.find(function (val) {
+          return val.ID === _this3.details_data.goodID;
+        });
+        this.renderer_details();
+      }
+    }, {
+      key: "renderer_details",
+      value: function renderer_details() {
+        document.title = this.value.good_title;
+        var data = "<li><a href=\"./index.html\">\u9996\u9875</a></li>";
+        this.value.tags.forEach(function (val) {
+          data += "<li>/</li>\n                        <li><a href=\"javascript:;\">".concat(val, "</a></li>");
+        });
+        this.pageList.innerHTML = data + "<li>/</li>\n                                                <li><a href=\"javascript:;\">".concat(this.value.good_title, "</a></li>");
+        data = "";
+        this.value.img_list.forEach(function (val, index) {
+          data += "<li";
+          data += index ? ">" : " class=\"on\">";
+          data += "<img src=\"./images/details/".concat(val, "\" alt=\"\"></li>");
+        });
+        this.navImg.innerHTML = data;
+        this.goodDesc.innerHTML = "<h1 class=\"title\">".concat(this.value.good_title, "</h1>\n                                        <p class=\"info\">").concat(this.value.info || "", "</p>\n                                        <div class=\"line\"></div>\n                                        <div class=\"goodDescList\">\n                                            <div class=\"scj\">\u5E02\u573A\u4EF7<span>\uFFE5<em>").concat(this.value.oldPrice, "</em></span></div>\n                                            <div class=\"zpj\">\u9189\u54C1\u4EF7<span>\uFFE5<em>").concat(this.value.nowPrice, "</em></span></div>\n                                            <div class=\"cx\">\u4FC3\u9500\n                                                <div class=\"cxTag\">\n                                                    <div class=\"tagInfo\">\u5305\u90AE</div>\n                                                    <div class=\"tagDesc\">\u5168\u573A\u5728\u7EBF\u652F\u4ED8\u6EE159\u5143\u514D\u8FD0\u8D39</div>\n                                                </div>\n                                                <div class=\"cxTag\">\n                                                    <div class=\"tagInfo\">\u76F4\u964D</div>\n                                                    <div class=\"tagDesc\">\u5DF2\u4F18\u60E0<i class=\"youhui\">").concat(this.value.youhui, "</i>\u5143</div>\n                                                </div>\n                                            </div>\n                                            <div class=\"line\"></div>\n                                            <ul class=\"pp clearfix\">\n                                                <li><span class=\"ppK\">\u54C1\u724C</span><span class=\"ppV\">").concat(this.value.pinpai, "</span></li>\n                                                <li><span class=\"ppK\">\u51C0\u542B\u91CF</span><span class=\"ppV\">").concat(this.value.jhl, "</span></li>\n                                                <li><span class=\"ppK\">\u5546\u54C1\u7F16\u53F7</span><span class=\"ppV\">").concat(this.value.ID, "</span></li>\n                                            </ul>\n                                            <div class=\"line\"></div>\n                                            <div class=\"sl\">\u6570\u91CF\n                                                <button class=\"jian\">-</button>\n                                                <input type=\"text\" value=\"1\">\n                                                <button class=\"plus\">+</button>\n                                            </div>\n                                            <button class=\"addCart\">\u52A0\u5165\u8D2D\u7269\u8F66</button>\n                                            <div class=\"line\"></div>\n                                            <ul class=\"fw clearfix\">\n                                                <li>\u670D\u52A1</li>\n                                                <li>90\u5929\u5546\u54C1\u4FDD\u4EF7</li>\n                                                <li>30\u5929\u65E0\u7406\u7531\u9000\u8D27</li>\n                                                <li>10\u5206\u949F\u6781\u901F\u9000\u6B3E</li>\n                                            </ul>\n                                        </div>");
+        this.goodItem.innerHTML = "<img src=\"./images/details/".concat(this.value.img_list[0], "\" alt=\"\">\n                <div class=\"itemInfo\">\n                    <div class=\"itemDesc\">").concat(this.value.good_title, "</div>\n                    <div class=\"itemPrice\">\uFFE5").concat(this.value.nowPrice, "</div>\n                </div>");
+        this.switchTab.innerHTML = "<li>\u8BE6\u60C5\u63CF\u8FF0</li>\n                                        <li>\u8BC4\u8BBA\u6652\u5355(<span class=\"plNum\"> ".concat(this.value.pinglun, " </span>)</li>");
+        data = "";
+
+        for (var key in this.value.xqms.xqms_tags) {
+          data += "<li title=\"".concat(this.xq[key], "\uFF1A").concat(this.value.xqms.xqms_tags[key], "\">\n                            <span class=\"xqK\">").concat(this.xq[key], "\uFF1A</span>\n                            <span class=\"xqV\">").concat(this.value.xqms.xqms_tags[key], "</span>\n                        </li>");
+        }
+
+        this.xqBox.innerHTML = data;
+        data = "";
+        this.value.xqms.xqms_imgs.forEach(function (val) {
+          data += "<img src=\"./images/details/".concat(val, "\">");
+        });
+        this.xqImgBox.innerHTML = data;
       }
     }]);
 
@@ -128,6 +226,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       });
       this.nowIndex = 0; // console.log(this.navImgs);
 
+      this.sBoxImg.src = this.aLi[0].firstChild.src;
+      this.bBoxImg.src = this.aLi[0].firstChild.src;
       this.NavAddEvnet();
     }
 
@@ -148,10 +248,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             that.addNavStyle();
             that.replaceImg();
           });
-        });
-        addEvent(document, "scroll", function (event) {
-          console.log(event.target);
-        });
+        }); // addEvent(document, "scroll", function (event) {
+        //     console.log(event.target);
+        // })
+
         addEvent(document, "selectstart", function (event) {
           stopDefault(getEvent(event));
         });
@@ -238,8 +338,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
   setTimeout(function () {
     new DocumentInit();
-    new FixedTab();
-    new Magnifying();
-    new Navimage();
-  }, 30);
+    setTimeout(function () {
+      new FixedTab();
+      new Navimage();
+      new Magnifying();
+    }, 100);
+  }, 50);
 })();

@@ -74,11 +74,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }, {
       key: "show",
       value: function show() {
+        this.imgList[this.nowIndex].style.zIndex = "1000";
         this.imgList[this.nowIndex].style.opacity = "1";
       }
     }, {
       key: "hide",
       value: function hide() {
+        this.imgList[this.nowIndex].style.zIndex = "0";
         this.imgList[this.nowIndex].style.opacity = "0";
       }
     }, {

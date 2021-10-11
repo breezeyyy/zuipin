@@ -57,10 +57,12 @@
         }
 
         show() {
+            this.imgList[this.nowIndex].style.zIndex = "1000";
             this.imgList[this.nowIndex].style.opacity = "1";
         }
 
         hide() {
+            this.imgList[this.nowIndex].style.zIndex = "0";
             this.imgList[this.nowIndex].style.opacity = "0";
         }
 

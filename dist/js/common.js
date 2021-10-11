@@ -406,7 +406,8 @@ window.onload = function () {
           type: "GET",
           url: "http://localhost:3000/api",
           success: function success(response) {
-            if (response.data !== []) _this4.renderer(response.data);
+            if (response.code) // console.log(response);
+              _this4.renderer(response.data);
           },
           error: function error(status) {
             console.log(status);

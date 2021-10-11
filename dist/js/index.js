@@ -37,35 +37,51 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       this.teaBox = document.querySelector("#tea .drink_content");
       this.hotBox = document.querySelector(".hot .hot_content>ul");
       this.newsBox = document.querySelector(".news_content");
-      this.init();
+      this.getDBData("index_data");
     }
 
     _createClass(DocumentInit, [{
       key: "init",
-      value: function init() {
-        this.getImageData("banner_main", "renderer_banner_main");
-        this.getImageData("banner_tejia", "renderer_banner_tejia");
-        this.getImageData("banner_miaosha", "renderer_banner_miaosha");
-        this.getImageData("drink_data", "renderer_drink");
-        this.getImageData("gift_data", "renderer_gift");
-        this.getImageData("tea_data", "renderer_tea");
-        this.getImageData("banner_hot", "renderer_banner_hot");
-        this.getImageData("news_data", "renderer_news");
+      value: function init(response) {
+        for (var key in response) {
+          this["renderer_".concat(key)](response[key]);
+        }
+
+        this.aClickEvent();
+      }
+    }, {
+      key: "aClickEvent",
+      value: function aClickEvent() {
+        var that = this;
+        this.links = document.querySelectorAll(".link");
+        this.links.forEach(function (element) {
+          addEvent(element, "click", function () {
+            setCookie("details_data");
+            setCookie("details_data", JSON.stringify({
+              goodID: this.getAttribute("goodID"),
+              dataDB: "index_data",
+              dataKey: "banner_main"
+            }));
+            location.href = "./details.html"; // setCookie("a", "1");
+            // setCookie("a");
+            // console.log(getCookie("details_data"));
+          });
+        });
       }
       /**
-       * 获取数据库图片数据
+       * 获取数据库数据
        */
 
     }, {
-      key: "getImageData",
-      value: function getImageData(type, renderer) {
+      key: "getDBData",
+      value: function getDBData(type) {
         var _this = this;
 
         ajax({
           type: "GET",
           url: "http://localhost:3000/api",
           success: function success(response) {
-            if (response.code) _this[renderer](response.data);
+            if (response.code) _this.init(response.data);
           },
           error: function error(status) {
             console.log(status);
@@ -86,8 +102,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         var _this2 = this;
 
         var data = "";
-        response.forEach(function (value) {
-          data += "<li><a href=\"\"><img src=\"./images/index/".concat(value, "\" alt=\"\"></a></li>");
+        response.data.forEach(function (value) {
+          data += "<li><img ";
+          value.goods && (data += "class=\"link\" goodID=\"".concat(value.ID, "\""));
+          data += " src=\"./images/index/".concat(value.img_main, "\" alt=\"\"></li>");
           var option = document.createElement("li");
           option.appendChild(document.createElement("span"));
 
@@ -117,8 +135,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.imageBoxMiaosha.innerHTML = data;
       }
     }, {
-      key: "renderer_drink",
-      value: function renderer_drink(response) {
+      key: "renderer_drink_data",
+      value: function renderer_drink_data(response) {
         var newFlag = [];
         var data = "<div class=\"drink_left\">\n                            <a href=\"\" class=\"tag_card card_hover\"><img src=\"./images/index/".concat(response.left, "\" alt=\"\"></a>\n                            <a href=\"\" class=\"more_card card_hover\">\n                                <h2>\u81EA\u996E\u52A9\u624B</h2>\n                                <p class=\"more_text\">\u81EA\u5DF1\u559D\u7684\u8336</p>\n                                <p class=\"more_text\">\u5305\u88C5\u4E0D\u7528\u592A\u590D\u6742</p>\n                                <img src=\"./images/index/more.png\" alt=\"\">\n                            </a>\n                        </div>\n                        <div class=\"drink_center\">");
         response.center.forEach(function (value, index) {
@@ -133,8 +151,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.drinkBox.innerHTML = data += "</div>\n                                            </div>\n                                            <a href=\"\" class=\"more_card card_hover\">\n                                                <h2>\u6D4F\u89C8\u66F4\u591A</h2>\n                                                <p class=\"more_text\">\u60F3\u8981\u559D\u8336\uFF0C\u4E0D\u77E5\u5982\u4F55\u9009</p>\n                                                <p class=\"more_text\">\u8FD9\u91CC\u6709\u4E00\u53EA\u9526\u56CA\uFF01</p>\n                                                <img src=\"./images/index/more.png\" alt=\"\">\n                                            </a>\n                                        </div>";
       }
     }, {
-      key: "renderer_gift",
-      value: function renderer_gift(response) {
+      key: "renderer_gift_data",
+      value: function renderer_gift_data(response) {
         var data = "<div class=\"drink_left\">\n                    <a href=\"\" class=\"tag_card card_hover\"><img src=\"./images/index/".concat(response.left, "\" alt=\"\"></a>\n                    <a href=\"\" class=\"more_card card_hover\">\n                        <h2>\u9001\u793C\u52A9\u624B</h2>\n                        <p class=\"more_text\">\u4E3A\u60A8\u7528\u5FC3\u63A8\u8350\u6BCF\u4E00\u4EFD\u793C\u7269</p>\n                        <img src=\"./images/index/more.png\" alt=\"\">\n                    </a>\n                </div>\n                <div class=\"drink_center\">");
         response.center.forEach(function (value) {
           data += "<a href=\"\" target=\"_blank\" class=\"card_hover\">";
@@ -148,8 +166,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.giftBox.innerHTML = data += "</div>\n                                            </div>\n                                            <a href=\"\" class=\"more_card card_hover\">\n                                                <h2>\u6D4F\u89C8\u66F4\u591A</h2>\n                                                <p class=\"more_text\">\u60F3\u8981\u559D\u8336\uFF0C\u4E0D\u77E5\u5982\u4F55\u9009</p>\n                                                <p class=\"more_text\">\u8FD9\u91CC\u6709\u4E00\u53EA\u9526\u56CA\uFF01</p>\n                                                <img src=\"./images/index/more.png\" alt=\"\">\n                                            </a>\n                                        </div>";
       }
     }, {
-      key: "renderer_tea",
-      value: function renderer_tea(response) {
+      key: "renderer_tea_data",
+      value: function renderer_tea_data(response) {
         var data = "<div class=\"drink_left\">";
         response.left.forEach(function (value) {
           data += "<a href=\"\" class=\"tag_card card_hover\"><img src=\"./images/index/".concat(value, "\" alt=\"\"></a>");
@@ -166,16 +184,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       key: "renderer_banner_hot",
       value: function renderer_banner_hot(response) {
         var data = "";
-        response.forEach(function (value) {
+        response.data.forEach(function (value) {
           data += "<li>\n                            <a href=\"\" target=\"_blank\" class=\"hot_box\">\n                                <div class=\"hot_img\">\n                                    <img src=\"./images/index/".concat(value.img, "\">\n                                </div>\n                                <p class=\"hot_text\" title=\"").concat(value.desc, "\">").concat(value.desc, "</p>\n                                <p class=\"hot_people\" title=\"\u6765\u81EA").concat(value.userName, "\u7684\u8BC4\u4EF7\">\u6765\u81EA").concat(value.userName, "\u7684\u8BC4\u4EF7</p>\n                                <p class=\"hot_descr clearfix\">\n                                    <span title=\"").concat(value.info, "\">").concat(value.info, "</span>\n                                    <span></span>\n                                    <span>").concat(value.price, "</span>\n                                </p>\n                            </a>\n                        </li>");
         });
         this.hotBox.innerHTML = data;
       }
     }, {
-      key: "renderer_news",
-      value: function renderer_news(response) {
+      key: "renderer_news_data",
+      value: function renderer_news_data(response) {
         var data = "";
-        response.forEach(function (value) {
+        response.data.forEach(function (value) {
           data += "<a class=\"card_hover\">\n                            <div class=\"news_img\">\n                                <img src=\"./images/index/".concat(value.img, "\">\n                            </div>\n                            <p class=\"news_text\" title=\"").concat(value.desc, "\">").concat(value.desc, "</p>\n                            <p class=\"news_desc\" title=\"").concat(value.info, "\">").concat(value.info, "</p>\n                        </a>");
         });
         this.newsBox.innerHTML = data;
