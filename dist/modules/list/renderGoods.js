@@ -17,7 +17,7 @@ define(["sd", "pon", "cp"], function (setDisable, prevOrNextPage, changePage) {
     var data = "";
 
     for (var i = pageIndex * 20; i < pageIndex * 20 + 20 && i < response.length; i++) {
-      data += "<li class=\"item\">";
+      data += "<li class=\"item\" goodID=\"".concat(response[i].ID, "\">");
       response[i].tejia && (data += "<div class=\"tag_img\"><img src=\"./images/list/zp_label_tejia_pc.png\"></div>");
       data += "<a href=\"./details.html\" target=\"_blank\">\n                                <img src=\"./images/list/".concat(response[i].img, "\">\n                            </a>\n                            <p class=\"item_desc\" title=\"").concat(response[i].desc, "\">").concat(response[i].desc, "</p>\n                            <p class=\"item_info\" title=\"").concat(response[i].info, "\">").concat(response[i].info, "</p>\n                            <p class=\"price\">").concat(response[i].price, "</p>\n                            <p class=\"praise\">").concat(response[i].praise, "+\u4EBA\u597D\u8BC4</p>\n                            <button class=\"addCart\">\u52A0\u5165\u8D2D\u7269\u8F66</button>\n                        </li>");
     }

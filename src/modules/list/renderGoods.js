@@ -10,7 +10,7 @@ define(["sd", "pon", "cp"], (setDisable, prevOrNextPage, changePage) => {
         } = LIST;
         let data = ``;
         for (let i = pageIndex * 20; i < pageIndex * 20 + 20 && i < response.length; i++) {
-            data += `<li class="item">`;
+            data += `<li class="item" goodID="${response[i].ID}">`;
             response[i].tejia && (data += `<div class="tag_img"><img src="./images/list/zp_label_tejia_pc.png"></div>`)
             data += `<a href="./details.html" target="_blank">
                                 <img src="./images/list/${response[i].img}">

@@ -8,10 +8,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 define(function () {
   var ListOptions = /*#__PURE__*/function () {
-    function ListOptions() {
+    function ListOptions(_ref) {
+      var tabOptions = _ref.tabOptions;
+
       _classCallCheck(this, ListOptions);
 
-      this.tabOptions = document.querySelectorAll(".tab_option .options li");
+      this.tabOptions = tabOptions;
       this.priceSortImg = ["url('../images/list/shang.jpg')", "url('../images/list/xia.jpg')"];
       this.priceSortImgIndex = 1;
       this.optionAddEvent();
@@ -45,7 +47,7 @@ define(function () {
     return ListOptions;
   }();
 
-  return function () {
-    new ListOptions();
+  return function (LIST) {
+    new ListOptions(LIST);
   };
 });

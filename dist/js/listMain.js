@@ -9,18 +9,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 require.config({
   baseUrl: "./modules/list",
   paths: {
-    gg: "getGoodsData",
+    gg: "../tools/getGoodsData",
     lrb: "renderBanner",
     lrg: "renderGoods",
     lpod: "listPullOrDown",
     sd: "setDisable",
     cd: "clearDisable",
     pon: "prevOrNextPage",
-    cp: "changePage"
+    cp: "changePage",
+    sl: "../tools/setLocalData",
+    los: "listOptions"
   }
 });
 
-require(["gg", "lrb", "lrg", "lpod"], function (getGoodsData, renderListBanner, renderGoods, listPullOrDown) {
+require(["gg", "lrb", "lrg", "lpod", "sl", "los"], function (getGoodsData, renderListBanner, renderGoods, listPullOrDown, setLocalData, listOptions) {
   setTimeout(function () {
     var LIST = {};
     LIST.url = "http://localhost:3000/api";
@@ -35,6 +37,7 @@ require(["gg", "lrb", "lrg", "lpod"], function (getGoodsData, renderListBanner, 
     LIST.renderGoods = renderGoods;
     LIST.tabList = document.querySelector(".tab_list");
     LIST.upOrDown = document.querySelector(".upOrDown");
+    LIST.tabOptions = document.querySelectorAll(".tab_option .options li");
     LIST.goodList.className += " list_html";
     getGoodsData(LIST.url, "list_data", function (response) {
       response.code && renderListBanner(_objectSpread(_objectSpread({}, LIST), {}, {
@@ -48,8 +51,18 @@ require(["gg", "lrb", "lrg", "lpod"], function (getGoodsData, renderListBanner, 
       }));
     });
     listPullOrDown(LIST);
+    listOptions(LIST);
     addEvent(LIST.pageBox, "selectstart", function (event) {
       stopDefault(event);
+    });
+    addEvent(LIST.goodsListBox, "click", function (event) {
+      var target = getTarget(event);
+
+      if (target.className === "addCart") {
+        var goodID = target.parentElement.getAttribute("goodID");
+        var price = target.parentElement.children[3].innerHTML.slice(1);
+        setLocalData(goodID, price);
+      }
     });
   }, 100);
 });

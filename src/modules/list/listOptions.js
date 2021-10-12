@@ -1,7 +1,9 @@
 define(() => {
     class ListOptions {
-        constructor() {
-            this.tabOptions = document.querySelectorAll(".tab_option .options li");
+        constructor({
+                tabOptions
+            }) {
+            this.tabOptions = tabOptions;
             this.priceSortImg = ["url('../images/list/shang.jpg')", "url('../images/list/xia.jpg')"];
             this.priceSortImgIndex = 1;
 
@@ -30,7 +32,7 @@ define(() => {
         }
     }
 
-    return function() {
-        new ListOptions();
+    return function(LIST) {
+        new ListOptions(LIST);
     }
 })
