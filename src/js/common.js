@@ -337,6 +337,10 @@ window.onload = function () {
             this.imageBox = document.querySelectorAll(".item-desc");
 
             this.getImageData();
+
+            addEvent(document.querySelector(".cart"), "click", function () {
+                location.href = "./cart.html";
+            })
         }
 
         /**

@@ -61,6 +61,11 @@ require(["gg", "lrb", "lrg", "lpod", "sl", "los"], function (getGoodsData, rende
             if (target.className === "addCart") {
                 const goodID = target.parentElement.getAttribute("goodID");
                 const price = target.parentElement.children[3].innerHTML.slice(1);
+                const addCartTip = document.querySelector(".addCartTip");
+                addCartTip.style.display = "block";
+                setTimeout(() => {
+                    addCartTip.style.display = "none";
+                }, 1000);
                 setLocalData(goodID, price);
             }
         })

@@ -1,0 +1,300 @@
+@import "./base.scss";
+@import "./common.scss";
+
+.emptyCart {
+    width: 100%;
+    padding: 40px 0 60px 0;
+    background-color: #f5f5f5;
+
+    .typeArea {
+        position: relative;
+
+        img {
+            display: block;
+        }
+
+        .goShop {
+            display: block;
+            position: absolute;
+            left: 537px;
+            top: 108px;
+            width: 74px;
+            height: 30px;
+        }
+    }
+}
+
+#cart {
+    width: 100%;
+    padding: 40px 0 0;
+
+    .typeArea {
+        dl {
+            background-color: #fff;
+
+            dt {
+                position: relative;
+                border-bottom: 2px solid #ccc;
+            }
+
+            .goodItem {
+                background-color: #fafafa;
+                border-bottom: 1px solid #ccc;
+                transition: all .2s;
+
+                &:hover {
+                    background-color: #fff8f0;
+                }
+
+                .checkbox {
+                    margin-left: -29px;
+                }
+            }
+
+            .checkInfo {
+                float: left;
+                width: 7.4%;
+                text-align: center;
+                padding: 26px 0;
+                cursor: pointer;
+
+                .checkbox {
+                    display: inline-block;
+                    width: 22px;
+                    height: 22px;
+                    border: 1px solid #ccc;
+                }
+
+                .checked {
+                    background-image: url('../images/cart/dui.png');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+
+                .checklabel {
+                    display: inline-block;
+                    position: relative;
+                    top: -5px;
+                }
+            }
+
+            .nameInfo {
+                float: left;
+                width: 46.8%;
+                padding: 26px 0;
+                text-align: center;
+                cursor: pointer;
+
+                ul {
+                    li {
+                        float: left;
+
+                        img {
+                            display: block;
+                            width: 70px;
+                            height: 70px;
+                        }
+
+                        &:last-child {
+                            margin-left: 30px;
+                            color: #333;
+                            line-height: 1.5;
+
+                            p {
+                                width: 470px;
+                                text-align: left;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .priceInfo {
+                float: left;
+                width: 12.5%;
+                padding: 26px 0;
+                text-align: center;
+            }
+
+            .numInfo {
+                float: left;
+                width: 17.7%;
+                padding: 26px 0;
+                text-align: center;
+
+                .jian,
+                .plus {
+                    display: inline-block;
+                    position: relative;
+                    width: 20px;
+                    height: 32px;
+                    padding: 0 5px;
+                    font-size: 14px;
+                    color: #666;
+                    text-align: center;
+                    background: #fff;
+                    border: 1px solid #aaa;
+                    cursor: pointer;
+                }
+
+                input {
+                    position: relative;
+                    width: 42px;
+                    height: 31px;
+                    font-size: 14px;
+                    color: #666;
+                    line-height: 31px;
+                    text-indent: 15px;
+                    border: 1px solid #767676;
+                }
+            }
+
+            .countInfo {
+                float: left;
+                width: 9.1%;
+                padding: 26px 0;
+                text-align: center;
+
+                p {
+                    color: #c00000;
+                }
+            }
+
+            .doInfo {
+                float: left;
+                width: 6.3%;
+                padding: 26px 0;
+                text-align: center;
+
+                .delBtn {
+                    width: 19px;
+                    height: 19px;
+                    background-repeat: no-repeat;
+                    background-image: url('../images/cart/cart-grey.png');
+                    background-position: 0 center;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-image: url('../images/cart/cart-red.png');
+                    }
+                }
+            }
+        }
+
+        .cartSum {
+            position: relative;
+            z-index: 100;
+            width: 1226px;
+            height: 72px;
+            margin: 30px 0 60px;
+            background-color: #fff;
+            box-shadow: 0px -2px 3px rgba(0, 0, 0, 0.2);
+
+            .checkInfo {
+                float: left;
+                width: 64px;
+                margin: 26px 16px 0 26px;
+                cursor: pointer;
+
+                .checkbox {
+                    float: left;
+                    // display: inline-block;
+                    width: 20px;
+                    height: 20px;
+                    border: 1px solid #ccc;
+                }
+
+                .checked {
+                    background-image: url('../images/cart/dui.png');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+
+                .checklabel {
+                    float: left;
+                    position: relative;
+                    padding-right: 10px;
+                    left: 10px;
+                }
+            }
+
+            .delSelect {
+                float: left;
+                margin-top: 30px;
+                font-size: 14px;
+                color: #999;
+                line-height: 14px;
+                cursor: pointer;
+            }
+
+            .selectCount {
+                float: left;
+                margin-left: 25px;
+                color: #424242;
+                font-size: 14px;
+                line-height: 74px;
+
+                .selectNum {
+                    color: #c00000;
+                    font-weight: bold;
+                }
+            }
+
+            .toPay {
+                float: right;
+                width: 200px;
+                height: 72px;
+                font-size: 18px;
+                color: #fff;
+                text-align: center;
+                line-height: 72px;
+                background-color: #ff3600;
+                transition: all .2s;
+
+                &:hover {
+                    color: #fff;
+                    background-color: #f03400;
+                }
+            }
+
+            .moneyAll {
+                float: right;
+                position: relative;
+                margin-right: 40px;
+                padding-top: 8px;
+                color: #333;
+
+                .labelText {
+                    display: inline-block;
+                    width: 140px;
+                    font-size: 14px;
+                    color: #424242;
+                    text-align: right;
+                }
+
+                .moneyCount {
+                    margin-left: 10px;
+                    font-size: 14px;
+                    color: #c00000;
+
+                    .big {
+                        font-size: 26px;
+                        font-weight: bold;
+                        color: #c00000;
+                    }
+                }
+            }
+
+            .priceTip {
+                position: absolute;
+                top: 42px;
+                right: 244px;
+                color: #bf0100;
+                font-size: 14px;
+            }
+        }
+    }
+}

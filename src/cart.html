@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="醉品茶城是中国专业的正宗品牌茶叶,茶具,花茶购物商城,经营铁观音,大红袍,红茶,绿茶,普洱茶,西湖龙井,武夷岩茶,黄山毛峰等国内外原产地品牌茶叶,欢迎选购">
+    <meta name="keywords" content="醉品,醉品茶城,醉品茶集,铁观音,金骏眉,红茶,绿茶,大红袍,普洱茶,茶具">
+    <title>
+        醉品茶城
+    </title>
+    <link rel="icon" type="image/x-icon" href="./images/common/icon.ico">
+    <link rel="stylesheet" href="./font/iconfont.css">
+    <link rel="stylesheet" href="./css/cart.css">
+</head>
+
+<body>
+    <!-- 头部 -->
+    <div class="myHeader"></div>
+    <!-- 主体 -->
+    <div id="cart">
+        <div class="typeArea">
+            <dl>
+                <dt class="clearfix">
+                    <div class="checkInfo clearfix">
+                        <div class="checkbox checked"></div>
+                        <div class="checklabel">全选</div>
+                    </div>
+                    <div class="nameInfo">商品名称</div>
+                    <div class="priceInfo">价格</div>
+                    <div class="numInfo">数量</div>
+                    <div class="countInfo">小计</div>
+                    <div class="doInfo">操作</div>
+                </dt>
+                <div class="goodsBox"></div>
+            </dl>
+            <div class="cartSum clearfix">
+                <div class="checkInfo clearfix">
+                    <div class="checkbox checked"></div>
+                    <div class="checklabel">全选</div>
+                </div>
+                <div class="delSelect">批量删除</div>
+                <div class="selectCount">
+                    已选择 <span class="selectNum">1</span> 件商品
+                </div>
+                <button class="toPay">去结算</button>
+                <div class="moneyAll">
+                    <span class="labelText">总价（<em class="yunfei">不含运费</em>）：</span>
+                    <span class="moneyCount">￥<span class="big">1637.00</span></span>
+                </div>
+                <span class="priceTip">已满足满59包邮</span>
+            </div>
+        </div>
+    </div>
+    <!-- 空购物车 -->
+    <div class="emptyCart hide">
+        <div class="typeArea">
+            <img src="./images/cart/emptyCart.png" alt="">
+            <a href="./index.html" class="goShop"></a>
+        </div>
+    </div>
+    <!-- 右侧导航 -->
+    <div class="myOffsideNav"></div>
+    <!-- 底部 -->
+    <div class="myFooter"></div>
+</body>
+<script src="./libs/jquery.js"></script>
+<script>
+    $(".myHeader").load("http://localhost:3000/common.html .headerBox");
+    $(".myOffsideNav").load("http://localhost:3000/common.html .fixNavBox");
+    $(".myFooter").load("http://localhost:3000/common.html .footerBox");
+</script>
+<script src="./modules/tools/ajax.js"></script>
+<script src="./modules/tools/jsonp.js"></script>
+<script src="./modules/tools/elementAnimation.js"></script>
+<script src="./modules/tools/tool.js"></script>
+<script src="./modules/tools/cookie.js"></script>
+<script src="./modules/tools/banner_main.js"></script>
+<script src="./modules/tools/banner_multiEle.js"></script>
+<script src="./modules/tools/suspension.js"></script>
+<script src="./modules/tools/timedown.js"></script>
+<script src="./js/common.js"></script>
+<script src="./libs/require.js" data-main="./js/cartMain"></script>
+</html>
