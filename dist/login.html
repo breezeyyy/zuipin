@@ -31,24 +31,22 @@
             </div>
             <div class="loginBox">
                 <ul class="clearfix login_tab">
-                    <li class="on">短信登陆</li>
+                    <li class="on">账号注册</li>
                     <li>账号登陆</li>
                 </ul>
                 <ul class="login_method">
                     <li class="on">
-                        <input type="text" class="phone" placeholder="手机号码" maxlength="11">
-                        <div class="sms clearfix">
-                            <input type="text" name="sms" placeholder="短信验证码" maxlength="4">
-                            <button class="getSms">短信验证码</button>
-                        </div>
+                        <input type="text" class="phone" placeholder="邮箱 / 手机号码" maxlength="11">
+                        <input type="password" class="psd" placeholder="请输入密码">
+                        <input type="password" class="psd" placeholder="再次输入密码">
                         <div class="phoneTip clearfix">
                             <i class="iconfont" style="color: red;">&#xe614;</i>
                             <span>您输入的账号格式有误，请核实后重新输入</span>
                         </div>
-                        <button class="login_btn">立即登录</button>
+                        <button class="login_btn">注册并登录</button>
                     </li>
                     <li>
-                        <input type="text" class="phone" placeholder="邮箱/手机号码" maxlength="30">
+                        <input type="text" class="phone" placeholder="邮箱 / 手机号码" maxlength="30">
                         <input type="password" placeholder="密码">
                         <div class="phoneTip clearfix">
                             <i class="iconfont" style="color: red;">&#xe614;</i>
@@ -58,7 +56,7 @@
                     </li>
                 </ul>
                 <div class="infoBox">
-                    <p>若无账号，使用验证码登录成功后默认创建账号</p>
+                    <p>已有账号？去登陆</p>
                     <a href="javascript:;">忘记密码？</a>
                 </div>
                 <div class="other_method">
@@ -80,5 +78,8 @@
     $(".myFooter").load("http://localhost:3000/common.html .footerBox");
 </script>
 <script src="./modules/tools/tool.js"></script>
+<script src="./modules/tools/ajax.js"></script>
+<script src="./modules/tools/cookie.js"></script>
 <script src="./js/login.js"></script>
+
 </html>

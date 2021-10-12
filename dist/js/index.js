@@ -323,6 +323,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
   new DocumentInit();
   setTimeout(function () {
+    document.querySelector(".selectTea").style.display = "block";
+    document.querySelector(".good-item").style.display = "block";
     new FloorNav();
     window.createTimeDown();
     window.createSuspension(document.querySelector(".suspension"), 500);

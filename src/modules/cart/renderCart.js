@@ -9,10 +9,6 @@ define(() => {
         } = CART;
 
         // console.log(goods, response);
-
-        cart.className = goods.length ? "" : "hide";
-        emptyCart.className = goods.length ? "emptyCart hide" : "emptyCart";
-
         let data = ``;
         goods.forEach(element => {
             const value = response.find(val => val.ID === element.goodID)

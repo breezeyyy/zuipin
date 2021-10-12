@@ -1,5 +1,5 @@
 define(() => {
-    return function (goodID, price) {
+    return function (goodID, price, num = 1) {
         const goods = getCookie("goods") ? JSON.parse(getCookie("goods")) : [];
 
         const item = goods.find(val => val.goodID === goodID);
@@ -9,7 +9,7 @@ define(() => {
         } else {
             goods.push({
                 goodID: goodID,
-                num: 1,
+                num: num,
                 price: price
             })
         }

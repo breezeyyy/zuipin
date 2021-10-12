@@ -15,6 +15,8 @@
             this.hotBox = document.querySelector(".hot .hot_content>ul");
             this.newsBox = document.querySelector(".news_content");
 
+            
+
             this.getDBData("index_data");
         }
 
@@ -402,6 +404,8 @@
 
     new DocumentInit();
     setTimeout(() => {
+        document.querySelector(".selectTea").style.display = "block";
+        document.querySelector(".good-item").style.display = "block";
         new FloorNav();
         window.createTimeDown();
         window.createSuspension(document.querySelector(".suspension"), 500);

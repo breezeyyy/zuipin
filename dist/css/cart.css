@@ -764,6 +764,7 @@ body {
 }
 
 .good-list .selectTea {
+    display: none;
     width: 100%;
     height: 74px;
     padding: 23px 20px 14px;
@@ -819,6 +820,7 @@ body {
 }
 
 .good-list .good-item {
+    display: none;
     width: 234px;
     height: 386px;
     padding-top: 22px;
@@ -1690,7 +1692,7 @@ body {
     font-size: 14px;
     color: #c00000;
 }
-#cart .typeArea .cartSum .moneyAll .moneyCount .big {
+#cart .typeArea .cartSum .moneyAll .moneyCount .allPrice {
     font-size: 26px;
     font-weight: bold;
     color: #c00000;

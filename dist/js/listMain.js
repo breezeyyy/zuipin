@@ -17,7 +17,7 @@ require.config({
     cd: "clearDisable",
     pon: "prevOrNextPage",
     cp: "changePage",
-    sl: "../tools/setLocalData",
+    sl: "setLocalData",
     los: "listOptions"
   }
 });

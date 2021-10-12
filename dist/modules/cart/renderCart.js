@@ -8,8 +8,6 @@ define(function () {
         emptyCart = CART.emptyCart,
         goodsBox = CART.goodsBox; // console.log(goods, response);
 
-    cart.className = goods.length ? "" : "hide";
-    emptyCart.className = goods.length ? "emptyCart hide" : "emptyCart";
     var data = "";
     goods.forEach(function (element) {
       var value = response.find(function (val) {
