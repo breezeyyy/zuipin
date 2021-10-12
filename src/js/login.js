@@ -1,4 +1,5 @@
-;(function() {
+;
+(function () {
     class Login {
         constructor() {
             this.url = "http: //localhost:3000/api";
@@ -9,7 +10,9 @@
             this.account = this.accountInput[1];
             this.errorInfo = document.querySelectorAll(".phoneTip");
             this.psdInp = document.querySelectorAll(".psd");
-            this.btns = document.querySelector(".login_btn");
+            console.log(this.psdInp);
+            this.btns = document.querySelectorAll(".login_btn");
+            this.btnFlag = false;
             this.telReg = /^1[3456789]\d{9}$/;
             this.emailReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
 
@@ -20,7 +23,7 @@
             const that = this;
 
             this.tabs.forEach((element, index) => {
-                addEvent(element, "click", function() {
+                addEvent(element, "click", function () {
                     that.clearTabClass();
                     element.className = "on";
                     that.loginBox[index].className = "on";
@@ -34,17 +37,75 @@
                 })
             })
 
-            addEvent(this.infoBox[0], "click", function() {
+            addEvent(this.infoBox[0], "click", function () {
                 that.tabs[1].click();
             })
 
-            addEvent(this.psdInp[1], "input", function() {
+            addEvent(this.psdInp[1], "input", function () {
                 this.value ? that.psdInp[0].value === this.value ? that.hideErrInfo(0, false) : that.showErrInfo(0, false) : that.hideErrInfo(0, false);
             })
 
-            addEvent(this.btns[0], "click", function() {
-
+            addEvent(this.btns[0], "click", function () {
+                // console.log(that.accountInput[0].value, that.psdInp[0].value);
+                if ((that.telReg.test(that.accountInput[0].value) || that.emailReg.test(that.accountInput[0].value)) && that.psdInp[0].value === that.psdInp[1].value) {
+                    ajax({
+                        type: "GET",
+                        url: that.url,
+                        success: res => {
+                            // console.log(res);
+                            that.login(res);
+                        },
+                        error: status => {
+                            console.log(status);
+                        },
+                        search: {
+                            type: "register",
+                            username: that.accountInput[0].value,
+                            password: that.psdInp[0].value
+                        }
+                    })
+                }
             })
+
+            addEvent(this.btns[1], "click", function () {
+                if (that.telReg.test(that.accountInput[1].value) || that.emailReg.test(that.accountInput[1].value)) {
+                    ajax({
+                        type: "GET",
+                        url: that.url,
+                        success: res => {
+                            console.log(res);
+                            that.login(res);
+                        },
+                        error: status => {
+                            console.log(status);
+                        },
+                        search: {
+                            type: "login",
+                            username: that.accountInput[1].value,
+                            password: that.psdInp[2].value
+                        }
+                    })
+                }
+            })
+        }
+
+        login(res) {
+            if (res.code === 0) {
+                setCookie("isLogin", "ok");
+                setCookie("username", res.data);
+                location.href = getCookie("href") ? getCookie("href") : "./index.html";
+            } else if (res.code === 1) {
+                alert("密码不符，请重新输入");
+                this.psdInp[2].value = "";
+                this.psdInp[2].focus();
+            } else if (res.code === 2) {
+                alert("用户名不存在，请先注册");
+                this.tabs[0].click();
+                this.accountInput[0].value = "";
+                this.accountInput[0].focus();
+                this.psdInp[0].value = "";
+                this.psdInp[1].value = "";
+            }
         }
 
         showErrInfo(index, flag = true) {

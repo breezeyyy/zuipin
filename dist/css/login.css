@@ -1561,14 +1561,14 @@ body {
     color: #999;
 }
 .content .typeArea .loginBox .infoBox p {
-    display: block;
+    display: none;
     cursor: pointer;
 }
 .content .typeArea .loginBox .infoBox p:hover {
     color: #ff3600;
 }
 .content .typeArea .loginBox .infoBox a {
-    display: none;
+    display: block;
     color: #999;
     text-align: right;
     padding-right: 30px;

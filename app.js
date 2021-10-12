@@ -10,7 +10,7 @@ const MY_SERVER_URL = `http://localhost:${MY_SERVER_PORT}`;
 // 功能路由对象
 const TYPE_LIST = {
     DBData: ["common_data", "index_data", "list_data", "goods_data"],
-    funcHandle: ["createGoodID"]
+    funcHandle: ["createGoodID", "login", "register"]
 };
 // const NOT_ALLOW_ACCESS = ["/common.html", "/details.html"]
 const handler = {};
@@ -49,7 +49,7 @@ function resposeToClient(req, res, resData) {
 
 handler.getDBData = (req, res, resData) => {
     fs.readFile(`./database/${resData.type}.json`, "UTF-8", (err, data) => {
-        let answer = {
+        const answer = {
             code: err ? 0 : 1,
             title: err ? "数据请求失败！" : "数据请求成功！",
             data: err ? [] : (data ? JSON.parse(data) : [])
@@ -62,7 +62,7 @@ handler.getDBData = (req, res, resData) => {
 
 handler.createGoodID = (req, res, resData) => {
     fs.readFile(`./database/list/list_goods.json`, "UTF-8", (err, data) => {
-        let answer = {
+        const answer = {
             code: err ? 0 : 1,
             title: err ? "数据请求失败！" : "数据请求成功！"
         };
@@ -86,6 +86,60 @@ handler.createGoodID = (req, res, resData) => {
             })
         }
 
+    })
+}
+
+handler.login = (req, res, reqData) => {
+    fs.readFile("./database/user_data.json", "utf-8", (err, data) => {
+        const userData = err ? [] : (data ? JSON.parse(data) : []);
+        const answer = {};
+        const flag = userData.find(val => val.username === reqData.username);
+        if (flag) {
+            if (flag.password === reqData.password) {
+                answer.code = 0;
+                answer.title = "登录成功";
+                answer.data = flag.username;
+            } else {
+                answer.code = 1;
+                answer.title = "登录失败，密码不符";
+                answer.data = "NOTFOUND";
+            }
+        } else {
+            answer.code = 2;
+            answer.title = "登录失败，用户名不存在";
+            answer.data = "NOTFOUND";
+        }
+        res.write(JSON.stringify(answer), () => {
+            res.end();
+        });
+    })
+}
+
+handler.register = (req, res, reqData) => {
+    fs.readFile("./database/user_data.json", "utf-8", (err, data) => {
+        const userData = err ? [] : (data ? JSON.parse(data) : []);
+        const answer = {};
+        if (userData.find(val => val.username === reqData.username)) {
+            answer.code = 0;
+            answer.title = "注册失败，用户名重复";
+            answer.data = "NOTFOUND";
+            res.write(JSON.stringify(answer), () => {
+                res.end();
+            });
+        } else {
+            userData.push({
+                username: reqData.username,
+                password: reqData.password
+            })
+            fs.writeFile("./database/user_data.json", JSON.stringify(userData), err => {
+                answer.code = 1;
+                answer.title = "注册成功";
+                answer.data = "SUCCESS";
+                res.write(JSON.stringify(answer), () => {
+                    res.end();
+                });
+            })
+        }
     })
 }
 
