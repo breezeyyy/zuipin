@@ -1,9 +1,12 @@
 define(() => {
 
     class PullOrDown {
-        constructor(box, btn) {
-            this.box = box;
-            this.btn = btn;
+        constructor({
+                tabList,
+                upOrDown
+            }) {
+            this.box = tabList;
+            this.btn = upOrDown;
             this.icon = this.btn.children;
             this.nowIndex = 0;
 
@@ -26,7 +29,7 @@ define(() => {
         }
     }
 
-    return function (box, btn) {
-        new PullOrDown(box, btn);
+    return function (LIST) {
+        new PullOrDown(LIST);
     }
 })

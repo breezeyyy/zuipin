@@ -345,5 +345,5 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       btns: document.querySelectorAll(".hot_btns div"),
       together: 4
     });
-  }, 200);
+  }, 300);
 })();

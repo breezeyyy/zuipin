@@ -8,11 +8,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 define(function () {
   var PullOrDown = /*#__PURE__*/function () {
-    function PullOrDown(box, btn) {
+    function PullOrDown(_ref) {
+      var tabList = _ref.tabList,
+          upOrDown = _ref.upOrDown;
+
       _classCallCheck(this, PullOrDown);
 
-      this.box = box;
-      this.btn = btn;
+      this.box = tabList;
+      this.btn = upOrDown;
       this.icon = this.btn.children;
       this.nowIndex = 0;
       this.btnAddEvent();
@@ -39,7 +42,7 @@ define(function () {
     return PullOrDown;
   }();
 
-  return function (box, btn) {
-    new PullOrDown(box, btn);
+  return function (LIST) {
+    new PullOrDown(LIST);
   };
 });

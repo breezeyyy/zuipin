@@ -1,47 +1,60 @@
 require.config({
-    baseUrl: "./",
+    baseUrl: "./modules/list",
     paths: {
-        jq: "./libs/jquery",
-        gg: "./modules/list/getGoodsData",
-        lrb: "./modules/list/renderBanner",
-        lpod: "./modules/list/listPullOrDown"
+        gg: "getGoodsData",
+        lrb: "renderBanner",
+        lrg: "renderGoods",
+        lpod: "listPullOrDown",
+        sd: "setDisable",
+        cd: "clearDisable",
+        pon: "prevOrNextPage",
+        cp: "changePage"
     }
 })
 
-require(["jq", "gg", "rlb", "lpod"], function (_, getGoodsData, renderListBanner, listPullOrDown) {
-    $(".myHeader").load("http://localhost:3000/public/common.html .headerBox");
-    $(".myOffsideNav").load("http://localhost:3000/public/common.html .fixNavBox");
-    $(".myFooter").load("http://localhost:3000/public/common.html .footerBox");
+require(["gg", "lrb", "lrg", "lpod"], function (getGoodsData, renderListBanner, renderGoods, listPullOrDown) {
 
     setTimeout(() => {
-        const url = "http://localhost:3000/api";
-        const goodList = document.querySelector(".good-list");
-        const imageBoxMain = document.querySelector(".bannerImg");
-        const bannerNavMain = document.querySelector(".bannerNav");
-        const goodsListBox = document.querySelector(".good_list_box");
-        const pageBox = document.querySelector(".pageBox");
-        let pageIndex = 0;
+        const LIST = {};
+        LIST.url = "http://localhost:3000/api";
+        LIST.goodList = document.querySelector(".good-list");
+        LIST.imageBoxMain = document.querySelector(".bannerImg");
+        LIST.bannerNavMain = document.querySelector(".bannerNav");
+        LIST.goodsListBox = document.querySelector(".good_list_box");
+        LIST.pageBox = document.querySelector(".pageBox");
+        LIST.nav = null;
+        LIST.navGoInput = null;
+        LIST.pageIndex = 0;
+        LIST.renderGoods = renderGoods;
+        LIST.tabList = document.querySelector(".tab_list");
+        LIST.upOrDown = document.querySelector(".upOrDown");
 
-        goodList.className += " list_html";
+        LIST.goodList.className += " list_html";
 
-        getGoodsData(url, "list_banner", (response) => {
-            // console.log(response);
+        getGoodsData(LIST.url, "list_data", (response) => {
             response.code && renderListBanner({
-                response: response.data,
-                bannerNavMain: bannerNavMain,
-                imageBoxMain: imageBoxMain
+                ...LIST,
+                response: response.data
             })
         })
 
-        listPullOrDown(document.querySelector(".tab_list"), document.querySelector(".upOrDown"))
+        getGoodsData(LIST.url, "goods_data", (response) => {
+            // console.log(response);
+            response.code && renderGoods({
+                ...LIST,
+                response: response.data
+            })
+        })
 
-        
+        listPullOrDown(LIST);
 
-        // getGoodsData(url, "list_goods", (response) => {
-        // if (response.code)
-        //     this[renderer](response.data);
-        // })
-    }, 50);
+
+        addEvent(LIST.pageBox, "selectstart", function (event) {
+            stopDefault(event);
+        })
+
+
+    }, 100);
 
 
 })

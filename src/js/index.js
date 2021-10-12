@@ -424,5 +424,5 @@
             btns: document.querySelectorAll(".hot_btns div"),
             together: 4
         });
-    }, 200);
+    }, 300);
 })();
