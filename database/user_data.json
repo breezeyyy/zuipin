@@ -1,1 +1,33 @@
-[{"username":"14354363464","password":"aaa","cartData":[{"goodID":"24023","num":3,"price":"69","from":"goods_data"},{"goodID":"12073-1","num":2,"price":"1800","from":"goods_data"},{"goodID":"22009","num":1,"price":"299","from":"goods_data"}]},{"username":"18565859849","password":"qqq","cartData":[{"goodID":"24023","num":1,"price":"69","from":"goods_data"},{"goodID":"22009","num":1,"price":"299","from":"goods_data"},{"goodID":"12073-1","num":1,"price":"1800","from":"goods_data"},{"goodID":"68061-1","num":1,"price":"328","from":"goods_data"}]},{"username":"18594839493","password":"qqq","cartData":[]}]
+[{
+    "username": "14354363464",
+    "password": "aaa",
+    "cartData": []
+}, {
+    "username": "18565859849",
+    "password": "qqq",
+    "cartData": [{
+        "goodID": "24023",
+        "num": 1,
+        "price": "69",
+        "from": "goods_data"
+    }, {
+        "goodID": "22009",
+        "num": 1,
+        "price": "299",
+        "from": "goods_data"
+    }, {
+        "goodID": "12073-1",
+        "num": 1,
+        "price": "1800",
+        "from": "goods_data"
+    }, {
+        "goodID": "68061-1",
+        "num": 1,
+        "price": "328",
+        "from": "goods_data"
+    }]
+}, {
+    "username": "18594839493",
+    "password": "qqq",
+    "cartData": []
+}]

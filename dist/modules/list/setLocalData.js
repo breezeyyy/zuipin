@@ -6,20 +6,22 @@ define(function () {
         price = _ref.price,
         _ref$num = _ref.num,
         num = _ref$num === void 0 ? 1 : _ref$num,
-        from = _ref.from;
+        from = _ref.from,
+        link = _ref.link;
     var goods = getCookie("goods") ? JSON.parse(getCookie("goods")) : [];
     var item = goods.find(function (val) {
       return val.goodID === goodID;
     }); // console.log(item);
 
     if (goods.length && item) {
-      item.num++;
+      item.num += num;
     } else {
       goods.push({
         goodID: goodID,
         num: num,
         price: price,
-        from: from
+        from: from,
+        link: link
       });
     } // console.log(goods);
 

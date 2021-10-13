@@ -149,22 +149,31 @@ require(["sl"], function (setLocalData) {
             })
 
             addEvent(document.querySelector(".sl").children[1], "blur", function () {
-                this.value || (this.value = 1);
+                Number(this.value) || (this.value = 1);
             })
 
             addEvent(document.querySelector(".addCart"), "click", function () {
-                const goods = JSON.parse(getCookie("goods"));
-                const addCartTip = document.querySelector(".addCartTip");
-                const num = document.querySelector(".sl").children[1].value;
-                addCartTip.style.display = "block";
-                setTimeout(() => {
-                    addCartTip.style.display = "none";
-                }, 1000);
-                setLocalData({
-                    goodID: target.parentElement.getAttribute("goodID"),
-                    price: target.previousElementSibling.previousElementSibling.innerHTML.slice(1),
-                    from: "goods_data"
-                });
+                if (getCookie("isLogin") === "ok") {
+                    const addCartTip = document.querySelector(".addCartTip");
+                    addCartTip.style.display = "block";
+                    setTimeout(() => {
+                        addCartTip.style.display = "none";
+                    }, 1000);
+                    setLocalData({
+                        goodID: value.ID,
+                        price: value.nowPrice,
+                        num: Number(document.querySelector(".sl").children[1].value),
+                        from: "goods_data",
+                        link: location.href
+                    });
+                    const goods = JSON.parse(getCookie("goods"));
+                    const cartNum = document.querySelector(".cartNum");
+                    cartNum.innerHTML = goods.reduce((result, val) => result + val.num, 0);
+                } else {
+                    setCookie("href", location.href);
+                    location.href = "./login.html";
+                }
+                
             })
         }
     }

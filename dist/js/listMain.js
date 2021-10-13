@@ -69,8 +69,9 @@ require(["gg", "lrb", "lrg", "lpod", "sl", "los"], function (getGoodsData, rende
           }, 1000);
           setLocalData({
             goodID: target.parentElement.getAttribute("goodID"),
-            price: target.previousElementSibling.previousElementSibling.innerHTML.slice(1),
-            from: "goods_data"
+            price: target.parentElement.children[3].innerHTML.slice(1),
+            from: "goods_data",
+            link: target.parentElement.children[0].href
           });
           var goods = JSON.parse(getCookie("goods"));
           LIST.cartNum.innerHTML = goods.length ? goods.reduce(function (result, val) {

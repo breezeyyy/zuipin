@@ -59,7 +59,7 @@ require(["gg", "rc", "rsl", "init", "ca", "ds", "upd"], function (getGoodsData, 
                     })
 
                     addEvent(element, "blur", function () {
-                        element.value || (element.value = 1);
+                        Number(element.value) || (element.value = 1);
                         CART.goods.find(val => val.goodID === element.parentElement.parentElement.getAttribute("goodID")).num = Number(element.value);
                         setCookie("goods", JSON.stringify(CART.goods), {
                             expires: 3
@@ -78,7 +78,7 @@ require(["gg", "rc", "rsl", "init", "ca", "ds", "upd"], function (getGoodsData, 
                 goodItem.remove();
                 resetLocalData(CART.goods, id);
                 init(CART);
-                CART.goods.length && updataCart(CART);
+                CART.goods.length ? updataCart(CART) : (CART.cartNum.innerHTML = 0);
             } else if (target.className.includes("checkInfo")) {
                 target.children[0].className = target.children[0].className.includes("checked") ? "checkbox" : "checkbox checked";
                 updataCart(CART);
@@ -125,7 +125,8 @@ require(["gg", "rc", "rsl", "init", "ca", "ds", "upd"], function (getGoodsData, 
         addEvent(CART.delSelect, "click", function () {
             delSelect(CART);
             init(CART);
-            CART.goods.length && updataCart(CART);
+            // console.log(CART.goods);
+            CART.goods.length ? updataCart(CART) : (CART.cartNum.innerHTML = 0);
         })
 
     }, 30);
