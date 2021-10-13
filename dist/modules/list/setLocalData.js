@@ -7,6 +7,7 @@ define(function () {
     var item = goods.find(function (val) {
       return val.goodID === goodID;
     });
+    console.log(item);
 
     if (goods.length && item) {
       item.num++;
@@ -18,6 +19,7 @@ define(function () {
       });
     }
 
+    console.log(goods);
     setCookie("goods", JSON.stringify(goods), {
       expires: 3
     });

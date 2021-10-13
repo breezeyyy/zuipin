@@ -15,8 +15,6 @@
             this.hotBox = document.querySelector(".hot .hot_content>ul");
             this.newsBox = document.querySelector(".news_content");
 
-            
-
             this.getDBData("index_data");
         }
 
@@ -24,7 +22,7 @@
             for(let key in response) {
                 this[`renderer_${key}`](response[key]);
             }
-            this.aClickEvent()
+            this.aClickEvent();
         }
 
         aClickEvent() {

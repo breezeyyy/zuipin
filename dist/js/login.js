@@ -20,8 +20,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       this.infoBox = document.querySelector(".infoBox").children;
       this.account = this.accountInput[1];
       this.errorInfo = document.querySelectorAll(".phoneTip");
-      this.psdInp = document.querySelectorAll(".psd");
-      console.log(this.psdInp);
+      this.psdInp = document.querySelectorAll(".psd"); // console.log(this.psdInp);
+
       this.btns = document.querySelectorAll(".login_btn");
       this.btnFlag = false;
       this.telReg = /^1[3456789]\d{9}$/;
@@ -98,8 +98,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       key: "login",
       value: function login(res) {
         if (res.code === 0) {
-          setCookie("isLogin", "ok");
-          setCookie("username", res.data);
+          setCookie("isLogin", "ok", {
+            expires: 3
+          });
+          setCookie("username", res.data.username, {
+            expires: 3
+          });
+          setCookie("goods", JSON.stringify(res.data.cartData), {
+            expires: 3
+          });
           location.href = getCookie("href") ? getCookie("href") : "./index.html";
         } else if (res.code === 1) {
           alert("密码不符，请重新输入");

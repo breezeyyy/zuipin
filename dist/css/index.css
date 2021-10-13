@@ -436,7 +436,6 @@ body {
 .header .typeArea .header_r {
     float: right;
     height: 40px;
-    overflow: hidden;
 }
 
 .header .typeArea ul li {
@@ -497,6 +496,96 @@ body {
     width: 81px;
     height: 40px;
 }
+.header .typeArea .header_r .userInfo {
+    display: none;
+}
+.header .typeArea .header_r .myaccount .userInfo {
+    position: absolute;
+    z-index: 1000;
+    width: 250px;
+    padding: 15px;
+    line-height: 18px;
+    font-size: 12px;
+    text-align: left;
+    background: #fff;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+.header .typeArea .header_r .myaccount .userInfo .userDesc {
+    display: flex;
+}
+.header .typeArea .header_r .myaccount .userInfo .userDesc a {
+    display: flex;
+    flex: 1;
+}
+.header .typeArea .header_r .myaccount .userInfo .userDesc a img {
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+}
+.header .typeArea .header_r .myaccount .userInfo .userDesc a .usertext {
+    flex: 1;
+    margin-left: 8px;
+}
+.header .typeArea .header_r .myaccount .userInfo .userDesc a .username {
+    margin-bottom: 2px;
+    color: #333;
+    text-align: left;
+}
+.header .typeArea .header_r .myaccount .userInfo .userDesc a .userlevel {
+    color: #999;
+    text-align: left;
+}
+.header .typeArea .header_r .myaccount .userInfo .userDesc a .userlevel span {
+    position: relative;
+    padding: 1px 4px;
+    margin-left: 5px;
+    color: #fff;
+    background: #d69a4c;
+    border-radius: 2px;
+}
+.header .typeArea .header_r .myaccount .userInfo .userDesc a .userlevel span::before {
+    content: " ";
+    position: absolute;
+    top: 2px;
+    left: -9px;
+    height: 0;
+    width: 0;
+    border: solid transparent;
+    border-width: 6px;
+    border-right-color: #d69a4c;
+}
+.header .typeArea .header_r .myaccount .userInfo .userDesc .loginout {
+    padding-right: 15px;
+    color: #333;
+    font-size: 12px;
+    cursor: pointer;
+}
+.header .typeArea .header_r .myaccount .userInfo .userDesc .loginout:hover {
+    color: #ff3600;
+}
+.header .typeArea .header_r .myaccount .userInfo .userCont {
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.header .typeArea .header_r .myaccount .userInfo .userCont a {
+    display: block;
+    width: 50%;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: #666;
+    text-align: left;
+}
+.header .typeArea .header_r .myaccount .userInfo .userCont a span {
+    color: orangered;
+}
+.header .typeArea .header_r .myaccount:hover {
+    color: orangered;
+    background: #fff;
+}
+.header .typeArea .header_r .myaccount:hover .userInfo {
+    display: block;
+}
 
 .header .typeArea .header_r .header_phone {
     width: 127px;
@@ -517,32 +606,22 @@ body {
 .header .typeArea .header_r .cart {
     position: relative;
     width: 120px;
-    height: 80px;
-    margin-left: 16px;
-    background-color: #FF3600;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #ff3600;
     transition: all 0.2s;
+    background-image: url("../images/common/css-xuebi2.png");
+    background-repeat: no-repeat;
+    background-position: 12px -24px;
 }
 
 .header .typeArea .header_r .cart:hover {
-    background-color: #E0E0E0;
-    color: #FF3600;
-}
-
-.header .typeArea .header_r .cart::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    background: url("../images/common/css-xuebi2.png") no-repeat 12px -25px;
-    transition: all 0.2s;
-}
-
-.header .typeArea .header_r .cart:hover::before {
-    transform: translateY(-40px);
+    color: #ff3600;
+    background-color: #e0e0e0;
+    background-image: url("../images/common/css-xuebi2.png");
+    background-repeat: no-repeat;
+    background-position: 12px -66px;
 }
 
 .header .typeArea .header_r .cart a {
@@ -764,7 +843,6 @@ body {
 }
 
 .good-list .selectTea {
-    display: none;
     width: 100%;
     height: 74px;
     padding: 23px 20px 14px;
@@ -820,7 +898,6 @@ body {
 }
 
 .good-list .good-item {
-    display: none;
     width: 234px;
     height: 386px;
     padding-top: 22px;

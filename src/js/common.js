@@ -6,14 +6,29 @@ window.onload = function () {
             this.nowIndex;
             this.li;
             this.closeFlag = false;
+            this.url = "https://suggest.taobao.com/sug";
+            this.myServer = "http://localhost:3000/api";
             this.searchBox = document.querySelector(".search");
             this.search = document.querySelector(".search-cont");
             this.text = document.querySelector("#text");
             this.options = document.querySelector(".search .options");
             this.button = document.querySelector(".search-cont button");
-            this.url = "https://suggest.taobao.com/sug";
+            this.loginBox = document.querySelector(".header_r").children[0];
+            this.loginBtn = document.querySelector(".toLogin");
+            this.uesrname = document.querySelector(".username");
+            this.loginOutBtn = document.querySelector(".loginout");
 
+            this.isLogin();
             this.classAddEvent();
+        }
+
+        isLogin() {
+            const isLogin = getCookie("isLogin") === "ok";
+            this.loginBox.className = isLogin ? "myaccount" : "";
+            this.loginBtn.href = isLogin ? "./personal.html" : "./login.html";
+            this.loginBtn.innerHTML = isLogin ? "我的账户" : "登录";
+            this.uesrname.innerHTML = isLogin ? getCookie("username") : "";
+            // setCookie("goods");
         }
 
         /**
@@ -32,6 +47,28 @@ window.onload = function () {
                     that.closeFlag = false;
                     that.listHide();
                 }
+            })
+
+            addEvent(this.loginOutBtn, "click", function() {
+                ajax({
+                    url: that.myServer,
+                    type: "GET",
+                    success: res => {
+                        console.log(res);
+                    },
+                    fail: status => {
+                        console.log(status);
+                    },
+                    search: {
+                        type: "writeCartData",
+                        username: getCookie("username"),
+                        cartData: getCookie("goods")
+                    }
+                })
+                setCookie("isLogin");
+                setCookie("username");
+                setCookie("goods");
+                that.isLogin();
             })
 
             // 整个页面单击事件

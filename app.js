@@ -10,7 +10,7 @@ const MY_SERVER_URL = `http://localhost:${MY_SERVER_PORT}`;
 // 功能路由对象
 const TYPE_LIST = {
     DBData: ["common_data", "index_data", "list_data", "goods_data"],
-    funcHandle: ["createGoodID", "login", "register"]
+    funcHandle: ["createGoodID", "login", "register", "writeCartData"]
 };
 // const NOT_ALLOW_ACCESS = ["/common.html", "/details.html"]
 const handler = {};
@@ -41,6 +41,7 @@ function resposeToClient(req, res, resData) {
     if (TYPE_LIST.DBData.includes(resData.type)) {
         handler.getDBData(req, res, resData);
     } else if (TYPE_LIST.funcHandle.includes(resData.type)) {
+        // console.log(111, resData);
         handler[resData.type](req, res, resData);
     } else {
         handler.error(req, res, resData);
@@ -98,7 +99,7 @@ handler.login = (req, res, reqData) => {
             if (flag.password === reqData.password) {
                 answer.code = 0;
                 answer.title = "登录成功";
-                answer.data = flag.username;
+                answer.data = flag;
             } else {
                 answer.code = 1;
                 answer.title = "登录失败，密码不符";
@@ -140,6 +141,23 @@ handler.register = (req, res, reqData) => {
                 });
             })
         }
+    })
+}
+
+handler.writeCartData = (req, res, resData) => {
+    fs.readFile("./database/user_data.json", "utf-8", (err, data) => {
+        let answer = {};
+        const userData = JSON.parse(data);
+        userData.find(val => val.username === resData.username).cartData = JSON.parse(resData.cartData);
+        // console.log();
+        fs.writeFile("./database/user_data.json", JSON.stringify(userData), err => {
+            answer.code = 1;
+            answer.title = "写入用户购物车数据成功";
+            answer.data = userData;
+            res.write(JSON.stringify(answer), () => {
+                res.end();
+            });
+        })
     })
 }
 
