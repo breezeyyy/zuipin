@@ -1639,13 +1639,10 @@ body {
     color: #fff;
     line-height: 44px;
     text-align: center;
-    background-color: #ddd;
+    background-color: #ff3300;
     border: none;
     outline: none;
     transition: all 0.2s;
-}
-.content .typeArea .loginBox .login_method li .login_btn:hover {
-    background-color: #999;
 }
 .content .typeArea .loginBox .login_method .on {
     display: block;

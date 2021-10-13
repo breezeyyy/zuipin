@@ -1,5 +1,5 @@
 define(() => {
-    return function(CART) {
+    return function (CART) {
         let {
             response,
             goods,
@@ -38,8 +38,8 @@ define(() => {
                             <button class="delBtn"></button>
                         </div>
                     </dd>`;
-            goodsBox.innerHTML = data;
-        });
 
+        });
+        goodsBox.innerHTML = data;
     }
 })

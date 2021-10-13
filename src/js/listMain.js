@@ -69,7 +69,7 @@ require(["gg", "lrb", "lrg", "lpod", "sl", "los"], function (getGoodsData, rende
                     }, 1000);
                     setLocalData({
                         goodID: target.parentElement.getAttribute("goodID"),
-                        price: target.parentElement.children[3].innerHTML.slice(1),
+                        price: target.previousElementSibling.previousElementSibling.innerHTML.slice(1),
                         from: "goods_data"
                     });
                     const goods = JSON.parse(getCookie("goods"));

@@ -9,10 +9,11 @@ require.config({
         init: "init",
         ca: "checkAll",
         ds: "delSelect",
+        upd: "updataCart"
     }
 })
 
-require(["gg", "rc", "an", "ap", "rsl", "init", "ca", "ds"], function (getGoodsData, renderCart, allNum, allPrice, resetLocalData, init, checkAll, delSelect) {
+require(["gg", "rc", "rsl", "init", "ca", "ds", "upd"], function (getGoodsData, renderCart, resetLocalData, init, checkAll, delSelect, updataCart) {
 
     document.querySelector(".header-bottom").className += " hide";
 
@@ -29,6 +30,8 @@ require(["gg", "rc", "an", "ap", "rsl", "init", "ca", "ds"], function (getGoodsD
         CART.yunfei = document.querySelector(".yunfei");
         CART.priceTip = document.querySelector(".priceTip");
         CART.delSelect = document.querySelector(".delSelect");
+        CART.cartSum = document.querySelector(".cartSum");
+        CART.cartNum = document.querySelector(".cartNum");
         CART.goods = [];
 
         init(CART);
@@ -42,8 +45,7 @@ require(["gg", "rc", "an", "ap", "rsl", "init", "ca", "ds"], function (getGoodsD
                     ...CART,
                     response: response.data
                 });
-                allNum(CART);
-                allPrice(CART);
+                updataCart(CART);
 
                 const numInput = document.querySelectorAll(".numInfo input");
                 numInput.forEach(element => {
@@ -53,8 +55,7 @@ require(["gg", "rc", "an", "ap", "rsl", "init", "ca", "ds"], function (getGoodsD
                         setCookie("goods", JSON.stringify(CART.goods), {
                             expires: 3
                         });
-                        allNum(CART);
-                        allPrice(CART);
+                        updataCart(CART);
                     })
 
                     addEvent(element, "blur", function () {
@@ -63,8 +64,7 @@ require(["gg", "rc", "an", "ap", "rsl", "init", "ca", "ds"], function (getGoodsD
                         setCookie("goods", JSON.stringify(CART.goods), {
                             expires: 3
                         });
-                        allNum(CART);
-                        allPrice(CART);
+                        updataCart(CART);
                     })
                 })
             })
@@ -76,21 +76,15 @@ require(["gg", "rc", "an", "ap", "rsl", "init", "ca", "ds"], function (getGoodsD
             if (target.className === "delBtn") {
                 const id = goodItem.getAttribute("goodID");
                 goodItem.remove();
-                // console.log(id);
                 resetLocalData(CART.goods, id);
                 init(CART);
-                if (CART.goods.length) {
-                    allNum(CART);
-                    allPrice(CART);
-                }
+                CART.goods.length && updataCart(CART);
             } else if (target.className.includes("checkInfo")) {
                 target.children[0].className = target.children[0].className.includes("checked") ? "checkbox" : "checkbox checked";
-                allNum(CART);
-                allPrice(CART);
+                updataCart(CART);
             } else if (target.className.includes("checkbox")) {
                 target.className = target.className.includes("checked") ? "checkbox" : "checkbox checked";
-                allNum(CART);
-                allPrice(CART);
+                updataCart(CART);
             } else if (target.className === "jian") {
                 const num = target.nextElementSibling;
                 num.value = num.value - 1 < 1 ? 1 : num.value - 1;
@@ -98,8 +92,7 @@ require(["gg", "rc", "an", "ap", "rsl", "init", "ca", "ds"], function (getGoodsD
                 setCookie("goods", JSON.stringify(CART.goods), {
                     expires: 3
                 });
-                allNum(CART);
-                allPrice(CART);
+                updataCart(CART);
             } else if (target.className === "plus") {
                 const num = target.previousElementSibling;
                 num.value++;
@@ -107,8 +100,7 @@ require(["gg", "rc", "an", "ap", "rsl", "init", "ca", "ds"], function (getGoodsD
                 setCookie("goods", JSON.stringify(CART.goods), {
                     expires: 3
                 });
-                allNum(CART);
-                allPrice(CART);
+                updataCart(CART);
             }
         })
 
@@ -117,29 +109,23 @@ require(["gg", "rc", "an", "ap", "rsl", "init", "ca", "ds"], function (getGoodsD
             if (target.className.includes("checkInfo")) {
                 if (target.children[1]) {
                     checkAll(CART);
-                    allNum(CART);
-                    allPrice(CART);
+                    updataCart(CART);
                 }
             } else if (target.className.includes("checkbox")) {
                 if (target.nextElementSibling) {
                     checkAll(CART);
-                    allNum(CART);
-                    allPrice(CART);
+                    updataCart(CART);
                 }
             } else if (target.className.includes("checklabel")) {
                 checkAll(CART);
-                allNum(CART);
-                allPrice(CART);
+                updataCart(CART);
             }
         })
 
         addEvent(CART.delSelect, "click", function () {
             delSelect(CART);
             init(CART);
-            if (CART.goods.length) {
-                allNum(CART);
-                allPrice(CART);
-            }
+            CART.goods.length && updataCart(CART);
         })
 
     }, 30);

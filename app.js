@@ -108,7 +108,7 @@ handler.login = (req, res, reqData) => {
             }
         } else {
             answer.code = 2;
-            answer.title = "登录失败，用户名不存在";
+            answer.title = "登录失败，账号不存在";
             answer.data = "NOTFOUND";
         }
         res.write(JSON.stringify(answer), () => {
@@ -122,21 +122,22 @@ handler.register = (req, res, reqData) => {
         const userData = err ? [] : (data ? JSON.parse(data) : []);
         const answer = {};
         if (userData.find(val => val.username === reqData.username)) {
-            answer.code = 0;
-            answer.title = "注册失败，用户名重复";
+            answer.code = 3;
+            answer.title = "注册失败，账号重复";
             answer.data = "NOTFOUND";
             res.write(JSON.stringify(answer), () => {
                 res.end();
             });
         } else {
-            userData.push({
+            answer.data = {
                 username: reqData.username,
-                password: reqData.password
-            })
+                password: reqData.password,
+                cartData: []
+            };
+            userData.push(answer.data)
             fs.writeFile("./database/user_data.json", JSON.stringify(userData), err => {
-                answer.code = 1;
+                answer.code = 0;
                 answer.title = "注册成功";
-                answer.data = "SUCCESS";
                 res.write(JSON.stringify(answer), () => {
                     res.end();
                 });

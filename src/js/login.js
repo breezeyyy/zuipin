@@ -41,6 +41,8 @@
                 that.tabs[1].click();
             })
 
+            
+
             addEvent(this.psdInp[1], "input", function () {
                 this.value ? that.psdInp[0].value === this.value ? that.hideErrInfo(0, false) : that.showErrInfo(0, false) : that.hideErrInfo(0, false);
             })
@@ -108,12 +110,16 @@
                 this.psdInp[2].value = "";
                 this.psdInp[2].focus();
             } else if (res.code === 2) {
-                alert("用户名不存在，请先注册");
+                alert("账号不存在，请先注册");
                 this.tabs[0].click();
                 this.accountInput[0].value = "";
                 this.accountInput[0].focus();
                 this.psdInp[0].value = "";
                 this.psdInp[1].value = "";
+            } else if (res.code === 3) {
+                alert("注册失败，账号重复");
+                this.accountInput[0].value = "";
+                this.accountInput[0].focus();
             }
         }
 

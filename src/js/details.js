@@ -32,7 +32,10 @@
         }
 
         urlParse() {
-            return location.href.split("?")[1].split("&").reduce((result, value) => ({...result, [value.split("=")[0]]: value.split("=")[1]}), {});
+            return location.href.split("?")[1].split("&").reduce((result, value) => ({
+                ...result,
+                [value.split("=")[0]]: value.split("=")[1]
+            }), {});
         }
 
         getDBData(search) {
@@ -123,6 +126,28 @@
                 data += `<img src="./images/details/${val}">`
             })
             this.xqImgBox.innerHTML = data;
+
+            addEvent(document.querySelector(".sl"), "click", function (event) {
+                const target = getTarget(event);
+                if (target.className === "jian") {
+                    target.nextElementSibling.value > 1 && target.nextElementSibling.value--;
+                } else if (target.className === "plus") {
+                    target.previousElementSibling.value++;
+                }
+            })
+
+            addEvent(document.querySelector(".sl").children[1], "input", function() {
+                this.value = this.value.replace(/[^\d]/g, "");
+            })
+
+            addEvent(document.querySelector(".sl").children[1], "blur", function() {
+                this.value || (this.value = 1);
+            })
+
+            addEvent(document.querySelector(".addCart"), "click", function() {
+                const goods = JSON.parse(getCookie("goods"));
+                
+            })
         }
     }
 
