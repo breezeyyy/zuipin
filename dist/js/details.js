@@ -12,9 +12,15 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-;
+require.config({
+  baseUrl: "./modules/",
+  paths: {
+    sl: "./list/setLocalData"
+  }
+});
 
-(function () {
+require(["sl"], function (setLocalData) {
+  // console.log(setLocalData);
   var DocumentInit = /*#__PURE__*/function () {
     function DocumentInit() {
       _classCallCheck(this, DocumentInit);
@@ -118,6 +124,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         });
         addEvent(document.querySelector(".addCart"), "click", function () {
           var goods = JSON.parse(getCookie("goods"));
+          var addCartTip = document.querySelector(".addCartTip");
+          var num = document.querySelector(".sl").children[1].value;
+          addCartTip.style.display = "block";
+          setTimeout(function () {
+            addCartTip.style.display = "none";
+          }, 1000);
+          setLocalData({
+            goodID: target.parentElement.getAttribute("goodID"),
+            price: target.previousElementSibling.previousElementSibling.innerHTML.slice(1),
+            from: "goods_data"
+          });
         });
       }
     }]);
@@ -344,4 +361,4 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       new Magnifying();
     }, 100);
   }, 50);
-})();
+});

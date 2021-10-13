@@ -474,3 +474,19 @@
         }
     }
 }
+
+.addCartTip {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 10000;
+    height: 60px;
+    margin-top: -30px;
+    padding: 0 40px 0 80px;
+    color: #fff;
+    line-height: 60px;
+    background: #000 url("../images/cart/icon_success.png") no-repeat 30px 10px;
+    opacity: .7;
+    transform: translateX(-50%);
+}
