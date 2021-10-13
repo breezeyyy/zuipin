@@ -18,6 +18,7 @@ window.onload = function () {
             this.uesrname = document.querySelector(".username");
             this.loginOutBtn = document.querySelector(".loginout");
             this.cart = document.querySelector(".cart");
+            this.cartNum = document.querySelector(".cartNum");
 
             this.isLogin();
             this.classAddEvent();
@@ -25,10 +26,13 @@ window.onload = function () {
 
         isLogin() {
             const isLogin = getCookie("isLogin") === "ok";
+            const goods = JSON.parse(getCookie("goods"));
             this.loginBox.className = isLogin ? "myaccount" : "";
             this.loginBtn.href = isLogin ? "./personal.html" : "./login.html";
             this.loginBtn.innerHTML = isLogin ? "我的账户" : "登录";
             this.uesrname.innerHTML = isLogin ? getCookie("username") : "";
+            this.cartNum.style.display = isLogin ? "block" : "none";
+            this.cartNum.innerHTML = goods.length ? goods.reduce((result, val) => result + val.num, 0) : 0;
             // setCookie("goods");
         }
 
@@ -68,8 +72,9 @@ window.onload = function () {
                 })
                 setCookie("isLogin");
                 setCookie("username");
-                setCookie("goods");
+                setCookie("goods", "[]");
                 that.isLogin();
+                location.href = "./login.html";
             })
 
             // 整个页面单击事件

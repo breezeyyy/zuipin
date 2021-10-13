@@ -55,6 +55,7 @@ handler.getDBData = (req, res, resData) => {
             title: err ? "数据请求失败！" : "数据请求成功！",
             data: err ? [] : (data ? JSON.parse(data) : [])
         };
+        answer.code && resData.good && (answer.data = (resData.dataKey ? answer.data[resData.dataKey][resData.dataModName] : answer.data).find(val => val.ID === resData.goodID))
         res.write(JSON.stringify(answer), () => {
             res.end();
         });

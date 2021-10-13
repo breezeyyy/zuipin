@@ -46,25 +46,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         for (var key in response) {
           this["renderer_".concat(key)](response[key]);
         }
-
-        this.aClickEvent();
-      }
-    }, {
-      key: "aClickEvent",
-      value: function aClickEvent() {
-        var that = this;
-        this.links = document.querySelectorAll(".link");
-        this.links.forEach(function (element) {
-          addEvent(element, "click", function () {
-            setCookie("details_data");
-            setCookie("details_data", JSON.stringify({
-              goodID: this.getAttribute("goodID"),
-              dataDB: "index_data",
-              dataKey: "banner_main"
-            }));
-            location.href = "./details.html";
-          });
-        });
       }
       /**
        * 获取数据库数据
@@ -79,6 +60,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           type: "GET",
           url: "http://localhost:3000/api",
           success: function success(response) {
+            // console.log(response.data);
             if (response.code) _this.init(response.data);
           },
           error: function error(status) {
@@ -100,10 +82,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         var _this2 = this;
 
         var data = "";
-        response.data.forEach(function (value) {
-          data += "<li><img ";
-          value.goods && (data += "class=\"link\" goodID=\"".concat(value.ID, "\""));
-          data += " src=\"./images/index/".concat(value.img_main, "\" alt=\"\"></li>");
+        response.items.forEach(function (value) {
+          data += "<li><a href=";
+          data += value.ID ? "\"./details.html?goodID=".concat(value.ID, "&type=index_data&dataKey=banner_main&dataModName=items&good=true\"") : "javascript:;";
+          data += "><img src=\"./images/index/".concat(value.img_main, "\" alt=\"\"></a></li>");
           var option = document.createElement("li");
           option.appendChild(document.createElement("span"));
 
@@ -182,7 +164,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       key: "renderer_banner_hot",
       value: function renderer_banner_hot(response) {
         var data = "";
-        response.data.forEach(function (value) {
+        response.items.forEach(function (value) {
           data += "<li>\n                            <a href=\"\" target=\"_blank\" class=\"hot_box\">\n                                <div class=\"hot_img\">\n                                    <img src=\"./images/index/".concat(value.img, "\">\n                                </div>\n                                <p class=\"hot_text\" title=\"").concat(value.desc, "\">").concat(value.desc, "</p>\n                                <p class=\"hot_people\" title=\"\u6765\u81EA").concat(value.userName, "\u7684\u8BC4\u4EF7\">\u6765\u81EA").concat(value.userName, "\u7684\u8BC4\u4EF7</p>\n                                <p class=\"hot_descr clearfix\">\n                                    <span title=\"").concat(value.info, "\">").concat(value.info, "</span>\n                                    <span></span>\n                                    <span>").concat(value.price, "</span>\n                                </p>\n                            </a>\n                        </li>");
         });
         this.hotBox.innerHTML = data;

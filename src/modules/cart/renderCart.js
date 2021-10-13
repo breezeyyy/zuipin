@@ -3,8 +3,6 @@ define(() => {
         let {
             response,
             goods,
-            cart,
-            emptyCart,
             goodsBox
         } = CART;
 
@@ -19,14 +17,14 @@ define(() => {
                         </div>
                         <div class="nameInfo">
                             <ul class="clearfix">
-                                <li><img src="./images/list/${value.img}" alt=""></li>
+                                <li><img src="./images/list/${value.img_main}" alt=""></li>
                                 <li>
-                                    <p title="${value.desc}">${value.desc}</p>
+                                    <p title="${value.good_title}">${value.good_title}</p>
                                 </li>
                             </ul>
                         </div>
                         <div class="priceInfo">
-                            <p>${value.price}</p>
+                            <p>￥${value.nowPrice}</p>
                         </div>
                         <div class="numInfo">
                             <button class="jian">-</button>
@@ -34,7 +32,7 @@ define(() => {
                             <button class="plus">+</button>
                         </div>
                         <div class="countInfo">
-                            <p>￥<span class="count">${element.num * Number(element.price)}</span></p>
+                            <p>￥<span class="count">${element.num * Number(element.nowPrice)}</span></p>
                         </div>
                         <div class="doInfo">
                             <button class="delBtn"></button>

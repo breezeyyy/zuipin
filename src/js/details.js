@@ -27,13 +27,12 @@
 
         init() {
             this.goodList.className += " list_html";
-            this.details_data = JSON.parse(getCookie("details_data"));
-            // console.log(getCookie("details_data"));
-            this.getDBData({
-                type: this.details_data.dataDB,
-                goodID: this.details_data.goodID,
-                dataKey: this.details_data.dataKey || null
-            })
+            this.urlData = this.urlParse();
+            this.getDBData(this.urlData)
+        }
+
+        urlParse() {
+            return location.href.split("?")[1].split("&").reduce((result, value) => ({...result, [value.split("=")[0]]: value.split("=")[1]}), {});
         }
 
         getDBData(search) {
@@ -42,7 +41,7 @@
                 url: "http://localhost:3000/api",
                 success: (response) => {
                     if (response.code)
-                        this.details_data.dataKey ? this.fromIndexData(response.data[this.details_data.dataKey]) : this.fromGoodsData(response.data);
+                        this.renderer_details(response.data);
                 },
                 error: (status) => {
                     console.log(status);
@@ -51,44 +50,28 @@
             })
         }
 
-        fromIndexData(response) {
-            // console.log(response);
-            for (let key in response) {
-                this.value = response[key].find(val => val.ID === this.details_data.goodID);
-                if (this.value)
-                    break;
-            }
-            // console.table(this.value);
-            this.renderer_details();
-        }
-
-        fromGoodsData(response) {
-            return response.find(val => val.ID === this.details_data.goodID);
-            this.renderer_details();
-        }
-
-        renderer_details() {
-            document.title = this.value.good_title;
+        renderer_details(value) {
+            document.title = value.good_title;
             let data = `<li><a href="./index.html">首页</a></li>`;
-            this.value.tags.forEach(val => {
+            value.tags.forEach(val => {
                 data += `<li>/</li>
                         <li><a href="javascript:;">${val}</a></li>`;
             })
             this.pageList.innerHTML = data + `<li>/</li>
-                                                <li><a href="javascript:;">${this.value.good_title}</a></li>`;
+                                                <li><a href="javascript:;">${value.good_title}</a></li>`;
             data = ``;
-            this.value.img_list.forEach((val, index) => {
+            value.img_list.forEach((val, index) => {
                 data += `<li`;
                 data += index ? `>` : ` class="on">`;
                 data += `<img src="./images/details/${val}" alt=""></li>`;
             })
             this.navImg.innerHTML = data;
-            this.goodDesc.innerHTML = `<h1 class="title">${this.value.good_title}</h1>
-                                        <p class="info">${this.value.info || ""}</p>
+            this.goodDesc.innerHTML = `<h1 class="title">${value.good_title}</h1>
+                                        <p class="info">${value.info || ""}</p>
                                         <div class="line"></div>
                                         <div class="goodDescList">
-                                            <div class="scj">市场价<span>￥<em>${this.value.oldPrice}</em></span></div>
-                                            <div class="zpj">醉品价<span>￥<em>${this.value.nowPrice}</em></span></div>
+                                            <div class="scj">市场价<span>￥<em>${value.oldPrice}.00</em></span></div>
+                                            <div class="zpj">醉品价<span>￥<em>${value.nowPrice}.00</em></span></div>
                                             <div class="cx">促销
                                                 <div class="cxTag">
                                                     <div class="tagInfo">包邮</div>
@@ -96,14 +79,14 @@
                                                 </div>
                                                 <div class="cxTag">
                                                     <div class="tagInfo">直降</div>
-                                                    <div class="tagDesc">已优惠<i class="youhui">${this.value.youhui}</i>元</div>
+                                                    <div class="tagDesc">已优惠<i class="youhui">${value.youhui}</i>元</div>
                                                 </div>
                                             </div>
                                             <div class="line"></div>
                                             <ul class="pp clearfix">
-                                                <li><span class="ppK">品牌</span><span class="ppV">${this.value.pinpai}</span></li>
-                                                <li><span class="ppK">净含量</span><span class="ppV">${this.value.jhl}</span></li>
-                                                <li><span class="ppK">商品编号</span><span class="ppV">${this.value.ID}</span></li>
+                                                <li><span class="ppK">品牌</span><span class="ppV">${value.pinpai}</span></li>
+                                                <li><span class="ppK">净含量</span><span class="ppV">${value.jhl}</span></li>
+                                                <li><span class="ppK">商品编号</span><span class="ppV">${value.ID}</span></li>
                                             </ul>
                                             <div class="line"></div>
                                             <div class="sl">数量
@@ -120,23 +103,23 @@
                                                 <li>10分钟极速退款</li>
                                             </ul>
                                         </div>`
-            this.goodItem.innerHTML = `<img src="./images/details/${this.value.img_list[0]}" alt="">
+            this.goodItem.innerHTML = `<img src="./images/details/${value.img_list[0]}" alt="">
                 <div class="itemInfo">
-                    <div class="itemDesc">${this.value.good_title}</div>
-                    <div class="itemPrice">￥${this.value.nowPrice}</div>
+                    <div class="itemDesc">${value.good_title}</div>
+                    <div class="itemPrice">￥${value.nowPrice}</div>
                 </div>`
             this.switchTab.innerHTML = `<li>详情描述</li>
-                                        <li>评论晒单(<span class="plNum"> ${this.value.pinglun} </span>)</li>`;
+                                        <li>评论晒单(<span class="plNum"> ${value.praise} </span>)</li>`;
             data = ``;
-            for (let key in this.value.xqms.xqms_tags) {
-                data += `<li title="${this.xq[key]}：${this.value.xqms.xqms_tags[key]}">
+            for (let key in value.xqms.xqms_tags) {
+                data += `<li title="${this.xq[key]}：${value.xqms.xqms_tags[key]}">
                             <span class="xqK">${this.xq[key]}：</span>
-                            <span class="xqV">${this.value.xqms.xqms_tags[key]}</span>
+                            <span class="xqV">${value.xqms.xqms_tags[key]}</span>
                         </li>`
             }
             this.xqBox.innerHTML = data;
             data = ``;
-            this.value.xqms.xqms_imgs.forEach(val => {
+            value.xqms.xqms_imgs.forEach(val => {
                 data += `<img src="./images/details/${val}">`
             })
             this.xqImgBox.innerHTML = data;
@@ -316,7 +299,7 @@
         }
 
         show() {
-            this.susp.className += " fixed";
+            !this.susp.className.includes("fixed") && (this.susp.className += " fixed");
             elementAnimation(this.susp, {
                 top: 0
             })

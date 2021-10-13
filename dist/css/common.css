@@ -202,6 +202,19 @@ body {
     background-repeat: no-repeat;
     background-position: 12px -24px;
 }
+.header .typeArea .header_r .cart .cartNum {
+    display: none;
+    position: absolute;
+    left: 89px;
+    top: 13px;
+    padding: 0 4px;
+    font-size: 12px;
+    color: #ff3600;
+    line-height: 1.3;
+    background-color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+}
 
 .header .typeArea .header_r .cart:hover {
     color: #ff3600;
@@ -209,6 +222,10 @@ body {
     background-image: url("../images/common/css-xuebi2.png");
     background-repeat: no-repeat;
     background-position: 12px -66px;
+}
+.header .typeArea .header_r .cart:hover .cartNum {
+    background-color: #ff3600;
+    color: #fff;
 }
 
 .header .typeArea .header_r .cart a {

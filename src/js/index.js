@@ -22,24 +22,6 @@
             for(let key in response) {
                 this[`renderer_${key}`](response[key]);
             }
-            this.aClickEvent();
-        }
-
-        aClickEvent() {
-            const that = this;
-
-            this.links = document.querySelectorAll(".link");
-            this.links.forEach(element => {
-                addEvent(element, "click", function() {
-                    setCookie("details_data");
-                    setCookie("details_data", JSON.stringify({
-                        goodID: this.getAttribute("goodID"),
-                        dataDB: "index_data",
-                        dataKey: "banner_main"
-                    }))
-                    location.href = "./details.html";
-                })
-            })
         }
 
         /**
@@ -50,6 +32,7 @@
                 type: "GET",
                 url: "http://localhost:3000/api",
                 success: (response) => {
+                    // console.log(response.data);
                     if (response.code)
                         this.init(response.data);
                 },
@@ -68,10 +51,10 @@
          */
         renderer_banner_main(response) {
             let data = ``;
-            response.data.forEach(value => {
-                data += `<li><img `;
-                value.goods && (data += `class="link" goodID="${value.ID}"`);
-                data += ` src="./images/index/${value.img_main}" alt=""></li>`;
+            response.items.forEach(value => {
+                data += `<li><a href=`;
+                data += value.ID ? `"./details.html?goodID=${value.ID}&type=index_data&dataKey=banner_main&dataModName=items&good=true"` : `javascript:;`;
+                data += `><img src="./images/index/${value.img_main}" alt=""></a></li>`;
                 const option = document.createElement("li");
                 option.appendChild(document.createElement("span"));
                 this.bannerNavMain.appendChild(option);
@@ -264,7 +247,7 @@
 
         renderer_banner_hot(response) {
             let data = ``;
-            response.data.forEach(value => {
+            response.items.forEach(value => {
                 data += `<li>
                             <a href="" target="_blank" class="hot_box">
                                 <div class="hot_img">

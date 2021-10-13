@@ -9,7 +9,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 require.config({
   baseUrl: "./modules/list",
   paths: {
-    gg: "../tools/getGoodsData",
+    gg: "../list/getGoodsData",
     lrb: "renderBanner",
     lrg: "renderGoods",
     lpod: "listPullOrDown",
@@ -38,6 +38,7 @@ require(["gg", "lrb", "lrg", "lpod", "sl", "los"], function (getGoodsData, rende
     LIST.tabList = document.querySelector(".tab_list");
     LIST.upOrDown = document.querySelector(".upOrDown");
     LIST.tabOptions = document.querySelectorAll(".tab_option .options li");
+    LIST.cartNum = document.querySelector(".cartNum");
     LIST.goodList.className += " list_html";
     getGoodsData(LIST.url, "list_data", function (response) {
       response.code && renderListBanner(_objectSpread(_objectSpread({}, LIST), {}, {
@@ -60,15 +61,23 @@ require(["gg", "lrb", "lrg", "lpod", "sl", "los"], function (getGoodsData, rende
 
       if (target.className === "addCart") {
         if (getCookie("isLogin") === "ok") {
-          var goodID = target.parentElement.getAttribute("goodID");
-          var price = target.parentElement.children[3].innerHTML.slice(1);
+          // console.log(target.parentElement.children);
           var addCartTip = document.querySelector(".addCartTip");
           addCartTip.style.display = "block";
           setTimeout(function () {
             addCartTip.style.display = "none";
           }, 1000);
-          setLocalData(goodID, price);
+          setLocalData({
+            goodID: target.parentElement.getAttribute("goodID"),
+            price: target.parentElement.children[3].innerHTML.slice(1),
+            from: "goods_data"
+          });
+          var goods = JSON.parse(getCookie("goods"));
+          LIST.cartNum.innerHTML = goods.length ? goods.reduce(function (result, val) {
+            return result + val.num;
+          }, 0) : 0;
         } else {
+          setCookie("href", "./list.html");
           location.href = "./login.html";
         }
       }

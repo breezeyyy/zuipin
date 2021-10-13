@@ -1,7 +1,7 @@
 require.config({
     baseUrl: "./modules/list",
     paths: {
-        gg: "../tools/getGoodsData",
+        gg: "../list/getGoodsData",
         lrb: "renderBanner",
         lrg: "renderGoods",
         lpod: "listPullOrDown",
@@ -31,6 +31,7 @@ require(["gg", "lrb", "lrg", "lpod", "sl", "los"], function (getGoodsData, rende
         LIST.tabList = document.querySelector(".tab_list");
         LIST.upOrDown = document.querySelector(".upOrDown");
         LIST.tabOptions = document.querySelectorAll(".tab_option .options li");
+        LIST.cartNum = document.querySelector(".cartNum");
 
         LIST.goodList.className += " list_html";
 
@@ -56,19 +57,25 @@ require(["gg", "lrb", "lrg", "lpod", "sl", "los"], function (getGoodsData, rende
             stopDefault(event);
         })
 
-        addEvent(LIST.goodsListBox, "click", function(event) {
+        addEvent(LIST.goodsListBox, "click", function (event) {
             const target = getTarget(event);
             if (target.className === "addCart") {
                 if (getCookie("isLogin") === "ok") {
-                    const goodID = target.parentElement.getAttribute("goodID");
-                    const price = target.parentElement.children[3].innerHTML.slice(1);
+                    // console.log(target.parentElement.children);
                     const addCartTip = document.querySelector(".addCartTip");
                     addCartTip.style.display = "block";
                     setTimeout(() => {
                         addCartTip.style.display = "none";
                     }, 1000);
-                    setLocalData(goodID, price);
+                    setLocalData({
+                        goodID: target.parentElement.getAttribute("goodID"),
+                        price: target.parentElement.children[3].innerHTML.slice(1),
+                        from: "goods_data"
+                    });
+                    const goods = JSON.parse(getCookie("goods"));
+                    LIST.cartNum.innerHTML = goods.length ? goods.reduce((result, val) => result + val.num, 0) : 0;
                 } else {
+                    setCookie("href", "./list.html");
                     location.href = "./login.html";
                 }
             }
