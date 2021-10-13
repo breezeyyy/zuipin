@@ -61,7 +61,6 @@ require(["gg", "lrb", "lrg", "lpod", "sl", "los"], function (getGoodsData, rende
             const target = getTarget(event);
             if (target.className === "addCart") {
                 if (getCookie("isLogin") === "ok") {
-                    // console.log(target.parentElement.children);
                     const addCartTip = document.querySelector(".addCartTip");
                     addCartTip.style.display = "block";
                     setTimeout(() => {

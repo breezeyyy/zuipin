@@ -8,7 +8,8 @@ define(() => {
 
         // console.log(goods, response);
         let data = ``;
-        goods.forEach(element => {
+        // console.log(goods);
+        goods.forEach((element, index) => {
             const value = response.find(val => val.ID === element.goodID)
             // console.log(value);
             data += `<dd class="goodItem clearfix" goodID="${value.ID}">
@@ -16,12 +17,14 @@ define(() => {
                             <div class="checkbox checked"></div>
                         </div>
                         <div class="nameInfo">
-                            <ul class="clearfix">
-                                <li><img src="./images/list/${value.img_main}" alt=""></li>
-                                <li>
-                                    <p title="${value.good_title}">${value.good_title}</p>
-                                </li>
-                            </ul>
+                            <a href="${goods[index].link}">
+                                <ul class="clearfix">
+                                    <li><img src="./images/list/${value.img_main}" alt=""></li>
+                                    <li>
+                                        <p title="${value.good_title}">${value.good_title}</p>
+                                    </li>
+                                </ul>
+                            </a>
                         </div>
                         <div class="priceInfo">
                             <p>￥${value.nowPrice}</p>
