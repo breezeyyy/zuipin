@@ -73,7 +73,7 @@
                         type: "GET",
                         url: that.url,
                         success: res => {
-                            console.log(res);
+                            // console.log(res);
                             that.login(res);
                         },
                         error: status => {
@@ -100,7 +100,9 @@
                 setCookie("goods", JSON.stringify(res.data.cartData), {
                     expires: 3
                 })
-                location.href = getCookie("href") ? getCookie("href") : "./index.html";
+                const href = getCookie("href");
+                setCookie("href");
+                location.href = href ? href : "./index.html";
             } else if (res.code === 1) {
                 alert("密码不符，请重新输入");
                 this.psdInp[2].value = "";

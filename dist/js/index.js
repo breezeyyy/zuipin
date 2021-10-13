@@ -62,9 +62,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               dataDB: "index_data",
               dataKey: "banner_main"
             }));
-            location.href = "./details.html"; // setCookie("a", "1");
-            // setCookie("a");
-            // console.log(getCookie("details_data"));
+            location.href = "./details.html";
           });
         });
       }

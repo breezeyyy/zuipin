@@ -79,7 +79,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               type: "GET",
               url: that.url,
               success: function success(res) {
-                console.log(res);
+                // console.log(res);
                 that.login(res);
               },
               error: function error(status) {
@@ -107,7 +107,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           setCookie("goods", JSON.stringify(res.data.cartData), {
             expires: 3
           });
-          location.href = getCookie("href") ? getCookie("href") : "./index.html";
+          var href = getCookie("href");
+          setCookie("href");
+          location.href = href ? href : "./index.html";
         } else if (res.code === 1) {
           alert("密码不符，请重新输入");
           this.psdInp[2].value = "";

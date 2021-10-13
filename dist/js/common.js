@@ -27,6 +27,7 @@ window.onload = function () {
       this.loginBtn = document.querySelector(".toLogin");
       this.uesrname = document.querySelector(".username");
       this.loginOutBtn = document.querySelector(".loginout");
+      this.cart = document.querySelector(".cart");
       this.isLogin();
       this.classAddEvent();
     }
@@ -63,8 +64,7 @@ window.onload = function () {
           ajax({
             url: that.myServer,
             type: "GET",
-            success: function success(res) {
-              console.log(res);
+            success: function success(res) {// console.log(res);
             },
             fail: function fail(status) {
               console.log(status);
@@ -428,7 +428,7 @@ window.onload = function () {
       this.imageBox = document.querySelectorAll(".item-desc");
       this.getImageData();
       addEvent(document.querySelector(".cart"), "click", function () {
-        location.href = "./cart.html";
+        location.href = getCookie("isLogin") === "ok" ? "./cart.html" : "./login.html";
       });
     }
     /**

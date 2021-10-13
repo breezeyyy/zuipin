@@ -38,9 +38,6 @@
                         dataKey: "banner_main"
                     }))
                     location.href = "./details.html";
-                    // setCookie("a", "1");
-                    // setCookie("a");
-                    // console.log(getCookie("details_data"));
                 })
             })
         }

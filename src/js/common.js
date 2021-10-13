@@ -17,6 +17,7 @@ window.onload = function () {
             this.loginBtn = document.querySelector(".toLogin");
             this.uesrname = document.querySelector(".username");
             this.loginOutBtn = document.querySelector(".loginout");
+            this.cart = document.querySelector(".cart");
 
             this.isLogin();
             this.classAddEvent();
@@ -54,7 +55,7 @@ window.onload = function () {
                     url: that.myServer,
                     type: "GET",
                     success: res => {
-                        console.log(res);
+                        // console.log(res);
                     },
                     fail: status => {
                         console.log(status);
@@ -376,7 +377,7 @@ window.onload = function () {
             this.getImageData();
 
             addEvent(document.querySelector(".cart"), "click", function () {
-                location.href = "./cart.html";
+                location.href = getCookie("isLogin") === "ok" ? "./cart.html" : "./login.html";
             })
         }
 

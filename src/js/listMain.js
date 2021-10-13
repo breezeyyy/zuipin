@@ -59,14 +59,18 @@ require(["gg", "lrb", "lrg", "lpod", "sl", "los"], function (getGoodsData, rende
         addEvent(LIST.goodsListBox, "click", function(event) {
             const target = getTarget(event);
             if (target.className === "addCart") {
-                const goodID = target.parentElement.getAttribute("goodID");
-                const price = target.parentElement.children[3].innerHTML.slice(1);
-                const addCartTip = document.querySelector(".addCartTip");
-                addCartTip.style.display = "block";
-                setTimeout(() => {
-                    addCartTip.style.display = "none";
-                }, 1000);
-                setLocalData(goodID, price);
+                if (getCookie("isLogin") === "ok") {
+                    const goodID = target.parentElement.getAttribute("goodID");
+                    const price = target.parentElement.children[3].innerHTML.slice(1);
+                    const addCartTip = document.querySelector(".addCartTip");
+                    addCartTip.style.display = "block";
+                    setTimeout(() => {
+                        addCartTip.style.display = "none";
+                    }, 1000);
+                    setLocalData(goodID, price);
+                } else {
+                    location.href = "./login.html";
+                }
             }
         })
 
