@@ -62,6 +62,7 @@ require(["sl"], function (setLocalData) {
         }
 
         renderer_details(value) {
+            // console.log(value);
             document.title = value.good_title;
             let data = `<li><a href="./index.html">首页</a></li>`;
             value.tags.forEach(val => {
@@ -174,6 +175,30 @@ require(["sl"], function (setLocalData) {
                     location.href = "./login.html";
                 }
                 
+            })
+
+            addEvent(document.querySelector(".suspAddCart"), "click", function () {
+                if (getCookie("isLogin") === "ok") {
+                    const addCartTip = document.querySelector(".addCartTip");
+                    addCartTip.style.display = "block";
+                    setTimeout(() => {
+                        addCartTip.style.display = "none";
+                    }, 1000);
+                    setLocalData({
+                        goodID: value.ID,
+                        price: value.nowPrice,
+                        num: Number(document.querySelector(".sl").children[1].value),
+                        from: "goods_data",
+                        link: location.href
+                    });
+                    const goods = JSON.parse(getCookie("goods"));
+                    const cartNum = document.querySelector(".cartNum");
+                    cartNum.innerHTML = goods.reduce((result, val) => result + val.num, 0);
+                } else {
+                    setCookie("href", location.href);
+                    location.href = "./login.html";
+                }
+
             })
         }
     }

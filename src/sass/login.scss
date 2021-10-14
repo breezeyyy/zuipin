@@ -107,10 +107,14 @@
                         color: #fff;
                         line-height: 44px;
                         text-align: center;
-                        background-color: #ff3300;
+                        background-color: #ddd;
                         border: none;
                         outline: none;
                         transition: all .2s;
+                    }
+
+                    .right {
+                        background-color: #ff3600;
                     }
                 }
 

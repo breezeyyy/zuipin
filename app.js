@@ -10,7 +10,7 @@ const MY_SERVER_URL = `http://localhost:${MY_SERVER_PORT}`;
 // 功能路由对象
 const TYPE_LIST = {
     DBData: ["common_data", "index_data", "list_data", "goods_data"],
-    funcHandle: ["createGoodID", "login", "register", "writeCartData"]
+    funcHandle: ["createGoodID", "login", "register", "writeCartData", "changeUserPsd"]
 };
 // const NOT_ALLOW_ACCESS = ["/common.html", "/details.html"]
 const handler = {};
@@ -91,13 +91,13 @@ handler.createGoodID = (req, res, resData) => {
     })
 }
 
-handler.login = (req, res, reqData) => {
+handler.login = (req, res, resData) => {
     fs.readFile("./database/user_data.json", "utf-8", (err, data) => {
         const userData = err ? [] : (data ? JSON.parse(data) : []);
         const answer = {};
-        const flag = userData.find(val => val.username === reqData.username);
+        const flag = userData.find(val => val.username === resData.username);
         if (flag) {
-            if (flag.password === reqData.password) {
+            if (flag.password === resData.password) {
                 answer.code = 0;
                 answer.title = "登录成功";
                 answer.data = flag;
@@ -117,11 +117,11 @@ handler.login = (req, res, reqData) => {
     })
 }
 
-handler.register = (req, res, reqData) => {
+handler.register = (req, res, resData) => {
     fs.readFile("./database/user_data.json", "utf-8", (err, data) => {
         const userData = err ? [] : (data ? JSON.parse(data) : []);
         const answer = {};
-        if (userData.find(val => val.username === reqData.username)) {
+        if (userData.find(val => val.username === resData.username)) {
             answer.code = 3;
             answer.title = "注册失败，账号重复";
             answer.data = "NOTFOUND";
@@ -130,8 +130,8 @@ handler.register = (req, res, reqData) => {
             });
         } else {
             answer.data = {
-                username: reqData.username,
-                password: reqData.password,
+                username: resData.username,
+                password: resData.password,
                 cartData: []
             };
             userData.push(answer.data)
@@ -160,6 +160,32 @@ handler.writeCartData = (req, res, resData) => {
                 res.end();
             });
         })
+    })
+}
+
+handler.changeUserPsd = (req, res, resData) => {
+    fs.readFile("./database/user_data.json", "utf-8", (err, data) => {
+        const userData = err ? [] : (data ? JSON.parse(data) : []);
+        const answer = {};
+        const userIndex = userData.findIndex(val => val.username === resData.username)
+        // console.log(userIndex, userData[userIndex]);
+        if (userData[userIndex].password !== resData.oldP) {
+            answer.code = 1;
+            answer.title = "旧密码错误，密码修改失败";
+            answer.data = "NOTFOUND";
+            res.write(JSON.stringify(answer), () => {
+                res.end();
+            });
+        } else {
+            userData[userIndex].password = resData.newP;
+            fs.writeFile("./database/user_data.json", JSON.stringify(userData), err => {
+                answer.code = 0;
+                answer.title = "密码修改成功";
+                res.write(JSON.stringify(answer), () => {
+                    res.end();
+                });
+            })
+        }
     })
 }
 

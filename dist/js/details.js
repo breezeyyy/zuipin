@@ -79,6 +79,7 @@ require(["sl"], function (setLocalData) {
     }, {
       key: "renderer_details",
       value: function renderer_details(value) {
+        // console.log(value);
         document.title = value.good_title;
         var data = "<li><a href=\"./index.html\">\u9996\u9875</a></li>";
         value.tags.forEach(function (val) {
@@ -123,6 +124,30 @@ require(["sl"], function (setLocalData) {
           Number(this.value) || (this.value = 1);
         });
         addEvent(document.querySelector(".addCart"), "click", function () {
+          if (getCookie("isLogin") === "ok") {
+            var addCartTip = document.querySelector(".addCartTip");
+            addCartTip.style.display = "block";
+            setTimeout(function () {
+              addCartTip.style.display = "none";
+            }, 1000);
+            setLocalData({
+              goodID: value.ID,
+              price: value.nowPrice,
+              num: Number(document.querySelector(".sl").children[1].value),
+              from: "goods_data",
+              link: location.href
+            });
+            var goods = JSON.parse(getCookie("goods"));
+            var cartNum = document.querySelector(".cartNum");
+            cartNum.innerHTML = goods.reduce(function (result, val) {
+              return result + val.num;
+            }, 0);
+          } else {
+            setCookie("href", location.href);
+            location.href = "./login.html";
+          }
+        });
+        addEvent(document.querySelector(".suspAddCart"), "click", function () {
           if (getCookie("isLogin") === "ok") {
             var addCartTip = document.querySelector(".addCartTip");
             addCartTip.style.display = "block";

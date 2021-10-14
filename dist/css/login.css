@@ -607,6 +607,7 @@ body {
     position: relative;
     width: 120px;
     height: 40px;
+    margin-left: 16px;
     line-height: 40px;
     text-align: center;
     background-color: #ff3600;
@@ -1639,10 +1640,13 @@ body {
     color: #fff;
     line-height: 44px;
     text-align: center;
-    background-color: #ff3300;
+    background-color: #ddd;
     border: none;
     outline: none;
     transition: all 0.2s;
+}
+.content .typeArea .loginBox .login_method li .right {
+    background-color: #ff3600;
 }
 .content .typeArea .loginBox .login_method .on {
     display: block;
