@@ -11,7 +11,7 @@ define(["sd", "pon", "cp"], (setDisable, prevOrNextPage, changePage) => {
         let data = ``;
         for (let i = pageIndex * 20; i < pageIndex * 20 + 20 && i < response.length; i++) {
             data += `<li class="item" goodID="${response[i].ID}">
-                            <a href="./details.html?goodID=${response[i].ID}&type=goods_data&good=true" target="_blank">
+                            <a href="./details.html?goodID=${response[i].ID}&good=true" target="_blank">
                                 <img src="./images/list/${response[i].img_main}">
                             </a>
                             <p class="item_desc" title="${response[i].good_title}">${response[i].good_title}</p>

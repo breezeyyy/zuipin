@@ -59,7 +59,7 @@ window.onload = function () {
                     url: that.myServer,
                     type: "GET",
                     success: res => {
-                        // console.log(res);
+                        console.log(res);
                     },
                     fail: status => {
                         console.log(status);
@@ -70,11 +70,11 @@ window.onload = function () {
                         cartData: getCookie("goods")
                     }
                 })
-                setCookie("isLogin");
-                setCookie("username");
-                setCookie("goods", "[]");
-                that.isLogin();
-                location.href = "./login.html";
+                // setCookie("isLogin");
+                // setCookie("username");
+                // setCookie("goods", "[]");
+                // that.isLogin();
+                // location.href = "./login.html";
             })
 
             // 整个页面单击事件

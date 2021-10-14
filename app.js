@@ -38,6 +38,7 @@ function resposeToClient(req, res, resData) {
     // 获取到（不分get或post）数据
     // 在根据数据中隐藏的信息，决定执行不同的功能（登录，注册等等等等...）
     console.log(resData);
+    // console.log(resData.type);
     if (TYPE_LIST.DBData.includes(resData.type)) {
         handler.getDBData(req, res, resData);
     } else if (TYPE_LIST.funcHandle.includes(resData.type)) {
@@ -147,6 +148,7 @@ handler.register = (req, res, resData) => {
 }
 
 handler.writeCartData = (req, res, resData) => {
+    // console.log(11111111);
     fs.readFile("./database/user_data.json", "utf-8", (err, data) => {
         let answer = {};
         const userData = JSON.parse(data);

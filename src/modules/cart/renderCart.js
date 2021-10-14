@@ -17,7 +17,7 @@ define(() => {
                             <div class="checkbox checked"></div>
                         </div>
                         <div class="nameInfo">
-                            <a href="${goods[index].link}">
+                            <a href="./details.html?goodID=${value.ID}&good=true">
                                 <ul class="clearfix">
                                     <li><img src="./images/list/${value.img_main}" alt=""></li>
                                     <li>

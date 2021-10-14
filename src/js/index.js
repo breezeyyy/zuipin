@@ -53,7 +53,7 @@
             let data = ``;
             response.items.forEach(value => {
                 data += `<li><a href=`;
-                data += value.ID ? `"./details.html?goodID=${value.ID}&type=index_data&dataKey=banner_main&dataModName=items&good=true"` : `javascript:;`;
+                data += value.ID ? `"./details.html?goodID=${value.ID}&dataKey=banner_main&dataModName=items&good=true"` : `javascript:;`;
                 data += `><img src="./images/index/${value.img_main}" alt=""></a></li>`;
                 const option = document.createElement("li");
                 option.appendChild(document.createElement("span"));

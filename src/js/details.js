@@ -40,10 +40,13 @@ require(["sl"], function (setLocalData) {
         }
 
         urlParse() {
-            return location.href.split("?")[1].split("&").reduce((result, value) => ({
-                ...result,
-                [value.split("=")[0]]: value.split("=")[1]
-            }), {});
+            return {
+                ...location.href.split("?")[1].split("&").reduce((result, value) => ({
+                    ...result,
+                    [value.split("=")[0]]: value.split("=")[1]
+                }), {}),
+                type: "goods_data"
+            };
         }
 
         getDBData(search) {
@@ -163,9 +166,8 @@ require(["sl"], function (setLocalData) {
                     setLocalData({
                         goodID: value.ID,
                         price: value.nowPrice,
-                        num: Number(document.querySelector(".sl").children[1].value),
-                        from: "goods_data",
-                        link: location.href
+                        num: Number(document.querySelector(".sl").children[1].value)
+                        // ,from: "goods_data"
                     });
                     const goods = JSON.parse(getCookie("goods"));
                     const cartNum = document.querySelector(".cartNum");
@@ -174,7 +176,7 @@ require(["sl"], function (setLocalData) {
                     setCookie("href", location.href);
                     location.href = "./login.html";
                 }
-                
+
             })
 
             addEvent(document.querySelector(".suspAddCart"), "click", function () {
