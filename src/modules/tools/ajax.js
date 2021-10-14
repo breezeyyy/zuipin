@@ -4,7 +4,7 @@
  * @param {string} [parameter.type] 请求方式 默认GET
  * @param {string} parameter.url 请求地址
  * @param {function} parameter.success 请求成功回调
- * @param {function} parameter.fail 请求失败回调
+ * @param {function} parameter.fail 请求失败回调 
  * @param {object} [parameter.search] URL查询数据的对象 默认为空
  */
 function ajax({

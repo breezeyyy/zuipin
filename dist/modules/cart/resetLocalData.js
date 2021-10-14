@@ -1,14 +1,1 @@
-"use strict";
-
-define(function () {
-  return function (goods, id) {
-    // console.log(goods, id);
-    goods.splice(goods.findIndex(function (val) {
-      return val.goodID === id;
-    }), 1); // console.log(goods);
-
-    setCookie("goods", JSON.stringify(goods), {
-      expires: 3
-    });
-  };
-});
+"use strict";define(function(){return function(n,e){n.splice(n.findIndex(function(n){return n.goodID===e}),1),setCookie("goods",JSON.stringify(n),{expires:3})}});

@@ -1,11 +1,1 @@
-"use strict";
-
-define(function () {
-  return function (CART) {
-    var cart = CART.cart,
-        emptyCart = CART.emptyCart;
-    CART.goods = getCookie("goods") ? JSON.parse(getCookie("goods")) : [];
-    cart.className = CART.goods.length ? "" : "hide";
-    emptyCart.className = CART.goods.length ? "emptyCart hide" : "emptyCart";
-  };
-});
+"use strict";define(function(){return function(e){var o=e.cart,t=e.emptyCart;e.goods=getCookie("goods")?JSON.parse(getCookie("goods")):[],o.className=e.goods.length?"":"hide",t.className=e.goods.length?"emptyCart hide":"emptyCart"}});

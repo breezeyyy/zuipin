@@ -32,6 +32,7 @@ exports.watch = function () {
                 .pipe(babel({
                     presets: ['@babel/env']
                 }))
+                .pipe(uglify())
                 .pipe(dest("./dist/js"));
     })
 
@@ -47,6 +48,7 @@ exports.watch = function () {
                 .pipe(babel({
                     presets: ['@babel/env']
                 }))
+                .pipe(uglify())
                 .pipe(dest("./dist/modules"));
     })
 

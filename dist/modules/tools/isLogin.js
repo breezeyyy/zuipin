@@ -1,7 +1,1 @@
-"use strict";
-
-;
-
-(function () {
-  getCookie("isLogin") !== "ok" && (location.href = "./login.html");
-})();
+"use strict";"ok"!==getCookie("isLogin")&&(location.href="./login.html");

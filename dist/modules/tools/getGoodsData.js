@@ -1,17 +1,1 @@
-"use strict";
-
-define(function () {
-  return function (url, type, success) {
-    ajax({
-      type: "GET",
-      url: url,
-      success: success,
-      error: function error(status) {
-        console.log(status);
-      },
-      search: {
-        type: type
-      }
-    });
-  };
-});
+"use strict";define(function(){return function(e,n,c){ajax({type:"GET",url:e,success:c,error:function(e){console.log(e)},search:{type:n}})}});

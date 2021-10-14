@@ -1,15 +1,1 @@
-"use strict";
-
-define(["rsl"], function (resetLocalData) {
-  return function (CART) {
-    var goods = CART.goods,
-        goodsBox = CART.goodsBox;
-    Array.from(goodsBox.children).forEach(function (element) {
-      if (element.children[0].children[0].className.includes("checked")) {
-        var id = element.getAttribute("goodID");
-        element.remove();
-        resetLocalData(goods, id);
-      }
-    });
-  };
-});
+"use strict";define(["rsl"],function(c){return function(e){var o=e.goods,e=e.goodsBox;Array.from(e.children).forEach(function(e){var r;e.children[0].children[0].className.includes("checked")&&(r=e.getAttribute("goodID"),e.remove(),c(o,r))})}});

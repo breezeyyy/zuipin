@@ -1,11 +1,1 @@
-"use strict";
-
-define(function () {
-  return function (CART) {
-    var goodsBox = CART.goodsBox,
-        headCheckBox = CART.headCheckBox;
-    Array.from(goodsBox.children).forEach(function (element) {
-      element.children[0].children[0].className = headCheckBox.className.includes("checked") ? "checkbox" : "checkbox checked";
-    });
-  };
-});
+"use strict";define(function(){return function(c){var e=c.goodsBox,n=c.headCheckBox;Array.from(e.children).forEach(function(c){c.children[0].children[0].className=n.className.includes("checked")?"checkbox":"checkbox checked"})}});
