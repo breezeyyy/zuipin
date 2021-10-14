@@ -9,6 +9,8 @@
     <link rel="icon" type="image/x-icon" href="./images/common/icon.ico">
     <link rel="stylesheet" href="./font/iconfont.css">
     <link rel="stylesheet" href="./css/personal.css">
+    <script src="./modules/tools/cookie.js"></script>
+    <script src="./modules/tools/isLogin.js"></script>
 </head>
 
 <body>
@@ -59,7 +61,7 @@
                     </ul>
                 </li>
             </ul>
-            <div class="menuCont">
+            <div class="menuCont" style="display: block;">
                 <!-- 用户信息 -->
                 <div class="userInfo">
                     <div class="userInfoL">
@@ -157,7 +159,7 @@
             <div class="menuCont"></div>
             <div class="menuCont"></div>
             <div class="menuCont"></div>
-            <div class="menuCont" style="display: block;">
+            <div class="menuCont">
                 <div class="alterPsd">
                     <h2>修改密码</h2>
                     <label for="oldPsd">原密码</label>
@@ -188,7 +190,6 @@
 <script src="./modules/tools/ajax.js"></script>
 <script src="./modules/tools/jsonp.js"></script>
 <script src="./modules/tools/tool.js"></script>
-<script src="./modules/tools/cookie.js"></script>
 <script src="./js/common.js"></script>
 <script src="./libs/require.js" data-main="./js/personalMain.js"></script>
 

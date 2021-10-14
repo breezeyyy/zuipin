@@ -382,7 +382,8 @@ window.onload = function () {
             this.getImageData();
 
             addEvent(document.querySelector(".cart"), "click", function () {
-                location.href = getCookie("isLogin") === "ok" ? "./cart.html" : "./login.html";
+                // location.href = getCookie("isLogin") === "ok" ? "./cart.html" : "./login.html";
+                location.href = "./cart.html"
             })
         }
 

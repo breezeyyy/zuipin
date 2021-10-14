@@ -1,10 +1,10 @@
 const {
     src,
     dest,
-    watch,
-    parallel
+    watch
 } = require("gulp");
 const babel = require("gulp-babel");
+const uglify = require("gulp-uglify");
 const sass = require('gulp-sass')(require('sass'));
 
 exports.watch = function () {

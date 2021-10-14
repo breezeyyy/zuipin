@@ -435,7 +435,8 @@ window.onload = function () {
       this.imageBox = document.querySelectorAll(".item-desc");
       this.getImageData();
       addEvent(document.querySelector(".cart"), "click", function () {
-        location.href = getCookie("isLogin") === "ok" ? "./cart.html" : "./login.html";
+        // location.href = getCookie("isLogin") === "ok" ? "./cart.html" : "./login.html";
+        location.href = "./cart.html";
       });
     }
     /**
